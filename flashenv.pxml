@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PXML xmlns="http://openpandora.org/namespaces/PXML">
+  <application id="flashenv.crow_riot.app" appdata="flashenv">
+    <exec command="flashenv.sh" x11="req"/>
+    <version major="1" minor="1" release="0" build="2"/>
+    <author name="crow_riot, idaunis, hdonk" website="http://crow.riot.org/"/>
+    <titles>
+      <title lang="en_US">flashenv</title>
+    </titles>
+    <title lang="en_US">flashenv</title> <!--Extra block for compatibility with OS versions before HF6-->
+    <descriptions>
+      <description lang="en_US">flashenv allows you to play flash games without the need of a browser</description>
+    </descriptions>
+    <description lang="en_US">flashenv allows you to play flash games without the need of a browser</description> <!--Extra block for compatibility with OS versions before HF6-->
+    <icon src="res/icon.png"/>
+    <licenses>
+      <license name="Simplified BSD" url="https://github.com/crowriot/flashenv/blob/master/LICENSE.flashenv" sourcecodeurl="http://github.com/crowriot/flashenv/"/>
+    </licenses>
+    <categories>
+      <category name="Game">
+        <subcategory name="Emulator"/>
+      </category>
+    </categories>    
+  </application>
+</PXML>

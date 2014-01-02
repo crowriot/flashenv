@@ -1,0 +1,3419 @@
+# depslib dependency file v1.0
+1388698533 source:/home/xubuntu/Pandora/flashenv/src/main.cpp
+	<iostream>
+	"flashplayer.h"
+	"flashwindow.h"
+	<string.h>
+	<gtk/gtk.h>
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1273420417 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_platform.h
+
+1273420417 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/begin_code.h
+
+1273420417 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/close_code.h
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_keysym.h
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1388692018 source:/home/xubuntu/Pandora/flashenv/src/flashplayer.cpp
+	"flashplayer.h"
+	"flashwindow.h"
+	"npn.h"
+	"mimetypes.h"
+	<dlfcn.h>
+	<iostream>
+	<iomanip>
+	<string.h>
+
+1388574663 /home/xubuntu/Pandora/flashenv/src/flashplayer.h
+	<string>
+	"npapi/npfunctions.h"
+
+1344884704 /home/xubuntu/Pandora/flashenv/src/npapi/npfunctions.h
+	"npapi.h"
+	"npruntime.h"
+
+1388436212 /home/xubuntu/Pandora/flashenv/src/npapi/npapi.h
+	"nptypes.h"
+	<windef.h>
+	<ApplicationServices/ApplicationServices.h>
+	<OpenGL/OpenGL.h>
+	<Carbon/Carbon.h>
+	<stdio.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<QEvent>
+	<QRegion>
+
+1355135260 /home/xubuntu/Pandora/flashenv/src/npapi/nptypes.h
+	<inttypes.h>
+	<sys/types.h>
+	<inttypes.h>
+	<stdbool.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdbool.h>
+
+1311102069 /home/xubuntu/Pandora/flashenv/src/npapi/npruntime.h
+	"nptypes.h"
+
+1339012755 /usr/include/glib-2.0/glib.h
+	<glib/galloca.h>
+	<glib/garray.h>
+	<glib/gasyncqueue.h>
+	<glib/gatomic.h>
+	<glib/gbacktrace.h>
+	<glib/gbase64.h>
+	<glib/gbitlock.h>
+	<glib/gbookmarkfile.h>
+	<glib/gbytes.h>
+	<glib/gcharset.h>
+	<glib/gchecksum.h>
+	<glib/gconvert.h>
+	<glib/gdataset.h>
+	<glib/gdate.h>
+	<glib/gdatetime.h>
+	<glib/gdir.h>
+	<glib/genviron.h>
+	<glib/gerror.h>
+	<glib/gfileutils.h>
+	<glib/ggettext.h>
+	<glib/ghash.h>
+	<glib/ghmac.h>
+	<glib/ghook.h>
+	<glib/ghostutils.h>
+	<glib/giochannel.h>
+	<glib/gkeyfile.h>
+	<glib/glist.h>
+	<glib/gmacros.h>
+	<glib/gmain.h>
+	<glib/gmappedfile.h>
+	<glib/gmarkup.h>
+	<glib/gmem.h>
+	<glib/gmessages.h>
+	<glib/gnode.h>
+	<glib/goption.h>
+	<glib/gpattern.h>
+	<glib/gpoll.h>
+	<glib/gprimes.h>
+	<glib/gqsort.h>
+	<glib/gquark.h>
+	<glib/gqueue.h>
+	<glib/grand.h>
+	<glib/gregex.h>
+	<glib/gscanner.h>
+	<glib/gsequence.h>
+	<glib/gshell.h>
+	<glib/gslice.h>
+	<glib/gslist.h>
+	<glib/gspawn.h>
+	<glib/gstrfuncs.h>
+	<glib/gstring.h>
+	<glib/gstringchunk.h>
+	<glib/gtestutils.h>
+	<glib/gthread.h>
+	<glib/gthreadpool.h>
+	<glib/gtimer.h>
+	<glib/gtimezone.h>
+	<glib/gtrashstack.h>
+	<glib/gtree.h>
+	<glib/gtypes.h>
+	<glib/gunicode.h>
+	<glib/gurifuncs.h>
+	<glib/gutils.h>
+	<glib/gvarianttype.h>
+	<glib/gvariant.h>
+	<glib/gversion.h>
+	<glib/gversionmacros.h>
+	<glib/gwin32.h>
+	<glib/deprecated/gallocator.h>
+	<glib/deprecated/gcache.h>
+	<glib/deprecated/gcompletion.h>
+	<glib/deprecated/gmain.h>
+	<glib/deprecated/grel.h>
+	<glib/deprecated/gthread.h>
+
+1339012755 /usr/include/glib-2.0/glib/galloca.h
+	<glib/gtypes.h>
+	<alloca.h>
+	<malloc.h>
+
+1339012755 /usr/include/glib-2.0/glib/gtypes.h
+	<glibconfig.h>
+	<glib/gmacros.h>
+	<glib/gversionmacros.h>
+	<time.h>
+
+1339012755 /usr/lib/i386-linux-gnu/glib-2.0/include/glibconfig.h
+	<glib/gmacros.h>
+	<limits.h>
+	<float.h>
+
+1339012755 /usr/include/glib-2.0/glib/gmacros.h
+	<stddef.h>
+
+1339012755 /usr/include/glib-2.0/glib/gversionmacros.h
+
+1339012755 /usr/include/glib-2.0/glib/garray.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gasyncqueue.h
+	<glib/gthread.h>
+
+1339012755 /usr/include/glib-2.0/glib/gthread.h
+	<glib/gatomic.h>
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/gatomic.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gerror.h
+	<stdarg.h>
+	<glib/gquark.h>
+
+1339012755 /usr/include/glib-2.0/glib/gquark.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gbacktrace.h
+	<glib/gtypes.h>
+	<signal.h>
+
+1339012755 /usr/include/glib-2.0/glib/gbase64.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gbitlock.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gbookmarkfile.h
+	<glib/gerror.h>
+	<time.h>
+
+1339012755 /usr/include/glib-2.0/glib/gbytes.h
+	<glib/gtypes.h>
+	<glib/garray.h>
+
+1339012755 /usr/include/glib-2.0/glib/gcharset.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gchecksum.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gconvert.h
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/gdataset.h
+	<glib/gquark.h>
+
+1339012755 /usr/include/glib-2.0/glib/gdate.h
+	<time.h>
+	<glib/gtypes.h>
+	<glib/gquark.h>
+
+1339012755 /usr/include/glib-2.0/glib/gdatetime.h
+	<glib/gtimezone.h>
+
+1339012755 /usr/include/glib-2.0/glib/gtimezone.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gdir.h
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/genviron.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gfileutils.h
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/ggettext.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/ghash.h
+	<glib/gtypes.h>
+	<glib/glist.h>
+
+1339012755 /usr/include/glib-2.0/glib/glist.h
+	<glib/gmem.h>
+
+1339012755 /usr/include/glib-2.0/glib/gmem.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/ghmac.h
+	<glib/gtypes.h>
+	"gchecksum.h"
+
+1339012755 /usr/include/glib-2.0/glib/ghook.h
+	<glib/gmem.h>
+
+1339012755 /usr/include/glib-2.0/glib/ghostutils.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/giochannel.h
+	<glib/gconvert.h>
+	<glib/gmain.h>
+	<glib/gstring.h>
+
+1339012755 /usr/include/glib-2.0/glib/gmain.h
+	<glib/gpoll.h>
+	<glib/gslist.h>
+	<glib/gthread.h>
+
+1339012755 /usr/include/glib-2.0/glib/gpoll.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gslist.h
+	<glib/gmem.h>
+
+1339012755 /usr/include/glib-2.0/glib/gstring.h
+	<glib/gtypes.h>
+	<glib/gunicode.h>
+	<glib/gutils.h>
+
+1339012755 /usr/include/glib-2.0/glib/gunicode.h
+	<glib/gerror.h>
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gutils.h
+	<glib/gtypes.h>
+	<stdarg.h>
+
+1339012755 /usr/include/glib-2.0/glib/gkeyfile.h
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/gmappedfile.h
+	<glib/gbytes.h>
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/gmarkup.h
+	<stdarg.h>
+	<glib/gerror.h>
+	<glib/gslist.h>
+
+1339012755 /usr/include/glib-2.0/glib/gmessages.h
+	<stdarg.h>
+	<glib/gtypes.h>
+	<glib/gmacros.h>
+
+1339012755 /usr/include/glib-2.0/glib/gnode.h
+	<glib/gmem.h>
+
+1339012755 /usr/include/glib-2.0/glib/goption.h
+	<glib/gerror.h>
+	<glib/gquark.h>
+
+1339012755 /usr/include/glib-2.0/glib/gpattern.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gprimes.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gqsort.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gqueue.h
+	<glib/glist.h>
+
+1339012755 /usr/include/glib-2.0/glib/grand.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gregex.h
+	<glib/gerror.h>
+	<glib/gstring.h>
+
+1339012755 /usr/include/glib-2.0/glib/gscanner.h
+	<glib/gdataset.h>
+	<glib/ghash.h>
+
+1339012755 /usr/include/glib-2.0/glib/gsequence.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gshell.h
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/gslice.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gspawn.h
+	<glib/gerror.h>
+
+1339012755 /usr/include/glib-2.0/glib/gstrfuncs.h
+	<stdarg.h>
+	<glib/gmacros.h>
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gstringchunk.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gtestutils.h
+	<glib/gmessages.h>
+	<glib/gstring.h>
+	<glib/gerror.h>
+	<glib/gslist.h>
+
+1339012755 /usr/include/glib-2.0/glib/gthreadpool.h
+	<glib/gthread.h>
+
+1339012755 /usr/include/glib-2.0/glib/gtimer.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gtrashstack.h
+	<glib/gutils.h>
+
+1339012755 /usr/include/glib-2.0/glib/gtree.h
+	<glib/gnode.h>
+
+1339012755 /usr/include/glib-2.0/glib/gurifuncs.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gvarianttype.h
+	<glib/gmessages.h>
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gvariant.h
+	<glib/gvarianttype.h>
+	<glib/gstring.h>
+
+1339012755 /usr/include/glib-2.0/glib/gversion.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/gwin32.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/deprecated/gallocator.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/deprecated/gcache.h
+	<glib/glist.h>
+
+1339012755 /usr/include/glib-2.0/glib/deprecated/gcompletion.h
+	<glib/glist.h>
+
+1339012755 /usr/include/glib-2.0/glib/deprecated/gmain.h
+	<glib/gmain.h>
+
+1339012755 /usr/include/glib-2.0/glib/deprecated/grel.h
+	<glib/gtypes.h>
+
+1339012755 /usr/include/glib-2.0/glib/deprecated/gthread.h
+	<glib/gthread.h>
+	<pthread.h>
+
+1339012755 /usr/include/glib-2.0/glib-object.h
+	<gobject/gbinding.h>
+	<gobject/gboxed.h>
+	<gobject/genums.h>
+	<gobject/gobject.h>
+	<gobject/gparam.h>
+	<gobject/gparamspecs.h>
+	<gobject/gsignal.h>
+	<gobject/gsourceclosure.h>
+	<gobject/gtype.h>
+	<gobject/gtypemodule.h>
+	<gobject/gtypeplugin.h>
+	<gobject/gvalue.h>
+	<gobject/gvaluearray.h>
+	<gobject/gvaluetypes.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gbinding.h
+	<glib.h>
+	<gobject/gobject.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gobject.h
+	<gobject/gtype.h>
+	<gobject/gvalue.h>
+	<gobject/gparam.h>
+	<gobject/gclosure.h>
+	<gobject/gsignal.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gtype.h
+	<glib.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gvalue.h
+	<gobject/gtype.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gparam.h
+	<gobject/gvalue.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gclosure.h
+	<gobject/gtype.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gsignal.h
+	<gobject/gclosure.h>
+	<gobject/gvalue.h>
+	<gobject/gparam.h>
+	<gobject/gmarshal.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gmarshal.h
+
+1339012756 /usr/include/glib-2.0/gobject/gboxed.h
+	<gobject/gtype.h>
+	<gobject/glib-types.h>
+
+1339012756 /usr/include/glib-2.0/gobject/glib-types.h
+	<glib.h>
+
+1339012756 /usr/include/glib-2.0/gobject/genums.h
+	<gobject/gtype.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gparamspecs.h
+	<gobject/gvalue.h>
+	<gobject/genums.h>
+	<gobject/gboxed.h>
+	<gobject/gobject.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gsourceclosure.h
+	<gobject/gclosure.h>
+	<gobject/glib-types.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gtypemodule.h
+	<gobject/gobject.h>
+	<gobject/genums.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gtypeplugin.h
+	<gobject/gtype.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gvaluearray.h
+	<gobject/gvalue.h>
+
+1339012756 /usr/include/glib-2.0/gobject/gvaluetypes.h
+	<gobject/gvalue.h>
+
+1388574672 /home/xubuntu/Pandora/flashenv/src/npn.h
+	"npapi/npfunctions.h"
+
+1388696015 source:/home/xubuntu/Pandora/flashenv/src/npn.cpp
+	"npn.h"
+	"mimetypes.h"
+	<iostream>
+	<stdlib.h>
+	<string.h>
+
+1388446325 source:/home/xubuntu/Pandora/flashenv/src/player.cpp
+	<stdio.h>
+	<stdlib.h>
+	<dlfcn.h>
+	<string.h>
+	<unistd.h>
+	<ctype.h>
+	<gtk/gtk.h>
+	<gdk/gdkx.h>
+	"npapi/npapi.h"
+	"npapi/npfunctions.h"
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/inttypes.h
+	<features.h>
+	<stdint.h>
+	<stddef.h>
+
+1273413831 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/features.h
+	<sys/cdefs.h>
+	<gnu/stubs.h>
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/cdefs.h
+	<features.h>
+	<bits/wordsize.h>
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wordsize.h
+
+1273413955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gnu/stubs.h
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/stdint.h
+	<features.h>
+	<bits/wchar.h>
+	<bits/wordsize.h>
+
+1273413877 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wchar.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/types.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<stddef.h>
+	<endian.h>
+	<sys/select.h>
+	<sys/sysmacros.h>
+	<bits/pthreadtypes.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/types.h
+	<features.h>
+	<bits/wordsize.h>
+	<stddef.h>
+	<bits/typesizes.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/typesizes.h
+
+1273413881 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/time.h
+	<features.h>
+	<stddef.h>
+	<bits/time.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<xlocale.h>
+
+1273413881 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/time.h
+	<bits/types.h>
+	<bits/types.h>
+
+1273413837 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/xlocale.h
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/endian.h
+	<features.h>
+	<bits/endian.h>
+	<bits/byteswap.h>
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/endian.h
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/byteswap.h
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/select.h
+	<features.h>
+	<bits/types.h>
+	<bits/select.h>
+	<bits/sigset.h>
+	<time.h>
+	<bits/time.h>
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/select.h
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigset.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/sysmacros.h
+	<features.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/pthreadtypes.h
+	<endian.h>
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/stdio.h
+	<features.h>
+	<stddef.h>
+	<bits/types.h>
+	<libio.h>
+	<stdarg.h>
+	<bits/stdio_lim.h>
+	<bits/sys_errlist.h>
+	<getopt.h>
+	<bits/stdio.h>
+	<bits/stdio2.h>
+	<bits/stdio-ldbl.h>
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/libio.h
+	<_G_config.h>
+	<stdarg.h>
+	<sys/cdefs.h>
+	<bits/stdio-lock.h>
+	<shlib-compat.h>
+	<bits/libio-ldbl.h>
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/_G_config.h
+	<bits/types.h>
+	<stddef.h>
+	<wchar.h>
+	<gconv.h>
+
+1273413877 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/wchar.h
+	<features.h>
+	<stdio.h>
+	<stdarg.h>
+	<bits/wchar.h>
+	<stddef.h>
+	<wctype.h>
+	<xlocale.h>
+	<xlocale.h>
+	<xlocale.h>
+	<wctype.h>
+	<bits/wchar2.h>
+	<bits/wchar-ldbl.h>
+
+1273413897 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/wctype.h
+	<features.h>
+	<bits/types.h>
+	<wchar.h>
+	<endian.h>
+	<xlocale.h>
+
+1273413877 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wchar2.h
+
+1273413877 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/wchar-ldbl.h
+
+1273413833 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gconv.h
+	<features.h>
+	<wchar.h>
+	<stddef.h>
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio-lock.h
+	<bits/libc-lock.h>
+
+1273413831 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/libc-lock.h
+	<pthread.h>
+	<stddef.h>
+	<lowlevellock.h>
+	<tls.h>
+	<pthread-functions.h>
+	<bp-sym.h>
+
+1273413909 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pthread.h
+	<features.h>
+	<endian.h>
+	<sched.h>
+	<time.h>
+	<signal.h>
+	<bits/pthreadtypes.h>
+	<bits/setjmp.h>
+	<bits/wordsize.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sched.h
+	<features.h>
+	<bits/types.h>
+	<stddef.h>
+	<time.h>
+	<bits/sched.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sched.h
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/signal.h
+	<features.h>
+	<bits/sigset.h>
+	<bits/types.h>
+	<bits/signum.h>
+	<time.h>
+	<bits/siginfo.h>
+	<bits/sigaction.h>
+	<bits/sigcontext.h>
+	<stddef.h>
+	<bits/sigstack.h>
+	<sys/ucontext.h>
+	<bits/pthreadtypes.h>
+	<bits/sigthread.h>
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/signum.h
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/siginfo.h
+	<bits/wordsize.h>
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigaction.h
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigcontext.h
+	<asm/sigcontext.h>
+
+1273411306 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm/sigcontext.h
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigstack.h
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/ucontext.h
+	<features.h>
+	<signal.h>
+	<sys/procfs.h>
+	<bits/sigcontext.h>
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/procfs.h
+	<features.h>
+	<sys/time.h>
+	<sys/types.h>
+	<sys/user.h>
+
+1273413881 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/time.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<bits/time.h>
+	<sys/select.h>
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/user.h
+
+1273413867 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sigthread.h
+
+1273413865 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/setjmp.h
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/libio-ldbl.h
+
+1273413870 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio_lim.h
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/sys_errlist.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/getopt.h
+	<ctype.h>
+
+1273413859 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/ctype.h
+	<features.h>
+	<bits/types.h>
+	<endian.h>
+	<xlocale.h>
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio.h
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio2.h
+
+1273413872 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdio-ldbl.h
+
+1273415282 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/Xlib.h
+	<sys/types.h>
+	<stdint.h>
+	<X11/X.h>
+	<X11/Xfuncproto.h>
+	<X11/Xosdefs.h>
+	<stddef.h>
+	<stdlib.h>
+
+1273414965 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/X.h
+	<X11/Xmd.h>
+
+1273414965 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/Xmd.h
+	<sys/isa_defs.h>
+
+1273414964 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/Xfuncproto.h
+
+1273414965 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/Xosdefs.h
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/stdlib.h
+	<features.h>
+	<stddef.h>
+	<bits/waitflags.h>
+	<bits/waitstatus.h>
+	<xlocale.h>
+	<sys/types.h>
+	<alloca.h>
+	<bits/stdlib.h>
+	<bits/stdlib-ldbl.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/waitflags.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/waitstatus.h
+	<endian.h>
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/alloca.h
+	<features.h>
+	<stddef.h>
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdlib.h
+
+1273413868 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/stdlib-ldbl.h
+
+1273415282 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/Xutil.h
+	<X11/Xlib.h>
+	<X11/keysym.h>
+
+1273414965 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/keysym.h
+	<X11/keysymdef.h>
+
+1273414965 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/keysymdef.h
+
+1273413873 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/dlfcn.h
+	<features.h>
+	<stddef.h>
+	<bits/dlfcn.h>
+
+1273413873 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/dlfcn.h
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/string.h
+	<features.h>
+	<stddef.h>
+	<xlocale.h>
+	<bits/string.h>
+	<bits/string2.h>
+	<bits/string3.h>
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/string.h
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/string2.h
+	<endian.h>
+	<bits/types.h>
+	<stdlib.h>
+
+1273413876 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/string3.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtk.h
+	<gdk/gdk.h>
+	<gtk/gtkaboutdialog.h>
+	<gtk/gtkaccelgroup.h>
+	<gtk/gtkaccellabel.h>
+	<gtk/gtkaccelmap.h>
+	<gtk/gtkaccessible.h>
+	<gtk/gtkaction.h>
+	<gtk/gtkactiongroup.h>
+	<gtk/gtkactivatable.h>
+	<gtk/gtkadjustment.h>
+	<gtk/gtkalignment.h>
+	<gtk/gtkarrow.h>
+	<gtk/gtkaspectframe.h>
+	<gtk/gtkassistant.h>
+	<gtk/gtkbbox.h>
+	<gtk/gtkbin.h>
+	<gtk/gtkbindings.h>
+	<gtk/gtkbox.h>
+	<gtk/gtkbuildable.h>
+	<gtk/gtkbuilder.h>
+	<gtk/gtkbutton.h>
+	<gtk/gtkcalendar.h>
+	<gtk/gtkcelleditable.h>
+	<gtk/gtkcelllayout.h>
+	<gtk/gtkcellrenderer.h>
+	<gtk/gtkcellrendereraccel.h>
+	<gtk/gtkcellrenderercombo.h>
+	<gtk/gtkcellrendererpixbuf.h>
+	<gtk/gtkcellrendererprogress.h>
+	<gtk/gtkcellrendererspin.h>
+	<gtk/gtkcellrendererspinner.h>
+	<gtk/gtkcellrenderertext.h>
+	<gtk/gtkcellrenderertoggle.h>
+	<gtk/gtkcellview.h>
+	<gtk/gtkcheckbutton.h>
+	<gtk/gtkcheckmenuitem.h>
+	<gtk/gtkclipboard.h>
+	<gtk/gtkcolorbutton.h>
+	<gtk/gtkcolorsel.h>
+	<gtk/gtkcolorseldialog.h>
+	<gtk/gtkcombobox.h>
+	<gtk/gtkcomboboxentry.h>
+	<gtk/gtkcontainer.h>
+	<gtk/gtkdebug.h>
+	<gtk/gtkdialog.h>
+	<gtk/gtkdnd.h>
+	<gtk/gtkdrawingarea.h>
+	<gtk/gtkeditable.h>
+	<gtk/gtkentry.h>
+	<gtk/gtkentrybuffer.h>
+	<gtk/gtkentrycompletion.h>
+	<gtk/gtkenums.h>
+	<gtk/gtkeventbox.h>
+	<gtk/gtkexpander.h>
+	<gtk/gtkfixed.h>
+	<gtk/gtkfilechooser.h>
+	<gtk/gtkfilechooserbutton.h>
+	<gtk/gtkfilechooserdialog.h>
+	<gtk/gtkfilechooserwidget.h>
+	<gtk/gtkfilefilter.h>
+	<gtk/gtkfontbutton.h>
+	<gtk/gtkfontsel.h>
+	<gtk/gtkframe.h>
+	<gtk/gtkgc.h>
+	<gtk/gtkhandlebox.h>
+	<gtk/gtkhbbox.h>
+	<gtk/gtkhbox.h>
+	<gtk/gtkhpaned.h>
+	<gtk/gtkhruler.h>
+	<gtk/gtkhscale.h>
+	<gtk/gtkhscrollbar.h>
+	<gtk/gtkhseparator.h>
+	<gtk/gtkhsv.h>
+	<gtk/gtkiconfactory.h>
+	<gtk/gtkicontheme.h>
+	<gtk/gtkiconview.h>
+	<gtk/gtkimage.h>
+	<gtk/gtkimagemenuitem.h>
+	<gtk/gtkimcontext.h>
+	<gtk/gtkimcontextsimple.h>
+	<gtk/gtkimmulticontext.h>
+	<gtk/gtkinfobar.h>
+	<gtk/gtkinvisible.h>
+	<gtk/gtkitem.h>
+	<gtk/gtklabel.h>
+	<gtk/gtklayout.h>
+	<gtk/gtklinkbutton.h>
+	<gtk/gtkliststore.h>
+	<gtk/gtkmain.h>
+	<gtk/gtkmenu.h>
+	<gtk/gtkmenubar.h>
+	<gtk/gtkmenuitem.h>
+	<gtk/gtkmenushell.h>
+	<gtk/gtkmenutoolbutton.h>
+	<gtk/gtkmessagedialog.h>
+	<gtk/gtkmisc.h>
+	<gtk/gtkmodules.h>
+	<gtk/gtkmountoperation.h>
+	<gtk/gtknotebook.h>
+	<gtk/gtkobject.h>
+	<gtk/gtkoffscreenwindow.h>
+	<gtk/gtkorientable.h>
+	<gtk/gtkpagesetup.h>
+	<gtk/gtkpapersize.h>
+	<gtk/gtkpaned.h>
+	<gtk/gtkplug.h>
+	<gtk/gtkprintcontext.h>
+	<gtk/gtkprintoperation.h>
+	<gtk/gtkprintoperationpreview.h>
+	<gtk/gtkprintsettings.h>
+	<gtk/gtkprogressbar.h>
+	<gtk/gtkradioaction.h>
+	<gtk/gtkradiobutton.h>
+	<gtk/gtkradiomenuitem.h>
+	<gtk/gtkradiotoolbutton.h>
+	<gtk/gtkrange.h>
+	<gtk/gtkrc.h>
+	<gtk/gtkrecentaction.h>
+	<gtk/gtkrecentchooser.h>
+	<gtk/gtkrecentchooserdialog.h>
+	<gtk/gtkrecentchoosermenu.h>
+	<gtk/gtkrecentchooserwidget.h>
+	<gtk/gtkrecentfilter.h>
+	<gtk/gtkrecentmanager.h>
+	<gtk/gtkruler.h>
+	<gtk/gtkscale.h>
+	<gtk/gtkscalebutton.h>
+	<gtk/gtkscrollbar.h>
+	<gtk/gtkscrolledwindow.h>
+	<gtk/gtkselection.h>
+	<gtk/gtkseparator.h>
+	<gtk/gtkseparatormenuitem.h>
+	<gtk/gtkseparatortoolitem.h>
+	<gtk/gtksettings.h>
+	<gtk/gtkshow.h>
+	<gtk/gtksizegroup.h>
+	<gtk/gtksocket.h>
+	<gtk/gtkspinbutton.h>
+	<gtk/gtkspinner.h>
+	<gtk/gtkstatusbar.h>
+	<gtk/gtkstatusicon.h>
+	<gtk/gtkstock.h>
+	<gtk/gtkstyle.h>
+	<gtk/gtktable.h>
+	<gtk/gtktearoffmenuitem.h>
+	<gtk/gtktextbuffer.h>
+	<gtk/gtktextbufferrichtext.h>
+	<gtk/gtktextchild.h>
+	<gtk/gtktextiter.h>
+	<gtk/gtktextmark.h>
+	<gtk/gtktexttag.h>
+	<gtk/gtktexttagtable.h>
+	<gtk/gtktextview.h>
+	<gtk/gtktoggleaction.h>
+	<gtk/gtktogglebutton.h>
+	<gtk/gtktoggletoolbutton.h>
+	<gtk/gtktoolbar.h>
+	<gtk/gtktoolbutton.h>
+	<gtk/gtktoolitem.h>
+	<gtk/gtktoolitemgroup.h>
+	<gtk/gtktoolpalette.h>
+	<gtk/gtktoolshell.h>
+	<gtk/gtktooltip.h>
+	<gtk/gtktestutils.h>
+	<gtk/gtktreednd.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreemodelfilter.h>
+	<gtk/gtktreemodelsort.h>
+	<gtk/gtktreeselection.h>
+	<gtk/gtktreesortable.h>
+	<gtk/gtktreestore.h>
+	<gtk/gtktreeview.h>
+	<gtk/gtktreeviewcolumn.h>
+	<gtk/gtktypeutils.h>
+	<gtk/gtkuimanager.h>
+	<gtk/gtkvbbox.h>
+	<gtk/gtkvbox.h>
+	<gtk/gtkversion.h>
+	<gtk/gtkviewport.h>
+	<gtk/gtkvolumebutton.h>
+	<gtk/gtkvpaned.h>
+	<gtk/gtkvruler.h>
+	<gtk/gtkvscale.h>
+	<gtk/gtkvscrollbar.h>
+	<gtk/gtkvseparator.h>
+	<gtk/gtkwidget.h>
+	<gtk/gtkwindow.h>
+	<gtk/gtktext.h>
+	<gtk/gtktree.h>
+	<gtk/gtktreeitem.h>
+	<gtk/gtkclist.h>
+	<gtk/gtkcombo.h>
+	<gtk/gtkctree.h>
+	<gtk/gtkcurve.h>
+	<gtk/gtkfilesel.h>
+	<gtk/gtkgamma.h>
+	<gtk/gtkinputdialog.h>
+	<gtk/gtkitemfactory.h>
+	<gtk/gtklist.h>
+	<gtk/gtklistitem.h>
+	<gtk/gtkoldeditable.h>
+	<gtk/gtkoptionmenu.h>
+	<gtk/gtkpixmap.h>
+	<gtk/gtkpreview.h>
+	<gtk/gtkprogress.h>
+	<gtk/gtksignal.h>
+	<gtk/gtktipsquery.h>
+	<gtk/gtktooltips.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdk.h
+	<gdk/gdkapplaunchcontext.h>
+	<gdk/gdkcairo.h>
+	<gdk/gdkcolor.h>
+	<gdk/gdkcursor.h>
+	<gdk/gdkdisplay.h>
+	<gdk/gdkdisplaymanager.h>
+	<gdk/gdkdnd.h>
+	<gdk/gdkdrawable.h>
+	<gdk/gdkenumtypes.h>
+	<gdk/gdkevents.h>
+	<gdk/gdkfont.h>
+	<gdk/gdkgc.h>
+	<gdk/gdkimage.h>
+	<gdk/gdkinput.h>
+	<gdk/gdkkeys.h>
+	<gdk/gdkpango.h>
+	<gdk/gdkpixbuf.h>
+	<gdk/gdkpixmap.h>
+	<gdk/gdkproperty.h>
+	<gdk/gdkregion.h>
+	<gdk/gdkrgb.h>
+	<gdk/gdkscreen.h>
+	<gdk/gdkselection.h>
+	<gdk/gdkspawn.h>
+	<gdk/gdktestutils.h>
+	<gdk/gdktypes.h>
+	<gdk/gdkvisual.h>
+	<gdk/gdkwindow.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkapplaunchcontext.h
+	<gio/gio.h>
+	<gdk/gdkscreen.h>
+
+1339012758 /usr/include/glib-2.0/gio/gio.h
+	<gio/giotypes.h>
+	<gio/gaction.h>
+	<gio/gactiongroup.h>
+	<gio/gactiongroupexporter.h>
+	<gio/gactionmap.h>
+	<gio/gappinfo.h>
+	<gio/gapplication.h>
+	<gio/gapplicationcommandline.h>
+	<gio/gasyncinitable.h>
+	<gio/gasyncresult.h>
+	<gio/gbufferedinputstream.h>
+	<gio/gbufferedoutputstream.h>
+	<gio/gcancellable.h>
+	<gio/gcharsetconverter.h>
+	<gio/gcontenttype.h>
+	<gio/gconverter.h>
+	<gio/gconverterinputstream.h>
+	<gio/gconverteroutputstream.h>
+	<gio/gcredentials.h>
+	<gio/gdatainputstream.h>
+	<gio/gdataoutputstream.h>
+	<gio/gdbusaddress.h>
+	<gio/gdbusauthobserver.h>
+	<gio/gdbusconnection.h>
+	<gio/gdbuserror.h>
+	<gio/gdbusintrospection.h>
+	<gio/gdbusmessage.h>
+	<gio/gdbusmethodinvocation.h>
+	<gio/gdbusnameowning.h>
+	<gio/gdbusnamewatching.h>
+	<gio/gdbusproxy.h>
+	<gio/gdbusserver.h>
+	<gio/gdbusutils.h>
+	<gio/gdrive.h>
+	<gio/gemblemedicon.h>
+	<gio/gfileattribute.h>
+	<gio/gfileenumerator.h>
+	<gio/gfile.h>
+	<gio/gfileicon.h>
+	<gio/gfileinfo.h>
+	<gio/gfileinputstream.h>
+	<gio/gfileiostream.h>
+	<gio/gfilemonitor.h>
+	<gio/gfilenamecompleter.h>
+	<gio/gfileoutputstream.h>
+	<gio/gfilterinputstream.h>
+	<gio/gfilteroutputstream.h>
+	<gio/gicon.h>
+	<gio/ginetaddress.h>
+	<gio/ginetaddressmask.h>
+	<gio/ginetsocketaddress.h>
+	<gio/ginitable.h>
+	<gio/ginputstream.h>
+	<gio/gioenums.h>
+	<gio/gioenumtypes.h>
+	<gio/gioerror.h>
+	<gio/giomodule.h>
+	<gio/gioscheduler.h>
+	<gio/giostream.h>
+	<gio/gloadableicon.h>
+	<gio/gmemoryinputstream.h>
+	<gio/gmemoryoutputstream.h>
+	<gio/gmount.h>
+	<gio/gmountoperation.h>
+	<gio/gnativevolumemonitor.h>
+	<gio/gnetworkaddress.h>
+	<gio/gnetworkmonitor.h>
+	<gio/gnetworkservice.h>
+	<gio/goutputstream.h>
+	<gio/gpermission.h>
+	<gio/gpollableinputstream.h>
+	<gio/gpollableoutputstream.h>
+	<gio/gproxy.h>
+	<gio/gproxyaddress.h>
+	<gio/gproxyaddressenumerator.h>
+	<gio/gproxyresolver.h>
+	<gio/gresolver.h>
+	<gio/gresource.h>
+	<gio/gseekable.h>
+	<gio/gsettingsschema.h>
+	<gio/gsettings.h>
+	<gio/gsimpleaction.h>
+	<gio/gsimpleactiongroup.h>
+	<gio/gsimpleasyncresult.h>
+	<gio/gsimplepermission.h>
+	<gio/gsocketaddressenumerator.h>
+	<gio/gsocketaddress.h>
+	<gio/gsocketclient.h>
+	<gio/gsocketconnectable.h>
+	<gio/gsocketconnection.h>
+	<gio/gsocketcontrolmessage.h>
+	<gio/gsocket.h>
+	<gio/gsocketlistener.h>
+	<gio/gsocketservice.h>
+	<gio/gsrvtarget.h>
+	<gio/gtcpconnection.h>
+	<gio/gtcpwrapperconnection.h>
+	<gio/gthemedicon.h>
+	<gio/gthreadedsocketservice.h>
+	<gio/gtlsbackend.h>
+	<gio/gtlscertificate.h>
+	<gio/gtlsclientconnection.h>
+	<gio/gtlsconnection.h>
+	<gio/gtlsdatabase.h>
+	<gio/gtlsfiledatabase.h>
+	<gio/gtlsinteraction.h>
+	<gio/gtlsserverconnection.h>
+	<gio/gtlspassword.h>
+	<gio/gvfs.h>
+	<gio/gvolume.h>
+	<gio/gvolumemonitor.h>
+	<gio/gzlibcompressor.h>
+	<gio/gzlibdecompressor.h>
+	<gio/gdbusinterface.h>
+	<gio/gdbusinterfaceskeleton.h>
+	<gio/gdbusobject.h>
+	<gio/gdbusobjectskeleton.h>
+	<gio/gdbusobjectproxy.h>
+	<gio/gdbusobjectmanager.h>
+	<gio/gdbusobjectmanagerclient.h>
+	<gio/gdbusobjectmanagerserver.h>
+	<gio/gdbusactiongroup.h>
+	<gio/gremoteactiongroup.h>
+	<gio/gmenumodel.h>
+	<gio/gmenu.h>
+	<gio/gmenuexporter.h>
+	<gio/gdbusmenumodel.h>
+
+1339012758 /usr/include/glib-2.0/gio/giotypes.h
+	<gio/gioenums.h>
+
+1339012758 /usr/include/glib-2.0/gio/gioenums.h
+	<glib-object.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib-object.h
+	<gobject/gboxed.h>
+	<gobject/genums.h>
+	<gobject/gobject.h>
+	<gobject/gparam.h>
+	<gobject/gparamspecs.h>
+	<gobject/gsignal.h>
+	<gobject/gsourceclosure.h>
+	<gobject/gtype.h>
+	<gobject/gtypemodule.h>
+	<gobject/gtypeplugin.h>
+	<gobject/gvalue.h>
+	<gobject/gvaluearray.h>
+	<gobject/gvaluetypes.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gboxed.h
+	<gobject/gtype.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gtype.h
+	<glib.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib.h
+	<glib/galloca.h>
+	<glib/garray.h>
+	<glib/gasyncqueue.h>
+	<glib/gatomic.h>
+	<glib/gbacktrace.h>
+	<glib/gbase64.h>
+	<glib/gbitlock.h>
+	<glib/gbookmarkfile.h>
+	<glib/gcache.h>
+	<glib/gchecksum.h>
+	<glib/gcompletion.h>
+	<glib/gconvert.h>
+	<glib/gdataset.h>
+	<glib/gdate.h>
+	<glib/gdir.h>
+	<glib/gerror.h>
+	<glib/gfileutils.h>
+	<glib/ghash.h>
+	<glib/ghook.h>
+	<glib/ghostutils.h>
+	<glib/giochannel.h>
+	<glib/gkeyfile.h>
+	<glib/glist.h>
+	<glib/gmacros.h>
+	<glib/gmain.h>
+	<glib/gmappedfile.h>
+	<glib/gmarkup.h>
+	<glib/gmem.h>
+	<glib/gmessages.h>
+	<glib/gnode.h>
+	<glib/goption.h>
+	<glib/gpattern.h>
+	<glib/gpoll.h>
+	<glib/gprimes.h>
+	<glib/gqsort.h>
+	<glib/gquark.h>
+	<glib/gqueue.h>
+	<glib/grand.h>
+	<glib/grel.h>
+	<glib/gregex.h>
+	<glib/gscanner.h>
+	<glib/gsequence.h>
+	<glib/gshell.h>
+	<glib/gslice.h>
+	<glib/gslist.h>
+	<glib/gspawn.h>
+	<glib/gstrfuncs.h>
+	<glib/gstring.h>
+	<glib/gtestutils.h>
+	<glib/gthread.h>
+	<glib/gthreadpool.h>
+	<glib/gtimer.h>
+	<glib/gtree.h>
+	<glib/gtypes.h>
+	<glib/gunicode.h>
+	<glib/gurifuncs.h>
+	<glib/gutils.h>
+	<glib/gvarianttype.h>
+	<glib/gvariant.h>
+	<glib/gwin32.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/galloca.h
+	<glib/gtypes.h>
+	<alloca.h>
+	<malloc.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gtypes.h
+	<glibconfig.h>
+	<glib/gmacros.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gmacros.h
+	<stddef.h>
+
+1273413831 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/limits.h
+	<features.h>
+	<bits/wordsize.h>
+	<bits/posix1_lim.h>
+	<bits/posix2_lim.h>
+	<bits/xopen_lim.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix1_lim.h
+	<bits/local_lim.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/local_lim.h
+	<linux/limits.h>
+
+1273411305 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/linux/limits.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix2_lim.h
+
+1273413831 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/xopen_lim.h
+	<bits/stdio_lim.h>
+	<bits/wordsize.h>
+
+1273413874 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/malloc.h
+	<features.h>
+	<stddef.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/garray.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gasyncqueue.h
+	<glib/gthread.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gthread.h
+	<glib/gerror.h>
+	<glib/gtypes.h>
+	<glib/gutils.h>
+	<glib/gatomic.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gerror.h
+	<stdarg.h>
+	<glib/gquark.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gquark.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gutils.h
+	<glib/gtypes.h>
+	<stdarg.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gatomic.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gbacktrace.h
+	<glib/gtypes.h>
+	<signal.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gbase64.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gbitlock.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gbookmarkfile.h
+	<glib/gerror.h>
+	<time.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gcache.h
+	<glib/glist.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/glist.h
+	<glib/gmem.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gmem.h
+	<glib/gslice.h>
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gslice.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gchecksum.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gcompletion.h
+	<glib/glist.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gconvert.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gdataset.h
+	<glib/gquark.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gdate.h
+	<time.h>
+	<glib/gtypes.h>
+	<glib/gquark.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gdir.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gfileutils.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/ghash.h
+	<glib/gtypes.h>
+	<glib/glist.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/ghook.h
+	<glib/gmem.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/ghostutils.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/giochannel.h
+	<glib/gconvert.h>
+	<glib/gmain.h>
+	<glib/gstring.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gmain.h
+	<glib/gpoll.h>
+	<glib/gslist.h>
+	<glib/gthread.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gpoll.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gslist.h
+	<glib/gmem.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gstring.h
+	<glib/gtypes.h>
+	<glib/gunicode.h>
+	<glib/gutils.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gunicode.h
+	<glib/gerror.h>
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gkeyfile.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gmappedfile.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gmarkup.h
+	<stdarg.h>
+	<glib/gerror.h>
+	<glib/gslist.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gmessages.h
+	<stdarg.h>
+	<glib/gtypes.h>
+	<glib/gmacros.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gnode.h
+	<glib/gmem.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/goption.h
+	<glib/gerror.h>
+	<glib/gquark.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gpattern.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gprimes.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gqsort.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gqueue.h
+	<glib/glist.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/grand.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/grel.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gregex.h
+	<glib/gerror.h>
+	<glib/gstring.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gscanner.h
+	<glib/gdataset.h>
+	<glib/ghash.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gsequence.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gshell.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gspawn.h
+	<glib/gerror.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gstrfuncs.h
+	<stdarg.h>
+	<glib/gmacros.h>
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gtestutils.h
+	<glib/gmessages.h>
+	<glib/gstring.h>
+	<glib/gtypes.h>
+	<glib/gerror.h>
+	<glib/gslist.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gthreadpool.h
+	<glib/gthread.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gtimer.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gtree.h
+	<glib/gnode.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gurifuncs.h
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gvarianttype.h
+	<glib/gmessages.h>
+	<glib/gtypes.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gvariant.h
+	<glib/gvarianttype.h>
+	<glib/gstring.h>
+
+1273415151 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/glib/gwin32.h
+	<glib/gtypes.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/genums.h
+	<gobject/gtype.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gobject.h
+	<gobject/gtype.h>
+	<gobject/gvalue.h>
+	<gobject/gparam.h>
+	<gobject/gclosure.h>
+	<gobject/gsignal.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gvalue.h
+	<gobject/gtype.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gparam.h
+	<gobject/gvalue.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gclosure.h
+	<gobject/gtype.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gsignal.h
+	<gobject/gclosure.h>
+	<gobject/gvalue.h>
+	<gobject/gparam.h>
+	<gobject/gmarshal.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gmarshal.h
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gparamspecs.h
+	<gobject/gvalue.h>
+	<gobject/genums.h>
+	<gobject/gboxed.h>
+	<gobject/gobject.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gsourceclosure.h
+	<gobject/gclosure.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gtypemodule.h
+	<gobject/gobject.h>
+	<gobject/genums.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gtypeplugin.h
+	<gobject/gtype.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gvaluearray.h
+	<gobject/gvalue.h>
+
+1273415153 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gobject/gvaluetypes.h
+	<gobject/gvalue.h>
+
+1339012758 /usr/include/glib-2.0/gio/gaction.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gactiongroup.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gactiongroupexporter.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gactionmap.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gappinfo.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gapplication.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gapplicationcommandline.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gasyncinitable.h
+	<gio/giotypes.h>
+	<gio/ginitable.h>
+
+1339012758 /usr/include/glib-2.0/gio/ginitable.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gasyncresult.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gbufferedinputstream.h
+	<gio/gfilterinputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfilterinputstream.h
+	<gio/ginputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/ginputstream.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gbufferedoutputstream.h
+	<gio/gfilteroutputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfilteroutputstream.h
+	<gio/goutputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/goutputstream.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gcancellable.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gcharsetconverter.h
+	<gio/gconverter.h>
+
+1339012758 /usr/include/glib-2.0/gio/gconverter.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gcontenttype.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gconverterinputstream.h
+	<gio/gfilterinputstream.h>
+	<gio/gconverter.h>
+
+1339012758 /usr/include/glib-2.0/gio/gconverteroutputstream.h
+	<gio/gfilteroutputstream.h>
+	<gio/gconverter.h>
+
+1339012758 /usr/include/glib-2.0/gio/gcredentials.h
+	<gio/giotypes.h>
+	<unistd.h>
+	<sys/types.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/unistd.h
+	<features.h>
+	<bits/posix_opt.h>
+	<bits/environments.h>
+	<bits/types.h>
+	<stddef.h>
+	<bits/confname.h>
+	<getopt.h>
+	<bits/unistd.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/posix_opt.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/environments.h
+	<bits/wordsize.h>
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/confname.h
+
+1273413887 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/unistd.h
+
+1339012758 /usr/include/glib-2.0/gio/gdatainputstream.h
+	<gio/gbufferedinputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdataoutputstream.h
+	<gio/gfilteroutputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusaddress.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusauthobserver.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusconnection.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbuserror.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusintrospection.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusmessage.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusmethodinvocation.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusnameowning.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusnamewatching.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusproxy.h
+	<gio/giotypes.h>
+	<gio/gdbusintrospection.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusserver.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusutils.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdrive.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gemblemedicon.h
+	<gio/gicon.h>
+	<gio/gemblem.h>
+
+1339012758 /usr/include/glib-2.0/gio/gicon.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gemblem.h
+	<gio/gioenums.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileattribute.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileenumerator.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfile.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileicon.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileinfo.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileinputstream.h
+	<gio/ginputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileiostream.h
+	<gio/giostream.h>
+
+1339012758 /usr/include/glib-2.0/gio/giostream.h
+	<gio/ginputstream.h>
+	<gio/goutputstream.h>
+	<gio/gcancellable.h>
+	<gio/gioerror.h>
+
+1339012758 /usr/include/glib-2.0/gio/gioerror.h
+	<glib.h>
+	<gio/gioenums.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfilemonitor.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfilenamecompleter.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gfileoutputstream.h
+	<gio/goutputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/ginetaddress.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/ginetaddressmask.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/ginetsocketaddress.h
+	<gio/gsocketaddress.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketaddress.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gioenumtypes.h
+	<glib-object.h>
+
+1339012758 /usr/include/glib-2.0/gio/giomodule.h
+	<gio/giotypes.h>
+	<gmodule.h>
+
+1273415152 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gmodule.h
+	<glib.h>
+
+1339012758 /usr/include/glib-2.0/gio/gioscheduler.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gloadableicon.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmemoryinputstream.h
+	<gio/ginputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmemoryoutputstream.h
+	<gio/goutputstream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmount.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmountoperation.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gnativevolumemonitor.h
+	<gio/gvolumemonitor.h>
+
+1339012758 /usr/include/glib-2.0/gio/gvolumemonitor.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gnetworkaddress.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gnetworkmonitor.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gnetworkservice.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gpermission.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gpollableinputstream.h
+	<gio/gio.h>
+
+1339012758 /usr/include/glib-2.0/gio/gpollableoutputstream.h
+	<gio/gio.h>
+
+1339012758 /usr/include/glib-2.0/gio/gproxy.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gproxyaddress.h
+	<gio/ginetsocketaddress.h>
+
+1339012758 /usr/include/glib-2.0/gio/gproxyaddressenumerator.h
+	<gio/gsocketaddressenumerator.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketaddressenumerator.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gproxyresolver.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gresolver.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gresource.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gseekable.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsettingsschema.h
+	<glib-object.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsettings.h
+	<gio/gsettingsschema.h>
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsimpleaction.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsimpleactiongroup.h
+	"gactiongroup.h"
+	"gactionmap.h"
+
+1339012758 /usr/include/glib-2.0/gio/gsimpleasyncresult.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsimplepermission.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketclient.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketconnectable.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketconnection.h
+	<glib-object.h>
+	<gio/gsocket.h>
+	<gio/giostream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocket.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketcontrolmessage.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketlistener.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsocketservice.h
+	<gio/gsocketlistener.h>
+
+1339012758 /usr/include/glib-2.0/gio/gsrvtarget.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtcpconnection.h
+	<gio/gsocketconnection.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtcpwrapperconnection.h
+	<gio/gtcpconnection.h>
+
+1339012758 /usr/include/glib-2.0/gio/gthemedicon.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gthreadedsocketservice.h
+	<gio/gsocketservice.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsbackend.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlscertificate.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsclientconnection.h
+	<gio/gtlsconnection.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsconnection.h
+	<gio/giostream.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsdatabase.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsfiledatabase.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsinteraction.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlsserverconnection.h
+	<gio/gtlsconnection.h>
+
+1339012758 /usr/include/glib-2.0/gio/gtlspassword.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gvfs.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gvolume.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gzlibcompressor.h
+	<gio/gconverter.h>
+	<gio/gfileinfo.h>
+
+1339012758 /usr/include/glib-2.0/gio/gzlibdecompressor.h
+	<gio/gconverter.h>
+	<gio/gfileinfo.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusinterface.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusinterfaceskeleton.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusobject.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusobjectskeleton.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusobjectproxy.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusobjectmanager.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusobjectmanagerclient.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusobjectmanagerserver.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusactiongroup.h
+	"giotypes.h"
+
+1339012758 /usr/include/glib-2.0/gio/gremoteactiongroup.h
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmenumodel.h
+	<glib-object.h>
+	<gio/giotypes.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmenu.h
+	<gio/gmenumodel.h>
+
+1339012758 /usr/include/glib-2.0/gio/gmenuexporter.h
+	<gio/gdbusconnection.h>
+	<gio/gmenumodel.h>
+
+1339012758 /usr/include/glib-2.0/gio/gdbusmenumodel.h
+	<gio/gdbusconnection.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkscreen.h
+	<cairo.h>
+	"gdk/gdktypes.h"
+	"gdk/gdkdisplay.h"
+
+1273415685 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/cairo/cairo.h
+	"cairo-version.h"
+	"cairo-features.h"
+	"cairo-deprecated.h"
+
+1273415685 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/cairo/cairo-version.h
+
+1273415686 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/cairo/cairo-features.h
+
+1273415685 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/cairo/cairo-deprecated.h
+
+1388445824 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdktypes.h
+	<glib.h>
+	<pango/pango.h>
+	<glib-object.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango.h
+	<pango/pango-attributes.h>
+	<pango/pango-bidi-type.h>
+	<pango/pango-break.h>
+	<pango/pango-context.h>
+	<pango/pango-coverage.h>
+	<pango/pango-engine.h>
+	<pango/pango-enum-types.h>
+	<pango/pango-features.h>
+	<pango/pango-font.h>
+	<pango/pango-fontmap.h>
+	<pango/pango-fontset.h>
+	<pango/pango-glyph.h>
+	<pango/pango-glyph-item.h>
+	<pango/pango-gravity.h>
+	<pango/pango-item.h>
+	<pango/pango-layout.h>
+	<pango/pango-matrix.h>
+	<pango/pango-renderer.h>
+	<pango/pango-script.h>
+	<pango/pango-tabs.h>
+	<pango/pango-types.h>
+	<pango/pango-utils.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-attributes.h
+	<pango/pango-font.h>
+	<glib-object.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-font.h
+	<pango/pango-coverage.h>
+	<pango/pango-types.h>
+	<glib-object.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-coverage.h
+	<glib.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-types.h
+	<glib.h>
+	<glib-object.h>
+	<pango/pango-gravity.h>
+	<pango/pango-language.h>
+	<pango/pango-matrix.h>
+	<pango/pango-script.h>
+	<pango/pango-bidi-type.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-gravity.h
+	<glib.h>
+	<pango/pango-matrix.h>
+	<pango/pango-script.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-matrix.h
+	<glib.h>
+	<glib-object.h>
+	<pango/pango-types.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-script.h
+	<glib.h>
+	<pango/pango-language.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-language.h
+	<glib.h>
+	<glib-object.h>
+	<pango/pango-script.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-bidi-type.h
+	<glib.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-break.h
+	<glib.h>
+	<pango/pango-item.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-item.h
+	<pango/pango-types.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-context.h
+	<pango/pango-font.h>
+	<pango/pango-fontmap.h>
+	<pango/pango-attributes.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-fontmap.h
+	<pango/pango-font.h>
+	<pango/pango-fontset.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-fontset.h
+	<pango/pango-coverage.h>
+	<pango/pango-types.h>
+	<glib-object.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-engine.h
+	<pango/pango-types.h>
+	<pango/pango-item.h>
+	<pango/pango-font.h>
+	<pango/pango-glyph.h>
+	<pango/pango-script.h>
+	<gmodule.h>
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-glyph.h
+	<pango/pango-types.h>
+	<pango/pango-item.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-enum-types.h
+	<glib-object.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-features.h
+
+1273415854 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-glyph-item.h
+	<pango/pango-attributes.h>
+	<pango/pango-break.h>
+	<pango/pango-item.h>
+	<pango/pango-glyph.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-layout.h
+	<pango/pango-attributes.h>
+	<pango/pango-context.h>
+	<pango/pango-glyph-item.h>
+	<pango/pango-tabs.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-tabs.h
+	<pango/pango-types.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-renderer.h
+	<pango/pango-layout.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pango-utils.h
+	<stdio.h>
+	<glib.h>
+	<pango/pango-font.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkdisplay.h
+	<gdk/gdktypes.h>
+	<gdk/gdkevents.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkevents.h
+	<gdk/gdkcolor.h>
+	<gdk/gdktypes.h>
+	<gdk/gdkdnd.h>
+	<gdk/gdkinput.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkcolor.h
+	<cairo.h>
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkdnd.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkinput.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkcairo.h
+	<gdk/gdkcolor.h>
+	<gdk/gdkpixbuf.h>
+	<pango/pangocairo.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkpixbuf.h
+	<cairo.h>
+	<gdk/gdktypes.h>
+	<gdk/gdkrgb.h>
+	<gdk-pixbuf/gdk-pixbuf.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkrgb.h
+	<gdk/gdktypes.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf.h
+	<glib.h>
+	<gdk-pixbuf/gdk-pixbuf-features.h>
+	<glib-object.h>
+	<gdk-pixbuf/gdk-pixbuf-core.h>
+	<gdk-pixbuf/gdk-pixbuf-transform.h>
+	<gdk-pixbuf/gdk-pixbuf-animation.h>
+	<gdk-pixbuf/gdk-pixbuf-simple-anim.h>
+	<gdk-pixbuf/gdk-pixbuf-io.h>
+	<gdk-pixbuf/gdk-pixbuf-loader.h>
+	<gdk-pixbuf/gdk-pixbuf-enum-types.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-features.h
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-core.h
+	<glib.h>
+	<glib-object.h>
+	<gio/gio.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-transform.h
+	<glib.h>
+	<gdk-pixbuf/gdk-pixbuf-core.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-animation.h
+	<glib-object.h>
+	<gdk-pixbuf/gdk-pixbuf-core.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-simple-anim.h
+	<gdk-pixbuf/gdk-pixbuf-animation.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-io.h
+	<stdio.h>
+	<glib.h>
+	<gmodule.h>
+	<gdk-pixbuf/gdk-pixbuf-core.h>
+	<gdk-pixbuf/gdk-pixbuf-animation.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-loader.h
+	<glib.h>
+	<glib-object.h>
+	<gdk-pixbuf/gdk-pixbuf-core.h>
+	<gdk-pixbuf/gdk-pixbuf-animation.h>
+	<gdk-pixbuf/gdk-pixbuf-io.h>
+
+1273416939 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk-pixbuf/gdk-pixbuf-enum-types.h
+	<glib-object.h>
+
+1273415855 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/pango/pangocairo.h
+	<pango/pango.h>
+	<cairo.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkcursor.h
+	<gdk/gdktypes.h>
+	<gdk-pixbuf/gdk-pixbuf.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkdisplaymanager.h
+	<gdk/gdktypes.h>
+	<gdk/gdkdisplay.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkdrawable.h
+	<gdk/gdktypes.h>
+	<gdk/gdkgc.h>
+	<gdk/gdkrgb.h>
+	<gdk-pixbuf/gdk-pixbuf.h>
+	<cairo.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkgc.h
+	<gdk/gdkcolor.h>
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkenumtypes.h
+	<glib-object.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkfont.h
+	<gdk/gdktypes.h>
+	<pango/pango.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkimage.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkkeys.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkpango.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkpixmap.h
+	<gdk/gdktypes.h>
+	<gdk/gdkdrawable.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkproperty.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkregion.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkselection.h
+	<gdk/gdktypes.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkspawn.h
+	<gdk/gdkscreen.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdktestutils.h
+	<gdk/gdkwindow.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkwindow.h
+	<gdk/gdkdrawable.h>
+	<gdk/gdktypes.h>
+	<gdk/gdkevents.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkvisual.h
+	<gdk/gdktypes.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaboutdialog.h
+	<gtk/gtkdialog.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkdialog.h
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkwindow.h
+	<gtk/gtkaccelgroup.h>
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaccelgroup.h
+	<gdk/gdk.h>
+	<gtk/gtkenums.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkenums.h
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbin.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcontainer.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkadjustment.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkwidget.h
+	<gdk/gdk.h>
+	<gtk/gtkaccelgroup.h>
+	<gtk/gtkobject.h>
+	<gtk/gtkadjustment.h>
+	<gtk/gtkstyle.h>
+	<gtk/gtksettings.h>
+	<atk/atk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkobject.h
+	<gdkconfig.h>
+	<gtk/gtkenums.h>
+	<gtk/gtktypeutils.h>
+	<gtk/gtkdebug.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/lib/gtk-2.0/include/gdkconfig.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktypeutils.h
+	<gtk/gtktypebuiltins.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktypebuiltins.h
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkdebug.h
+	<glib.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkadjustment.h
+	<gdk/gdk.h>
+	<gtk/gtkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkstyle.h
+	<gdk/gdk.h>
+	<gtk/gtkenums.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtksettings.h
+	<gtk/gtkrc.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrc.h
+	<gtk/gtkstyle.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atk.h
+	<atk/atkobject.h>
+	<atk/atkaction.h>
+	<atk/atkcomponent.h>
+	<atk/atkdocument.h>
+	<atk/atkeditabletext.h>
+	<atk/atkgobjectaccessible.h>
+	<atk/atkhyperlink.h>
+	<atk/atkhyperlinkimpl.h>
+	<atk/atkhypertext.h>
+	<atk/atkimage.h>
+	<atk/atknoopobject.h>
+	<atk/atknoopobjectfactory.h>
+	<atk/atkobjectfactory.h>
+	<atk/atkplug.h>
+	<atk/atkregistry.h>
+	<atk/atkrelation.h>
+	<atk/atkrelationset.h>
+	<atk/atkrelationtype.h>
+	<atk/atkselection.h>
+	<atk/atksocket.h>
+	<atk/atkstate.h>
+	<atk/atkstateset.h>
+	<atk/atkstreamablecontent.h>
+	<atk/atktable.h>
+	<atk/atktext.h>
+	<atk/atkutil.h>
+	<atk/atkmisc.h>
+	<atk/atkvalue.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkobject.h
+	<glib-object.h>
+	<atk/atkstate.h>
+	<atk/atkrelationtype.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkstate.h
+	<glib-object.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkrelationtype.h
+	<glib.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkaction.h
+	<atk/atkobject.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkcomponent.h
+	<atk/atkobject.h>
+	<atk/atkutil.h>
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkutil.h
+	<atk/atkobject.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkdocument.h
+	<atk/atkobject.h>
+	<atk/atkutil.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkeditabletext.h
+	<atk/atkobject.h>
+	<atk/atktext.h>
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atktext.h
+	<glib-object.h>
+	<atk/atkobject.h>
+	<atk/atkutil.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkgobjectaccessible.h
+	<atk/atk.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkhyperlink.h
+	<atk/atkaction.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkhyperlinkimpl.h
+	<atk/atkobject.h>
+	<atk/atkhyperlink.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkhypertext.h
+	<atk/atkobject.h>
+	<atk/atkhyperlink.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkimage.h
+	<atk/atkobject.h>
+	<atk/atkutil.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atknoopobject.h
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atknoopobjectfactory.h
+	<atk/atkobjectfactory.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkobjectfactory.h
+	<glib-object.h>
+	<atk/atkobject.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkplug.h
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkregistry.h
+	<glib-object.h>
+	"atkobjectfactory.h"
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkrelation.h
+	<glib-object.h>
+	<atk/atkrelationtype.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkrelationset.h
+	<glib-object.h>
+	<atk/atkobject.h>
+	<atk/atkrelation.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkselection.h
+	<atk/atkobject.h>
+
+1273415954 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atksocket.h
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkstateset.h
+	<glib-object.h>
+	<atk/atkobject.h>
+	<atk/atkstate.h>
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkstreamablecontent.h
+	<atk/atkobject.h>
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atktable.h
+	<atk/atkobject.h>
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkmisc.h
+	<glib-object.h>
+
+1273415955 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/atk/atkvalue.h
+	<atk/atkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaccellabel.h
+	<gtk/gtklabel.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtklabel.h
+	<gtk/gtkmisc.h>
+	<gtk/gtkwindow.h>
+	<gtk/gtkmenu.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmisc.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmenu.h
+	<gtk/gtkaccelgroup.h>
+	<gtk/gtkmenushell.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmenushell.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaccelmap.h
+	<gtk/gtkaccelgroup.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaccessible.h
+	<atk/atk.h>
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaction.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkactiongroup.h
+	<gtk/gtkaction.h>
+	<gtk/gtktypeutils.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkactivatable.h
+	<gtk/gtkaction.h>
+	<gtk/gtktypeutils.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkalignment.h
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkarrow.h
+	<gtk/gtkmisc.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkaspectframe.h
+	<gtk/gtkframe.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkframe.h
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkassistant.h
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbbox.h
+	<gtk/gtkbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbox.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbindings.h
+	<gdk/gdk.h>
+	<gtk/gtkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbuildable.h
+	<gtk/gtkbuilder.h>
+	<gtk/gtktypeutils.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbuilder.h
+	<gdkconfig.h>
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkbutton.h
+	<gtk/gtkbin.h>
+	<gtk/gtkimage.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkimage.h
+	<gio/gio.h>
+	<gtk/gtkmisc.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcalendar.h
+	<gtk/gtkwidget.h>
+	<gtk/gtksignal.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtksignal.h
+	<gtk/gtk.h>
+	<gtk/gtkmarshal.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmarshal.h
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcelleditable.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcelllayout.h
+	<gtk/gtkcellrenderer.h>
+	<gtk/gtktreeviewcolumn.h>
+	<gtk/gtkbuildable.h>
+	<gtk/gtkbuilder.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrenderer.h
+	<gtk/gtkcelleditable.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreeviewcolumn.h
+	<gtk/gtkcellrenderer.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreesortable.h>
+	<gtk/gtkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreemodel.h
+	<glib-object.h>
+	<gtk/gtkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreesortable.h
+	<gtk/gtktreemodel.h>
+	<gtk/gtktypeutils.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrendereraccel.h
+	<gtk/gtkcellrenderertext.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrenderertext.h
+	<gtk/gtkcellrenderer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrenderercombo.h
+	<gtk/gtktreemodel.h>
+	<gtk/gtkcellrenderertext.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrendererpixbuf.h
+	<gtk/gtkcellrenderer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrendererprogress.h
+	<gtk/gtkcellrenderer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrendererspin.h
+	<gtk/gtkcellrenderertext.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrendererspinner.h
+	<gtk/gtkcellrenderer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellrenderertoggle.h
+	<gtk/gtkcellrenderer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcellview.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkcellrenderer.h>
+	<gtk/gtktreemodel.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcheckbutton.h
+	<gtk/gtktogglebutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktogglebutton.h
+	<gtk/gtkbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcheckmenuitem.h
+	<gtk/gtkmenuitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmenuitem.h
+	<gtk/gtkitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkitem.h
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkclipboard.h
+	<gtk/gtkselection.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkselection.h
+	<gtk/gtkwidget.h>
+	<gtk/gtktextiter.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktextiter.h
+	<gtk/gtktexttag.h>
+	<gtk/gtktextchild.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktexttag.h
+	<gdk/gdk.h>
+	<gtk/gtkenums.h>
+	<gtk/gtkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktextchild.h
+	<gdkconfig.h>
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcolorbutton.h
+	<gtk/gtkbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcolorsel.h
+	<gtk/gtkdialog.h>
+	<gtk/gtkvbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvbox.h
+	<gtk/gtkbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcolorseldialog.h
+	<gtk/gtkdialog.h>
+	<gtk/gtkcolorsel.h>
+	<gtk/gtkvbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcombobox.h
+	<gtk/gtkbin.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreeview.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreeview.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreeviewcolumn.h>
+	<gtk/gtkdnd.h>
+	<gtk/gtkentry.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkdnd.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkselection.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkentry.h
+	<gtk/gtkeditable.h>
+	<gtk/gtkimcontext.h>
+	<gtk/gtkmenu.h>
+	<gtk/gtkentrybuffer.h>
+	<gtk/gtkentrycompletion.h>
+	<gtk/gtkimage.h>
+	<gtk/gtkselection.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkeditable.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkimcontext.h
+	<gdk/gdk.h>
+	<gtk/gtkobject.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkentrybuffer.h
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkentrycompletion.h
+	<gtk/gtktreemodel.h>
+	<gtk/gtkliststore.h>
+	<gtk/gtktreeviewcolumn.h>
+	<gtk/gtktreemodelfilter.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkliststore.h
+	<gdkconfig.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreesortable.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreemodelfilter.h
+	<gdkconfig.h>
+	<gtk/gtktreemodel.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcomboboxentry.h
+	<gtk/gtkcombobox.h>
+	<gtk/gtktreemodel.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkdrawingarea.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkeventbox.h
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkexpander.h
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfixed.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfilechooser.h
+	<gtk/gtkfilefilter.h>
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfilefilter.h
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfilechooserbutton.h
+	<gtk/gtkhbox.h>
+	<gtk/gtkfilechooser.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhbox.h
+	<gtk/gtkbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfilechooserdialog.h
+	<gtk/gtkdialog.h>
+	<gtk/gtkfilechooser.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfilechooserwidget.h
+	<gtk/gtkfilechooser.h>
+	<gtk/gtkvbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfontbutton.h
+	<gtk/gtkbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfontsel.h
+	<gtk/gtkdialog.h>
+	<gtk/gtkvbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkgc.h
+	<gdk/gdk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhandlebox.h
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhbbox.h
+	<gtk/gtkbbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhpaned.h
+	<gtk/gtkpaned.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkpaned.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhruler.h
+	<gtk/gtkruler.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkruler.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhscale.h
+	<gtk/gtkscale.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkscale.h
+	<gtk/gtkrange.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrange.h
+	<gtk/gtkadjustment.h>
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhscrollbar.h
+	<gtk/gtkscrollbar.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkscrollbar.h
+	<gtk/gtkrange.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhseparator.h
+	<gtk/gtkseparator.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkseparator.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkhsv.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkiconfactory.h
+	<gdk/gdk.h>
+	<gtk/gtkrc.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkicontheme.h
+	<gdk-pixbuf/gdk-pixbuf.h>
+	<gdk/gdk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkiconview.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtkcellrenderer.h>
+	<gtk/gtkselection.h>
+	<gtk/gtktooltip.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktooltip.h
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkimagemenuitem.h
+	<gtk/gtkmenuitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkimcontextsimple.h
+	<gtk/gtkimcontext.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkimmulticontext.h
+	<gtk/gtkimcontext.h>
+	<gtk/gtkmenushell.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkinfobar.h
+	<gtk/gtkhbox.h>
+	<gtk/gtkenums.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkinvisible.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtklayout.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtkadjustment.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtklinkbutton.h
+	<gtk/gtkbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmain.h
+	<gdk/gdk.h>
+	<gtk/gtkwidget.h>
+	<gtk/gtkbox.h>
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmenubar.h
+	<gtk/gtkmenushell.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmenutoolbutton.h
+	<gtk/gtkmenu.h>
+	<gtk/gtktoolbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoolbutton.h
+	<gtk/gtktoolitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoolitem.h
+	<gtk/gtkbin.h>
+	<gtk/gtktooltips.h>
+	<gtk/gtkmenuitem.h>
+	<gtk/gtksizegroup.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktooltips.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtksizegroup.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmessagedialog.h
+	<gtk/gtkdialog.h>
+	<gtk/gtkenums.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmodules.h
+	<gtk/gtksettings.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkmountoperation.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtknotebook.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkoffscreenwindow.h
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkorientable.h
+	<gtk/gtkwidget.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkpagesetup.h
+	<gtk/gtkpapersize.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkpapersize.h
+	<gtk/gtkenums.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkplug.h
+	<gtk/gtksocket.h>
+	<gtk/gtkwindow.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtksocket.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkprintcontext.h
+	<pango/pango.h>
+	<gtk/gtkpagesetup.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkprintoperation.h
+	<cairo.h>
+	<gtk/gtkmain.h>
+	<gtk/gtkwindow.h>
+	<gtk/gtkpagesetup.h>
+	<gtk/gtkprintsettings.h>
+	<gtk/gtkprintcontext.h>
+	<gtk/gtkprintoperationpreview.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkprintsettings.h
+	<gtk/gtkpapersize.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkprintoperationpreview.h
+	<cairo.h>
+	<gtk/gtkprintcontext.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkprogressbar.h
+	<gtk/gtkprogress.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkprogress.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkadjustment.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkradioaction.h
+	<gtk/gtktoggleaction.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoggleaction.h
+	<gtk/gtkaction.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkradiobutton.h
+	<gtk/gtkcheckbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkradiomenuitem.h
+	<gtk/gtkcheckmenuitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkradiotoolbutton.h
+	<gtk/gtktoggletoolbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoggletoolbutton.h
+	<gtk/gtktoolbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentaction.h
+	<gtk/gtkaction.h>
+	<gtk/gtkrecentmanager.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentmanager.h
+	<gdk-pixbuf/gdk-pixbuf.h>
+	<gdk/gdk.h>
+	<time.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentchooser.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkrecentmanager.h>
+	<gtk/gtkrecentfilter.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentfilter.h
+	<glib-object.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentchooserdialog.h
+	<gtk/gtkdialog.h>
+	<gtk/gtkrecentchooser.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentchoosermenu.h
+	<gtk/gtkmenu.h>
+	<gtk/gtkrecentchooser.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkrecentchooserwidget.h
+	<gtk/gtkrecentchooser.h>
+	<gtk/gtkvbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkscalebutton.h
+	<gtk/gtkbutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkscrolledwindow.h
+	<gtk/gtkhscrollbar.h>
+	<gtk/gtkvscrollbar.h>
+	<gtk/gtkviewport.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvscrollbar.h
+	<gtk/gtkscrollbar.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkviewport.h
+	<gtk/gtkadjustment.h>
+	<gtk/gtkbin.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkseparatormenuitem.h
+	<gtk/gtkmenuitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkseparatortoolitem.h
+	<gtk/gtktoolitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkshow.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkspinbutton.h
+	<gtk/gtkentry.h>
+	<gtk/gtkadjustment.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkspinner.h
+	<gtk/gtkdrawingarea.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkstatusbar.h
+	<gtk/gtkhbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkstatusicon.h
+	<gtk/gtkimage.h>
+	<gtk/gtkmenu.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkstock.h
+	<gdk/gdk.h>
+	<gtk/gtktypeutils.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktable.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktearoffmenuitem.h
+	<gtk/gtkmenuitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktextbuffer.h
+	<gtk/gtkwidget.h>
+	<gtk/gtkclipboard.h>
+	<gtk/gtktexttagtable.h>
+	<gtk/gtktextiter.h>
+	<gtk/gtktextmark.h>
+	<gtk/gtktextchild.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktexttagtable.h
+	<gtk/gtktexttag.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktextmark.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktextbufferrichtext.h
+	<gtk/gtktextbuffer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktextview.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtkimcontext.h>
+	<gtk/gtktextbuffer.h>
+	<gtk/gtkmenu.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoolbar.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtktooltips.h>
+	<gtk/gtktoolitem.h>
+	<gtk/gtkpixmap.h>
+	<gtk/gtksignal.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkpixmap.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoolitemgroup.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtktoolitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoolpalette.h
+	<gtk/gtkcontainer.h>
+	<gtk/gtkdnd.h>
+	<gtk/gtktoolitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktoolshell.h
+	<gtk/gtkenums.h>
+	<pango/pango.h>
+	<gtk/gtksizegroup.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktestutils.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreednd.h
+	<gtk/gtktreemodel.h>
+	<gtk/gtkdnd.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreemodelsort.h
+	<gdkconfig.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreesortable.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreeselection.h
+	<gtk/gtktreeview.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreestore.h
+	<gdkconfig.h>
+	<gtk/gtktreemodel.h>
+	<gtk/gtktreesortable.h>
+	<stdarg.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkuimanager.h
+	<gtk/gtkaccelgroup.h>
+	<gtk/gtkwidget.h>
+	<gtk/gtkaction.h>
+	<gtk/gtkactiongroup.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvbbox.h
+	<gtk/gtkbbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkversion.h
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvolumebutton.h
+	<gtk/gtkscalebutton.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvpaned.h
+	<gtk/gtkpaned.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvruler.h
+	<gtk/gtkruler.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvscale.h
+	<gtk/gtkscale.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkvseparator.h
+	<gtk/gtkseparator.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktext.h
+	<gtk/gtkoldeditable.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkoldeditable.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktree.h
+	<gtk/gtkcontainer.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktreeitem.h
+	<gtk/gtkitem.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkclist.h
+	<gtk/gtksignal.h>
+	<gtk/gtkalignment.h>
+	<gtk/gtklabel.h>
+	<gtk/gtkbutton.h>
+	<gtk/gtkhscrollbar.h>
+	<gtk/gtkvscrollbar.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcombo.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkctree.h
+	<gtk/gtkclist.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkcurve.h
+	<gtk/gtkdrawingarea.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkfilesel.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkgamma.h
+	<gtk/gtkvbox.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkinputdialog.h
+	<gtk/gtkdialog.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkitemfactory.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtklist.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtklistitem.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkoptionmenu.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtkpreview.h
+	<gtk/gtk.h>
+
+1273417075 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gtk/gtktipsquery.h
+	<gtk/gtk.h>
+
+1388661089 /home/xubuntu/Pandora/flashenv/src/mimetypes.h
+
+1388695788 /home/xubuntu/Pandora/flashenv/src/flashwindow.h
+	"keymap.h"
+
+1388696900 source:/home/xubuntu/Pandora/flashenv/src/flashwindow.cpp
+	"flashwindow.h"
+	"npapi/npapi.h"
+	<string.h>
+	<gtk/gtk.h>
+	<gdk/gdkx.h>
+	<gdk/gdkkeysyms.h>
+
+1273416964 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkx.h
+	<gdk/gdkprivate.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	"gdkprivate-x11.h"
+	"gdkscreen-x11.h"
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkprivate.h
+	<gdk/gdk.h>
+
+1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkkeysyms.h
+
+1388699142 /home/xubuntu/Pandora/flashenv/src/keymap.h
+	<map>
+	<gdk/gdktypes.h>
+	<gdk/gdkkeysyms.h>
+
+1388700199 source:/home/xubuntu/Pandora/flashenv/src/keymap.cpp
+	"keymap.h"
+	<iostream>
+	<gdk/gdkkeys.h>
+	"iniparser-3.0/src/iniparser.h"
+
+1371666311 source:/home/xubuntu/Pandora/flashenv/src/iniparser-3.0/src/dictionary.c
+	"dictionary.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1371666311 /home/xubuntu/Pandora/flashenv/src/iniparser-3.0/src/dictionary.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1371666311 source:/home/xubuntu/Pandora/flashenv/src/iniparser-3.0/src/iniparser.c
+	<ctype.h>
+	"iniparser.h"
+
+1371666311 /home/xubuntu/Pandora/flashenv/src/iniparser-3.0/src/iniparser.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"dictionary.h"
+
