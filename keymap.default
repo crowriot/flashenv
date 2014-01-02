@@ -1,13 +1,7 @@
 ; key mapping configuration for flashenv
 ;
-; since the wrapper users GTK all key names must be GTK/GDK parsable names
 ; currently only Pandora special keys (DPAD Direction keys, DPAD A/B/X/Y, LeftTrigger, RightTrigger)
-; can be mapped
-;
-; gdk key names can be found here: https://git.gnome.org/browse/gtk+/tree/gdk/gdkkeysyms.h
-; but usually it's just the character you want to press (like a, b, c, ...)
-; do NOT add the GDK_ prefix of the key to the string!
-; use space to map the space key
+; can be mapped to gdk keys
 ;
 ; the pandora key names are:
 ;
@@ -23,6 +17,11 @@
 ;   Select
 ;   Trigger_Left
 ;   Trigger_Right
+;
+; gdk key names can be found here: https://git.gnome.org/browse/gtk+/tree/gdk/keynames.txt
+;
+; The ini section name must be the name (case sensitive!) of the .swf file you want to
+; assign the keys for.
 ;
 ; Usage Example
 ;

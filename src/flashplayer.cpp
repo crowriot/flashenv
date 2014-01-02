@@ -113,8 +113,8 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, bool stretch
     char* exactFit = "exactFit";
     char* showAll = "showAll";
 
-	char *xargv[]= {"allowResize","allowscriptaccess", "name", "quality", "wmode", "allowFullScreen", "width","height","scale"};
-	char *xargm[]= {"true", "always", "test", "best", "direct","true","100%","100%",(stretch ?exactFit:showAll)};
+    char *xargv[]= {"allowResize","allowscriptaccess", "name", "quality", "wmode", "allowFullScreen", "width","height","scale"};
+    char *xargm[]= {"true", "always", "test", "best", "direct","true","100%","100%",(stretch ?exactFit:showAll)};
 	const int xargc = sizeof(xargv)/sizeof(*xargv);
 
     NPSavedData* data = new NPSavedData;
