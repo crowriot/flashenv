@@ -3,24 +3,15 @@
 // --------------------------------------------------------------------
 
 
-#include <iostream>
 #include "flashplayer.h"
 #include "flashwindow.h"
+#include "flashattributes.h"
+#include "defines.h"
 #include <string.h>
+#include <iostream>
 
 #define GSEAL(x) x
 #include <gtk/gtk.h>
-
-/* -------- */
-
-#define PANDORA
-
-/* -------- */
-
-#define SCREENWIDTH       800
-#define SCREENHEIGHT      480
-#define SCREENBITS        16
-#define STRETCH           false
 
 /* -------- */
 
@@ -42,29 +33,16 @@ int main( int argc, char* argv[] )
     }
 
 
-    KeyMap keymap;
-    if(LoadKeyMap("./keymap.ini",argv[argc-1],&keymap))
+    KeyMapGdk keymapgdk;
+    KeyMapX11 keymapx11; memset(keymapx11,0,C_KeyMapX11_Size);
+    if(LoadKeyMap("./keymap.ini",argv[argc-1],&keymapgdk,&keymapx11))
     {
-        flash_window.SetKeyMap(keymap);
+        flash_window.SetKeyMap(keymapgdk);
+        SetKeyMapX11(keymapx11);
     }
 
+    FlashAttributes attrs(argc-1,argv);
 
-    bool stretch = STRETCH;
-    for (int iarg=0; iarg<argc; ++iarg)
-    {
-        char* arg = argv[iarg];
-        if (arg[0]=='-')
-        {
-            if (!strcmp(arg,"--stretch"))
-            {
-                stretch = true;
-            }
-            if (!strcmp(arg,"--no-stretch"))
-            {
-                stretch = false;
-            }
-        }
-    }
 
 // load flash plugin
     if (!flash_player.LoadLibrary())
@@ -78,9 +56,8 @@ int main( int argc, char* argv[] )
         return 1;
     }
 
-
 // load the wanted file
-    if (!flash_player.LoadFile(argv[argc-1],SCREENWIDTH,SCREENHEIGHT,stretch))
+    if (!flash_player.LoadFile(argv[argc-1],SCREENWIDTH,SCREENHEIGHT,attrs))
     {
         return 1;
     }

@@ -28,25 +28,27 @@ int XQueryKeymap( Display* display, char keys_return[KEYMAP_SIZE] )
 
     int rval = x11_XQueryKeymap(display, keys_return);
 
-    for (int from=0; from<256; ++from)
+    for (int from=0; from<KEYMAPX11_SOURCE_SIZE; ++from)
     {
-        KeyCode to = S_KeyMap[from];
-
         int from_idx = from/8;
         int from_bit = from&7;
 
-        if (to!=0)
+        if (keys_return[from_idx] & (1<<from_bit))
         {
-            int to_idx = to/8;
-            int to_bit = to&7;
-
-            if (keys_return[from_idx] & (1<<from_bit))
+            for (int ito=0; ito<KEYMAPX11_TARGET_SIZE; ++ito)
             {
-                //printf("mapping detected %d -> %d\n", from, to);
+                KeyCode to = S_KeyMap[from][ito];
+                if (!to)
+                    break;
 
+                int to_idx = to/8;
+                int to_bit = to&7;
+
+              //printf("mapping detected %d -> %d\n", from, to);
                 keys_return[to_idx] |= (1<<to_bit);
             }
         }
+
         //if (keys_return[from_idx] & (1<<from_bit))
         //{
         //    printf("Key pressed %d\n",from);
@@ -56,9 +58,12 @@ int XQueryKeymap( Display* display, char keys_return[KEYMAP_SIZE] )
     return rval;
 }
 
-extern "C" void RegisterKeyMapping(const KeyMapX11 key_map)
+extern "C" void RegisterKeyMapping(const KeyMapX11 key_map, int size)
 {
-    memcpy(S_KeyMap, key_map, sizeof(KeyMapX11));
+    if (size==C_KeyMapX11_Size)
+        memcpy(S_KeyMap, key_map, C_KeyMapX11_Size);
+    else
+        fprintf(stderr,"RegisterKeyMapping failed: sizes are not the same.\n");
 }
 
 

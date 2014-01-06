@@ -11,6 +11,8 @@
 
 
 class FlashWindow;
+class FlashAttributes;
+
 
 /// FlashPlayer
 class FlashPlayer
@@ -33,7 +35,13 @@ public:
     /// to width and height as window resolution
     /// set stretch_contents set the scale mode to "exactFit" (may lead to distortion)
     /// otherwise it's set to "showAll" (keeps aspect)
-    bool LoadFile( const char* file, int width, int height, bool stretch_contents );
+    bool LoadFile( const char* file, int window_width, int window_height, const FlashAttributes& attr );
+
+    /// returns the file the plugin was initialized with
+    std::string GetFile() const;
+
+    /// returns the directory of the file
+    std::string GetPath() const;
 
     /// run.
     void Run();
@@ -41,11 +49,16 @@ public:
     /// shutdown / deinitialize
     void Shutdown();
 
+    /// send event to the plugin
+    void SendEvent( void* );
+
 protected:
     void PrintPluginFuncs();
 
 private:
     FlashWindow& m_Window;
+    std::string m_File;
+    std::string m_Path;
 
     void* m_FlashPlayerLib;
     NP_InitializeFunc NP_Initialize;
@@ -54,6 +67,7 @@ private:
     NPPluginFuncs NPPluginFuncs_;
 
     NPP_t NPP_;
+    NPObject* m_FlashPlugin;
     //NPSavedData NPSavedData_;
 
 

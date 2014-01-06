@@ -4,17 +4,46 @@
 
 
 #include "flashwindow.h"
+#include "flashplayer.h"
+#include "defines.h"
 #include "npapi/npapi.h"
 #include <string.h>
+#include <iostream>
+#include <stdlib.h>
 
 #define GSEAL(x) x
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
+#include <gdk/gdkscreen.h>
+#include <gdk/gdkx.h>
+#include <X11/Xlib.h>
+
+
+using namespace std;
+
+#ifdef _DEBUG
+#define DEBUG_KEY_HANDLERS
+#endif
 
 static gboolean KeyHandler(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
 {
+#ifdef DEBUG_KEY_HANDLERS
+    DEBUG_FUNCTION_NAME
+    cerr << "\tkeyval=" << event->keyval << " modifier=" << event->state << " type=" << event->type << endl;
+#endif
+
     return reinterpret_cast<FlashWindow*>(user_data)->OnKey(widget, event);
+}
+
+static gboolean KeySnooperHandler(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
+{
+#ifdef DEBUG_KEY_HANDLERS
+    DEBUG_FUNCTION_NAME
+    cerr << "\tkeyval=" << event->keyval << " modifier=" << event->state << " type=" << event->type << endl;
+#endif
+
+    return reinterpret_cast<FlashWindow*>(user_data)->OnKeySnooper(widget, event);
 }
 
 static void DestroyHandler( GtkWidget *widget, gpointer data )
@@ -23,65 +52,74 @@ static void DestroyHandler( GtkWidget *widget, gpointer data )
 }
 
 FlashWindow::FlashWindow()
-    : m_GtkWindow(0)
+    : m_MainWindow(0)
     , m_NPWindow(0)
     , m_BlankCursor(0)
     , m_PrevCursor(0)
     , m_KeyBindings(0)
+    , m_Socket(0)
 {
 }
 
 FlashWindow::~FlashWindow()
 {
- //   gtk_widget_destroy(m_GtkWindow);
+ //   gtk_widget_destroy(m_MainWindow);
 
     delete m_NPWindow;
 }
 
 
-void FlashWindow::SetKeyMap(const KeyMap& key_map)
+void FlashWindow::SetKeyMap(const KeyMapGdk& key_map)
 {
     m_KeyMap = key_map;
+}
+
+
+void FlashWindow::SetPlayer(FlashPlayer* player)
+{
+    m_Player = player;
 }
 
 bool FlashWindow::InitializeNPWindow(int width, int height)
 {
 // gtk part
-    m_GtkWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    m_MainWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
-    gtk_widget_set_usize(m_GtkWindow,width,height);
+	gtk_key_snooper_install(KeySnooperHandler, this);
 
-	g_signal_connect(G_OBJECT(m_GtkWindow), "destroy", G_CALLBACK(DestroyHandler), NULL);
-	g_signal_connect(G_OBJECT(m_GtkWindow), "key_press_event", G_CALLBACK(KeyHandler), this);
-	g_signal_connect(G_OBJECT(m_GtkWindow), "key_release_event", G_CALLBACK(KeyHandler), this);
+// main window is ALWAYS fullscreen
+    gtk_widget_set_usize(m_MainWindow,SCREENWIDTH,SCREENHEIGHT);
 
-	gtk_widget_realize(m_GtkWindow);
+    GdkColor black_color; memset(&black_color,0,sizeof(GdkColor));
 
-	GdkWindow* parent_win = m_GtkWindow->window;
+	g_signal_connect(G_OBJECT(m_MainWindow), "destroy", G_CALLBACK(DestroyHandler), NULL);
 
-	GtkWidget* socketWidget = gtk_socket_new();
-	gtk_widget_set_parent_window(socketWidget, parent_win);
+	gtk_widget_realize(m_MainWindow);
 
-	g_signal_connect(socketWidget, "destroy", G_CALLBACK(gtk_widget_destroyed), &socketWidget);
 
-	gpointer user_data = NULL;
-	gdk_window_get_user_data(parent_win, &user_data);
+	m_Socket = gtk_socket_new();
 
-	GtkContainer* container = GTK_CONTAINER(user_data);
-	gtk_container_add(container, socketWidget);
-	gtk_widget_realize(socketWidget);
+    if (width>SCREENWIDTH || height>SCREENHEIGHT)
+    {
+        m_ScrollWindow = gtk_scrolled_window_new (NULL, NULL);
+        gtk_container_add (GTK_CONTAINER(m_MainWindow), m_ScrollWindow);
+        gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(m_ScrollWindow),GTK_POLICY_AUTOMATIC,GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(m_ScrollWindow), m_Socket);
+    }
+    else
+    {
+        gtk_container_add(GTK_CONTAINER(m_MainWindow),m_Socket);
+    }
 
-	GtkAllocation new_allocation;
-	new_allocation.x = 0;
-	new_allocation.y = 0;
-	new_allocation.width = width;
-	new_allocation.height = height;
-	gtk_widget_size_allocate(socketWidget, &new_allocation);
 
-	gtk_widget_show(socketWidget);
-	gdk_flush();
+	gtk_widget_realize(m_Socket);
 
-	GdkNativeWindow ww = gtk_socket_get_id(GTK_SOCKET(socketWidget));
+
+    g_signal_connect(G_OBJECT(m_MainWindow), "key-press-event", G_CALLBACK(KeyHandler), this);
+	g_signal_connect(G_OBJECT(m_MainWindow), "key-release-event", G_CALLBACK(KeyHandler), this);
+	g_signal_connect(m_Socket, "destroy", G_CALLBACK(gtk_widget_destroyed), &m_Socket);
+
+	GdkNativeWindow ww = gtk_socket_get_id(GTK_SOCKET(m_Socket));
 	GdkWindow *w = gdk_window_lookup(ww);
 
 	m_NPWindow = new NPWindow;
@@ -105,18 +143,21 @@ bool FlashWindow::InitializeNPWindow(int width, int height)
 	m_NPWindow->ws_info = ws_info;
 	m_NPWindow->type = NPWindowTypeWindow;
 
+
     return true;
 }
 
+
 void FlashWindow::Show()
 {
-    gtk_widget_show_all(m_GtkWindow);
+    gtk_window_fullscreen((GtkWindow*)m_MainWindow);
 
-    gtk_window_fullscreen((GtkWindow*)m_GtkWindow);
+    gtk_widget_show_all(m_MainWindow);
 }
 
 void FlashWindow::RunLoop()
 {
+
     gtk_main();
 }
 
@@ -152,20 +193,95 @@ bool FlashWindow::OnKey(_GtkWidget* widget, _GdkEventKey* event)
         break;
 
     }
+    return 0;
+}
 
-    if ((event->type==GDK_KEY_PRESS || event->type==GDK_KEY_RELEASE) && IsPandoraKey(event->keyval))
+
+/// modified code from
+/// https://git.gnome.org/browse/gtk+/plain/gdk/x11/gdktestutils-x11.c
+/// _gdk_x11_window_simulate_key
+gboolean CreateKeyEvent(GdkWindow      *window,
+                        int x,
+                        int y,
+                        guint           keyval,
+                        GdkModifierType modifiers,
+                        GdkEventType    key_pressrelease,
+                        XKeyEvent& xev)
+{
+
+    GdkScreen *screen;
+    GdkKeymapKey *keys = NULL;
+    gboolean success;
+    gint n_keys = 0;
+
+
+    screen = gdk_screen_get_default();
+
+    xev.serial = 0;
+    xev.send_event = 1;
+    xev.type = key_pressrelease == GDK_KEY_PRESS ? KeyPress : KeyRelease;
+    xev.display = GDK_WINDOW_XDISPLAY (window);
+    xev.window = GDK_WINDOW_XID (window);
+    xev.root = RootWindow (xev.display, GDK_SCREEN_XNUMBER(screen));
+    xev.subwindow = 0;
+    xev.time = 0;
+    xev.x = MAX (x, 0);
+    xev.y = MAX (y, 0);
+    xev.x_root = 0;
+    xev.y_root = 0;
+    xev.state = modifiers;
+    xev.keycode = 0;
+    xev.same_screen = 1;
+    success = gdk_keymap_get_entries_for_keyval( gdk_keymap_get_for_display(gdk_display_get_default()) , keyval, &keys, &n_keys);
+    success &= n_keys > 0;
+    if (success)
     {
-        KeyMap::iterator it = m_KeyMap.find((PandoraKeys)event->keyval);
+        gint i;
+        for (i = 0; i < n_keys; i++)
+        {
+            if (keys[i].group == 0 && (keys[i].level == 0 || keys[i].level == 1))
+            {
+                xev.keycode = keys[i].keycode;
+                if (keys[i].level == 1)
+                {
+                    /* Assume shift takes us to level 1 */
+                    xev.state |= GDK_SHIFT_MASK;
+                }
+                break;
+            }
+        }
+        if (i >= n_keys) /* no match for group==0 and level==0 or 1 */
+            xev.keycode = keys[0].keycode;
+    }
+
+    g_free (keys);
+
+    return success;
+}
+
+
+bool FlashWindow::OnKeySnooper(_GtkWidget* widget, _GdkEventKey* event)
+{
+    if (widget == m_MainWindow && (event->type==GDK_KEY_PRESS || event->type==GDK_KEY_RELEASE) && IsPandoraKey(event->keyval))
+    {
+        KeyMapGdk::iterator it = m_KeyMap.find(event->keyval);
         if (it!=m_KeyMap.end())
         {
-            GdkDisplay* display = gdk_display_get_default ();
-            GdkScreen* screen = gdk_display_get_default_screen (display);
 
+            GdkDisplay* display = gdk_display_get_default ();
             gint x=0,y=0;
             gdk_display_get_pointer (display, NULL, &x, &y, NULL);
 
-            const SimpleKey& simkey = it->second;
-            gdk_test_simulate_key(widget->window,x,y,simkey.keyval,simkey.modifier,event->type);//==GDK_KEY_PRESS ? GDK_KEY_PRESS : GDK_KEY_RELEASE);
+            const vector<SimpleKey>& target_keys = it->second;
+            for (size_t k=0; k<target_keys.size();  ++k)
+            {
+                const SimpleKey& sim_key = target_keys[k];
+
+                XKeyEvent key_event;
+                CreateKeyEvent(widget->window, x, y, sim_key.keyval, sim_key.modifier, event->type, key_event);
+                m_Player->SendEvent(&key_event);
+
+            }
             return 1;
         }
     }

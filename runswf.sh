@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export LD_PRELOAD=`pwd`/libpreflashenv.so
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`/libs/
 
 # set nubs to joystick mode

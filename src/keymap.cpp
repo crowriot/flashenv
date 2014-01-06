@@ -5,6 +5,11 @@
 #include "keymap.h"
 #include <iostream>
 #include <gdk/gdkkeys.h>
+#include <X11/keysym.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <linux/input.h>
+#include <dlfcn.h>
 
 extern "C" {
 #include "iniparser-3.0/src/iniparser.h"
@@ -12,28 +17,29 @@ extern "C" {
 
 using namespace std;
 
+
 bool IsPandoraKey(guint keyval)
 {
-    return keyval==DPAD_Left
-         || keyval==DPAD_Right
-         || keyval==DPAD_Up
-         || keyval==DPAD_Down
+    return keyval==GdkPnd_DPAD_Left
+         || keyval==GdkPnd_DPAD_Right
+         || keyval==GdkPnd_DPAD_Up
+         || keyval==GdkPnd_DPAD_Down
 
-         || keyval==DPAD_A
-         || keyval==DPAD_B
-         || keyval==DPAD_X
-         || keyval==DPAD_Y
+         || keyval==GdkPnd_DPAD_A
+         || keyval==GdkPnd_DPAD_B
+         || keyval==GdkPnd_DPAD_X
+         || keyval==GdkPnd_DPAD_Y
 
-         || keyval==Start
-         || keyval==Select
+         || keyval==GdkPnd_Start
+         || keyval==GdkPnd_Select
 
-         || keyval==Trigger_Left
-         || keyval==Trigger_Right
+         || keyval==GdkPnd_Trigger_Left
+         || keyval==GdkPnd_Trigger_Right
     ;
 }
 
 
-bool LoadKeyMap(const char* inifile, const char* swffile, KeyMap* key_map)
+bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk, KeyMapX11* key_map_x11)
 {
     cout << __FUNCTION__ << endl;
 
@@ -52,9 +58,12 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMap* key_map)
         return false;
     }
 
-    int keyvalues[] = {DPAD_Left,DPAD_Right,DPAD_Up,DPAD_Down,DPAD_A,DPAD_B,DPAD_X,DPAD_Y,Start,Select,Trigger_Left,Trigger_Right};
-    char* keynames[] = {"DPAD_Left","DPAD_Right","DPAD_Up","DPAD_Down","DPAD_A","DPAD_B","DPAD_X","DPAD_Y","Start","Select","Trigger_Left","Trigger_Right"};
-    int nkeys = sizeof(keyvalues)/sizeof(*keyvalues);
+    int gdkkeyvalues[] = {GdkPnd_DPAD_Left,GdkPnd_DPAD_Right,GdkPnd_DPAD_Up,GdkPnd_DPAD_Down,GdkPnd_DPAD_A,GdkPnd_DPAD_B,GdkPnd_DPAD_X,GdkPnd_DPAD_Y,GdkPnd_Start,GdkPnd_Select,GdkPnd_Trigger_Left,GdkPnd_Trigger_Right};
+    int rawkeyvalues[] = {KeyCodePnd_DPAD_Left,KeyCodePnd_DPAD_Right,KeyCodePnd_DPAD_Up,KeyCodePnd_DPAD_Down,KeyCodePnd_DPAD_A,KeyCodePnd_DPAD_B,KeyCodePnd_DPAD_X,KeyCodePnd_DPAD_Y,KeyCodePnd_Start,KeyCodePnd_Select,KeyCodePnd_Trigger_Left,KeyCodePnd_Trigger_Right};
+    const char* keynames[] = {"DPAD_Left","DPAD_Right","DPAD_Up","DPAD_Down","DPAD_A","DPAD_B","DPAD_X","DPAD_Y","Start","Select","Trigger_Left","Trigger_Right"};
+    int nkeys = sizeof(keynames)/sizeof(*keynames);
+
+    Display* display = XOpenDisplay(0);
 
 
     char tmp[256];
@@ -64,11 +73,42 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMap* key_map)
 
         char* mapped = iniparser_getstring(d,tmp,"");
         guint keyval;
-        if(mapped[0] && (keyval=gdk_keyval_from_name(mapped))!=GDK_VoidSymbol)
+        if(mapped[0])
         {
-            cout << "\tMapped " << keynames[k] << " to " << mapped << " (0x" << hex << keyval << ")" << endl;
+            char* keyname = strtok(mapped,KEY_NAME_SEPARATOR);
 
-            (*key_map)[keyvalues[k]] = keyval;
+            if (!keyname)
+                keyname = mapped;
+
+            do
+            {
+                if ((keyval=gdk_keyval_from_name(keyname))!=GDK_VoidSymbol)
+                {
+                    cout << "\tGDK mapped " << keynames[k] << " to " << keyname << " (" << keyval << ")" << endl;
+
+                    (*key_map_gdk)[gdkkeyvalues[k]].push_back(keyval);
+                }
+
+                KeyCode kc_to = XKeysymToKeycode(display,XStringToKeysym(keyname));
+                if (kc_to!=0)
+                {
+                    int kc_from  = rawkeyvalues[k];
+
+                    cout << "\tX11 mapped " << keynames[k] << "/" << (int)kc_from << " to " << (int)kc_to << endl;
+
+                    int ito = 0;
+                    while ((*key_map_x11)[kc_from][ito]!=0 && ito<KEYMAPX11_TARGET_SIZE)
+                    {
+                        ++ito;
+                    }
+
+                    if (ito<KEYMAPX11_TARGET_SIZE)
+                    {
+                        (*key_map_x11)[kc_from][ito] = kc_to;
+                    }
+                }
+
+            } while ((keyname=strtok(NULL,KEY_NAME_SEPARATOR)));
         }
         else
         {
@@ -78,6 +118,21 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMap* key_map)
 
     iniparser_freedict(d);
 
+    XCloseDisplay(display);
+
     return true;
+}
+
+void SetKeyMapX11(const KeyMapX11 keymap)
+{
+    RegisterKeyMappingFN reg = (RegisterKeyMappingFN)dlsym(dlopen("libpreflashenv",RTLD_LAZY),"RegisterKeyMapping");
+    if (reg)
+    {
+        (*reg)(keymap,C_KeyMapX11_Size);
+    }
+    else
+    {
+        cerr << "! RegisterKeyMapping not found" << endl;
+    }
 }
 

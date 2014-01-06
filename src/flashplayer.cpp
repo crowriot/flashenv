@@ -2,10 +2,10 @@
 // crow_riot, 2013
 // --------------------------------------------------------------------
 
-// https://github.com/idaunis/simple-linux-flash-embed
-
 #include "flashplayer.h"
 #include "flashwindow.h"
+#include "flashattributes.h"
+#include "defines.h"
 #include "npn.h"
 #include "mimetypes.h"
 #include <dlfcn.h>
@@ -24,22 +24,32 @@
     else \
     { cout << desc << " done." << endl; }
 
-#define DEBUG_FUNCTION_NAME cout << __FUNCTION__ << endl;
-
 /* -------- */
 
 using namespace std;
 
+
+string ExtractFilepath( const string& path )
+{
+    size_t p = path.rfind( '/' );
+    if ( p==string::npos ) p = path.rfind('\\');
+    if ( p==string::npos ) return path;
+    return path.substr( 0, p+1 );
+}
+
 /* -------- */
 
 FlashPlayer::FlashPlayer( FlashWindow& flash_window )
-    : m_FlashPlayerLib(0)
-    , m_Window(flash_window)
+    : m_Window(flash_window)
+    , m_FlashPlayerLib(0)
 {
     memset(&NPPluginFuncs_,0,sizeof(NPPluginFuncs));
     memset(&NPNetscapeFuncs_,0,sizeof(NPNetscapeFuncs));
     memset(&NPP_,0,sizeof(NPP));
-    //memset(&NPSavedData_,0,sizeof(NPSavedData));
+
+    NPP_.ndata = this;
+
+    flash_window.SetPlayer(this);
 
     InitializeNPN(&NPNetscapeFuncs_,&NPPluginFuncs_);
 }
@@ -47,7 +57,10 @@ FlashPlayer::FlashPlayer( FlashWindow& flash_window )
 
 FlashPlayer::~FlashPlayer()
 {
-    if (m_FlashPlayerLib) dlclose(m_FlashPlayerLib);
+    m_Window.SetPlayer(0);
+
+    if (m_FlashPlayerLib)
+        dlclose(m_FlashPlayerLib);
     m_FlashPlayerLib = 0;
 }
 
@@ -104,18 +117,47 @@ bool FlashPlayer::InitPlugin()
 
 
 
-bool FlashPlayer::LoadFile(const char* file, int width, int height, bool stretch)
+bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashAttributes& attrs)
 {
     DEBUG_FUNCTION_NAME
 
-    char cwidth[32]; sprintf(cwidth,"%d",width);
-    char cheight[32]; sprintf(cheight,"%d", height);
-    char* exactFit = "exactFit";
-    char* showAll = "showAll";
+    m_File = file;
+    m_Path = ExtractFilepath(m_File);
 
-    char *xargv[]= {"allowResize","allowscriptaccess", "name", "quality", "wmode", "allowFullScreen", "width","height","scale"};
-    char *xargm[]= {"true", "always", "test", "best", "direct","true","100%","100%",(stretch ?exactFit:showAll)};
+    const char *xargv[]= {
+        "allowResize",
+        "allowscriptaccess",
+        "quality",
+        "wmode",
+        "allowFullScreen",
+        "width",
+        "height",
+        "scale",
+        "menu",
+        "bgcolor",
+        "play",
+        "loop",
+    };
+    const char *xargm[] = {
+        "true",
+        "always",
+        attrs.quality,
+        "direct",
+        "true",
+        "100%",
+        "100%",
+        attrs.scale,
+        attrs.menu,
+        "#000000",
+        "true",
+        "true",
+    };
 	const int xargc = sizeof(xargv)/sizeof(*xargv);
+
+	for (int arg=0; arg<xargc; ++arg)
+	{
+	    cout << "\t" << xargv[arg] << "=" << xargm[arg] << endl;
+	}
 
     NPSavedData* data = new NPSavedData;
     memset(data,0,sizeof(NPSavedData));
@@ -124,8 +166,8 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, bool stretch
                                          &NPP_,
                                          NP_EMBED,
                                          xargc,
-                                         xargv,
-                                         xargm,
+                                         const_cast<char**>(xargv),
+                                         const_cast<char**>(xargm),
                                          0);
     CHECK_ERROR_RETURN("NP_New")
 
@@ -134,17 +176,18 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, bool stretch
     CHECK_ERROR_RETURN("NP_GetValue NPPVpluginScriptableNPObject")
 
     m_Window.InitializeNPWindow(width,height);
-    m_Window.Show();
+    //m_Window.Show();
 
     err = (*NPPluginFuncs_.setwindow)(&NPP_,m_Window.GetNPWindow());
     CHECK_ERROR_RETURN("NP_SetWindow");
 
-    uint16_t stream_type = 0;
+    const NPBool seekable = 0;
+    uint16_t stream_type = NP_NORMAL;
     NPStream stream;
     memset(&stream,0,sizeof(stream));
     stream.url = strdup(file);
 
-	err = NPPluginFuncs_.newstream(&NPP_,MIMETYPE_SWF,&stream,0/*seekable*/,&stream_type);
+	err = NPPluginFuncs_.newstream(&NPP_,MIMETYPE_SWF,&stream,seekable,&stream_type);
 	CHECK_ERROR_RETURN("NP_NewStream");
 
 	FILE *pp;
@@ -158,11 +201,22 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, bool stretch
 	}
 	fclose(pp);
 
-
     err = (*NPPluginFuncs_.destroystream)(&NPP_,&stream,NPRES_DONE);
 	CHECK_ERROR_RETURN("NPN_DestroyStream");
 
+
+
     return true;
+}
+
+std::string FlashPlayer::GetFile() const
+{
+    return m_File;
+}
+
+std::string FlashPlayer::GetPath() const
+{
+    return m_Path;
 }
 
 void FlashPlayer::Run()
@@ -182,6 +236,12 @@ void FlashPlayer::Shutdown()
     NPPluginFuncs_.destroy(&NPP_,&saved);
     NP_Shutdown();
     delete saved;
+}
+
+void FlashPlayer::SendEvent( void* event_data )
+{
+    if (NPPluginFuncs_.event)
+        NPPluginFuncs_.event(&NPP_, event_data);
 }
 
 #define PRINT_FUNC(func,var) \
@@ -213,15 +273,4 @@ void FlashPlayer::PrintPluginFuncs()
 
 #undef PRINT_FUNC
 
-#if 0
-NPStream* FlashPlayer::CreateStream(const char* file)
-{
-    NPStream* stream = new NPStream();
-    memset(stream,0,sizeof(NPStream));
-
-    stream->url = strdup(file);
-
-    return stream;
-}
-#endif
 

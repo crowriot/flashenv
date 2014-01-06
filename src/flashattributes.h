@@ -17,7 +17,7 @@ public:
     static const char* BooleanFalse;
 
     /// quality attr enumeration
-    enum { QualityCount = 6, DefaultQuality=2 };
+    enum { QualityCount = 6, DefaultQuality=1 };
     /// quality attributes
     static const char* Quality[QualityCount];
 

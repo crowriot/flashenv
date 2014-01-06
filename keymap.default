@@ -23,10 +23,19 @@
 ; The ini section name must be the name (case sensitive!) of the .swf file you want to
 ; assign the keys for.
 ;
-; Usage Example
+; Usage Example - don't forget to remove the ; at the start of the line.
 ;
 ; [Canabalt.swf]
 ;   DPAD_B = c
 ;   DPAD_X = space
 ;
+; You can also assign multiple target keys to one source key, just separate them with a space:
+;
+; [abobo.swf]
+;   DPAD_X = a
+;   DPAD_B = s
+;   DPAD_A = a s
+
+
+
 

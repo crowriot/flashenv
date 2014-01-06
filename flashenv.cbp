@@ -45,10 +45,25 @@
 			<Add library="dl" />
 			<Add library="gtk-x11-2.0" />
 		</Linker>
+		<Unit filename="CHANGELOG" />
+		<Unit filename="flashenv.pxml" />
+		<Unit filename="keymap.default" />
+		<Unit filename="src/flashattributes.cpp" />
+		<Unit filename="src/flashattributes.h" />
 		<Unit filename="src/flashplayer.cpp" />
 		<Unit filename="src/flashplayer.h" />
 		<Unit filename="src/flashwindow.cpp" />
 		<Unit filename="src/flashwindow.h" />
+		<Unit filename="src/iniparser-3.0/src/dictionary.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/iniparser-3.0/src/dictionary.h" />
+		<Unit filename="src/iniparser-3.0/src/iniparser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/iniparser-3.0/src/iniparser.h" />
+		<Unit filename="src/keymap.cpp" />
+		<Unit filename="src/keymap.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/mimetypes.h" />
 		<Unit filename="src/npapi/npapi.h" />

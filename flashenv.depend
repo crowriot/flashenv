@@ -1,9 +1,11 @@
 # depslib dependency file v1.0
-1388698533 source:/home/xubuntu/Pandora/flashenv/src/main.cpp
-	<iostream>
+1389004403 source:/home/xubuntu/Pandora/flashenv/src/main.cpp
 	"flashplayer.h"
 	"flashwindow.h"
+	"flashattributes.h"
+	"defines.h"
 	<string.h>
+	<iostream>
 	<gtk/gtk.h>
 
 1273420416 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/SDL/SDL.h
@@ -186,9 +188,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1388701929 source:/home/xubuntu/Pandora/flashenv/src/flashplayer.cpp
+1389008846 source:/home/xubuntu/Pandora/flashenv/src/flashplayer.cpp
 	"flashplayer.h"
 	"flashwindow.h"
+	"flashattributes.h"
+	"defines.h"
 	"npn.h"
 	"mimetypes.h"
 	<dlfcn.h>
@@ -196,7 +200,7 @@
 	<iomanip>
 	<string.h>
 
-1388574663 /home/xubuntu/Pandora/flashenv/src/flashplayer.h
+1389008717 /home/xubuntu/Pandora/flashenv/src/flashplayer.h
 	<string>
 	"npapi/npfunctions.h"
 
@@ -651,12 +655,15 @@
 1388574672 /home/xubuntu/Pandora/flashenv/src/npn.h
 	"npapi/npfunctions.h"
 
-1388696015 source:/home/xubuntu/Pandora/flashenv/src/npn.cpp
+1389037956 source:/home/xubuntu/Pandora/flashenv/src/npn.cpp
 	"npn.h"
 	"mimetypes.h"
+	"flashplayer.h"
+	"defines.h"
 	<iostream>
 	<stdlib.h>
 	<string.h>
+	<linux/limits.h>
 
 1388446325 source:/home/xubuntu/Pandora/flashenv/src/player.cpp
 	<stdio.h>
@@ -3362,16 +3369,25 @@
 
 1388661089 /home/xubuntu/Pandora/flashenv/src/mimetypes.h
 
-1388695788 /home/xubuntu/Pandora/flashenv/src/flashwindow.h
+1389003650 /home/xubuntu/Pandora/flashenv/src/flashwindow.h
 	"keymap.h"
+	<gdk/gdkevents.h>
+	<vector>
 
-1388700620 source:/home/xubuntu/Pandora/flashenv/src/flashwindow.cpp
+1389006502 source:/home/xubuntu/Pandora/flashenv/src/flashwindow.cpp
 	"flashwindow.h"
+	"flashplayer.h"
+	"defines.h"
 	"npapi/npapi.h"
 	<string.h>
+	<iostream>
+	<stdlib.h>
 	<gtk/gtk.h>
 	<gdk/gdkx.h>
 	<gdk/gdkkeysyms.h>
+	<gdk/gdkscreen.h>
+	<gdk/gdkx.h>
+	<X11/Xlib.h>
 
 1273416964 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkx.h
 	<gdk/gdkprivate.h>
@@ -3385,15 +3401,22 @@
 
 1273416969 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/gdk/gdkkeysyms.h
 
-1388699142 /home/xubuntu/Pandora/flashenv/src/keymap.h
+1389005446 /home/xubuntu/Pandora/flashenv/src/keymap.h
 	<map>
+	<vector>
 	<gdk/gdktypes.h>
 	<gdk/gdkkeysyms.h>
+	"keyboardhook.h"
 
-1388700199 source:/home/xubuntu/Pandora/flashenv/src/keymap.cpp
+1389006464 source:/home/xubuntu/Pandora/flashenv/src/keymap.cpp
 	"keymap.h"
 	<iostream>
 	<gdk/gdkkeys.h>
+	<X11/keysym.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<linux/input.h>
+	<dlfcn.h>
 	"iniparser-3.0/src/iniparser.h"
 
 1371666311 source:/home/xubuntu/Pandora/flashenv/src/iniparser-3.0/src/dictionary.c
@@ -3416,4 +3439,78 @@
 	<stdlib.h>
 	<string.h>
 	"dictionary.h"
+
+1388747219 source:/home/xubuntu/Pandora/flashenv/src/flashattributes.cpp
+	"flashattributes.h"
+
+1388749435 /home/xubuntu/Pandora/flashenv/src/flashattributes.h
+
+1388950816 /home/xubuntu/Pandora/flashenv/src/defines.h
+
+1277552253 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/extensions/XTest.h
+	<X11/Xfuncproto.h>
+	<X11/extensions/xtestconst.h>
+	<X11/extensions/XInput.h>
+
+1273415128 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/extensions/xtestconst.h
+
+1273420196 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/extensions/XInput.h
+	<X11/Xlib.h>
+	<X11/extensions/XI.h>
+
+1273415136 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/X11/extensions/XI.h
+
+1389006194 /home/xubuntu/Pandora/flashenv/src/keyboardhook.h
+	<X11/Xlib.h>
+
+1273411305 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/linux/input.h
+	<sys/time.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<linux/types.h>
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/ioctl.h
+	<features.h>
+	<bits/ioctls.h>
+	<bits/ioctl-types.h>
+	<sys/ttydefaults.h>
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/ioctls.h
+	<asm/ioctls.h>
+
+1273411306 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm/ioctls.h
+	<asm/ioctl.h>
+
+1273411306 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm/ioctl.h
+	<asm-generic/ioctl.h>
+
+1273411303 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/ioctl.h
+
+1273413892 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/bits/ioctl-types.h
+	<asm/ioctls.h>
+
+1273413889 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/sys/ttydefaults.h
+
+1273411305 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/linux/types.h
+	<asm/types.h>
+	<linux/posix_types.h>
+
+1273411306 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm/types.h
+	<asm-generic/int-ll64.h>
+
+1273411303 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/int-ll64.h
+	<asm/bitsperlong.h>
+
+1273411306 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm/bitsperlong.h
+	<asm-generic/bitsperlong.h>
+
+1273411303 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm-generic/bitsperlong.h
+
+1273411305 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/linux/posix_types.h
+	<linux/stddef.h>
+	<asm/posix_types.h>
+
+1273411305 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/linux/stddef.h
+
+1273411306 /usr/local/angstrom/arm/arm-angstrom-linux-gnueabi/usr/include/asm/posix_types.h
 

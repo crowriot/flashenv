@@ -3,22 +3,20 @@
 // --------------------------------------------------------------------
 
 // https://github.com/idaunis/simple-linux-flash-embed
-// http://code.google.com/p/screenweaver-hx/source/browse/trunk/src/np_host.c?r=64
+// http://code.google.com/p/screenweaver-hx/source/browse/trunk/src/np_host.c
 // http://www.opensource.apple.com/source/WebCore/WebCore-955.66.1/plugins/
+// http://src.chromium.org/svn/branches/1312/src/webkit/plugins/npapi/plugin_host.cc
 
 #include "npn.h"
 #include "mimetypes.h"
+#include "flashplayer.h"
+#include "defines.h"
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <linux/limits.h>
 
 using namespace std;
-
-/* -------- */
-
-#define USERAGENT "flashenv/1.0"
-
-#define DEBUG_FUNCTION_NAME cout << __FUNCTION__ << endl;
 
 /* -------- */
 
@@ -33,8 +31,8 @@ static NPPluginFuncs* S_PluginFuncs = NULL;
 #define	SPECIAL_IDENTIFIER  0x0FEEBBCC
 #define SPECIAL_METHOD_NAME "swhxCall"
 
-#define FLASH_REQUEST		"__flash__request"
-#define FSCMD			"_DoFSCommand"
+#define FLASH_REQUEST   "__flash__request"
+#define FSCMD           "_DoFSCommand"
 #define INVOKE_RESPONSE "<invoke name=\"%s\" returntype=\"javascript\"><arguments><null/></arguments></invoke>"
 
 
@@ -118,12 +116,14 @@ static NPObject __window = { &__gen_class, 1 };
 static NPObject __location = { &__gen_class, 1};
 static NPObject __top = { &__gen_class, 1 };
 static NPObject __top_location = { &__gen_class, 1 };
+static NPObject __plugin_element = { &__gen_class, 1 };
 
 static void traceObjectOnCall(const char *f, NPObject *o){
 	if (o == &__top) printf("DOM object 'top': %s\n",f);
 	else if (o == &__window) printf("DOM object 'window': %s\n",f);
 	else if (o == &__location) printf("DOM object 'location': %s\n",f);
 	else if (o == &__top_location) printf("DOM object 'top.location': %s\n",f);
+	else if (o == &__plugin_element) printf("DOM object 'plugin element': %s\n",f);
 }
 
 
@@ -144,13 +144,21 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
 		break;
 	case NPNVnetscapeWindow:
         cout << "\tNPNVnetscapeWindow" << endl;
-		*((int*)ret_value)= NP_TRUE;
+		*((int*)ret_value)= NP_FALSE;
 		break;
     case NPNVWindowNPObject:
         cout << "\tNPNVWindowNPObject" << endl;
         *(NPObject**)ret_value = &__window;
         NPN_RetainObjectProc(&__window);
         break;
+    case NPNVjavascriptEnabledBool:
+        cout << "\tNPNVjavascriptEnabledBool" << endl;
+		*((int*)ret_value)= NP_FALSE;
+		break;
+    case NPNVPluginElementNPObject:
+        cout << "\tNPNVjavascriptEnabledBool" << endl;
+		*((int*)ret_value)= NP_FALSE;
+		break;
 	default:
         cout << "\tvariable=" << variable << endl;
 		*((int*)ret_value)=NP_FALSE;
@@ -177,13 +185,12 @@ NPError NPN_SetValueProc(NPP instance, NPPVariable variable, void *value)
 NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, void* notifyData)
 {
     DEBUG_FUNCTION_NAME
-    cout << "\turl=" << url << endl;
-    cout << "\ttarget" << target << endl;
-    cout << "\tnotifyData=" << notifyData << endl;
+    cerr << "\turl=" << url << endl;
+    //cerr << "\ttarget=" << target << " l=" << (target ? strlen(target) : 0) << endl;
+    cerr << "\tnotifyData=" << notifyData << endl;
 
 	if (target && strlen(target)==6 && memcmp("_blank",target,6)==0)
 	{
-		//system_launch_url(url);
 		S_PluginFuncs->urlnotify(instance,url,NPRES_DONE,notifyData);
 	}
 	else
@@ -226,50 +233,85 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 	{
         bool success = false;
 		NPStream stream;
-		uint16_t stype;
+		uint16_t stype = NP_NORMAL;
 
 		memset(&stream,0,sizeof(NPStream));
-		stream.url = strdup(url);
 		stream.notifyData = notifyData;
+		stream.url = strdup(url);
 
         S_PluginFuncs->newstream(instance,MIMETYPE_SWF,&stream, 0, &stype);
 
+        cerr << "\tstype=" << stype << endl;
+
+        char filename[PATH_MAX*2] = {0};
+        bool unlink_filename = false;
+
         if (memcmp(url,"http://",7)==0|| memcmp(url,"ftp://",6)==0)
         {
-            char filename[L_tmpnam]; tmpnam(filename);
+            tmpnam(filename);
             int l = strlen(url);
             char* call = new char[128+l];
             sprintf(call,"wget -O %s %s",filename,url);
             system(call);
-
-
-            FILE* f = fopen(filename,"rb");
-            if (f)
-            {
-                int len=0;
-                char buffer[8192];
-                while((len=fread(buffer, 1, sizeof(buffer), f)) != 0)
-                {
-                    S_PluginFuncs->writeready(instance, &stream);
-                    S_PluginFuncs->write(instance, &stream, 0, len, buffer);
-                }
-                fclose(f);
-                unlink(filename);
-                success = true;
-            }
+            unlink_filename = true;
         }
+        else
+        {
+            if (memcmp(url,"allusersappdata://",18)==0)
+                url=url+18;
+
+            FlashPlayer* player = reinterpret_cast<FlashPlayer*>(instance->ndata);
+            sprintf(filename,"%s%s",player->GetPath().c_str(),url);
+        }
+
+        cerr << "Loading " << filename << endl;
+
+        FILE* f = fopen(filename,"rb");
+        if (f)
+        {
+            success = true;
+
+            fseek(f, 0L, SEEK_END);
+            stream.end = ftell(f);
+            fseek(f, 0L, SEEK_SET);
+
+            int len=0;
+            char buffer[8192];
+            while((len=fread(buffer, 1, sizeof(buffer), f)) != 0 && success)
+            {
+                int offset = 0;
+                while (offset<len)
+                {
+                    int to_write = S_PluginFuncs->writeready(instance, &stream);
+                    if (to_write>len) to_write = len;
+                    int written = S_PluginFuncs->write(instance,&stream, offset, to_write, buffer);
+                    if (written<=0)
+                        break;
+                    offset += written;
+                }
+                success = offset == len;
+            }
+            fclose(f);
+            if (unlink_filename)
+                unlink(filename);
+        }
+
+        cerr << "Loading " << filename << (success?" done." : " failed.") << endl;
 
         // If the target is non-null, the browser calls NPP_URLNotify() after it has finished loading the URL.
         // If the target is null, the browser calls NPP_URLNotify() after closing the stream by calling NPN_DestroyStream().
         if (target==NULL)
         {
-            S_PluginFuncs->destroystream(instance, &stream, success?NPRES_DONE:NPRES_NETWORK_ERR);
+            S_PluginFuncs->destroystream(instance, &stream, NPRES_DONE);
         }
 
 
         S_PluginFuncs->urlnotify(instance, url, success?NPRES_DONE:NPRES_NETWORK_ERR, notifyData);
 
-        free((char*)stream.url);
+        if (target!=NULL)
+        {
+            free((char*)stream.url);
+        }
 	}
 
     return NPERR_NO_ERROR;
@@ -281,8 +323,7 @@ NPError NPN_PostURLNotifyProc(NPP instance, const char* url, const char* window,
 }
 NPError NPN_GetURLProc(NPP instance, const char* url, const char* window)
 {
-    DEBUG_FUNCTION_NAME
-    return NPERR_NO_ERROR;
+    return NPN_GetURLNotifyProc(instance, url, window, 0);
 }
 NPError NPN_PostURLProc(NPP instance, const char* url, const char* window, uint32_t len, const char* buf, NPBool file)
 {
@@ -312,6 +353,7 @@ NPError NPN_DestroyStreamProc(NPP instance, NPStream* stream, NPReason reason)
 void NPN_StatusProc(NPP instance, const char* message)
 {
     DEBUG_FUNCTION_NAME
+    cout << "\tstatus=" << message << endl;
 }
 const char* NPN_UserAgentProc(NPP instance)
 {
@@ -438,10 +480,10 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
 
 	traceObjectOnCall(__FUNCTION__,npobj);
 
-   if (npobj == &__window)
-   {
-       if( matchNPId(npid,"location") )
-       {
+    if (npobj == &__window)
+    {
+        if( matchNPId(npid,"location") )
+        {
             result->type = NPVariantType_Object;
             result->value.objectValue = &__location;
             NPN_RetainObjectProc(&__location);
@@ -484,17 +526,22 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
 		return 1;
 	}
 
-	if( npobj == &__top_location )
+	if( npobj == &__top_location || npobj==&__location )
 	{
 		if( matchNPId(npid,"toString") )
 		{
+            FlashPlayer* flash_player = reinterpret_cast<FlashPlayer*>(npp->ndata);
+
 			result->type = NPVariantType_String;
 			// "chrome://global/content/console.xul" is what Firefox returns for 'top.location.toString()';
 			//result->value.stringValue.UTF8Characters = strdup("chrome://global/content/console.xul");
-			result->value.stringValue.UTF8Characters = strdup("localhost");
+			char path[PATH_MAX]; sprintf(path, "file://%s", flash_player->GetFile().c_str());
+			result->value.stringValue.UTF8Characters = strdup(path);
+			//result->value.stringValue.UTF8Characters = strdup("localhost");
 			result->value.stringValue.UTF8Length = (int)strlen(result->value.stringValue.UTF8Characters);
 			printf("[D] Returned %s\n", result->value.stringValue.UTF8Characters);
 		}
+
 		return 1;
 	}
 	//On OSX, Flash retreives locations by injected functions:
