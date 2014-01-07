@@ -243,15 +243,13 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 
         cerr << "\tstype=" << stype << endl;
 
-        string filename;
-        bool unlink_filename = false;
+        FILE* f = 0;
 
         if (memcmp(url,"http://",7)==0|| memcmp(url,"ftp://",6)==0)
         {
-            filename.resize(L_tmpnam); tmpnam(const_cast<char*>(filename.c_str()));
-            string call = "wget -O " + filename + " " + url;
-            system(call.c_str());
-            unlink_filename = true;
+            string call = "curl " + string(url);
+            cout << "\tLoading " << url << endl;
+            f = popen(call.c_str(),"r");
         }
         else
         {
@@ -259,19 +257,18 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
                 url=url+18;
 
             FlashPlayer* player = reinterpret_cast<FlashPlayer*>(instance->ndata);
-            filename = player->GetPath() + url;
-        }
-
-        cout << "\tLoading " << filename << endl;
-
-        FILE* f = fopen(filename.c_str(),"rb");
-        if (f)
-        {
-            success = true;
+            string filename = player->GetPath() + url;
+            cout << "\tLoading " << filename << endl;
+            f = fopen(filename.c_str(),"rb");
 
             fseek(f, 0L, SEEK_END);
             stream.end = ftell(f);
             fseek(f, 0L, SEEK_SET);
+        }
+
+        if (f)
+        {
+            success = true;
 
             int len=0;
             char buffer[8192];
@@ -290,10 +287,9 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
                 success = offset == len;
             }
             fclose(f);
-            if (unlink_filename) unlink(filename.c_str());
         }
 
-        cout << "\tLoading " << filename << (success?" done." : " failed.") << endl;
+        cout << "\tLoading " << (success?"done." : "failed.") << endl;
 
         // If the target is non-null, the browser calls NPP_URLNotify() after it has finished loading the URL.
         // If the target is null, the browser calls NPP_URLNotify() after closing the stream by calling NPN_DestroyStream().
