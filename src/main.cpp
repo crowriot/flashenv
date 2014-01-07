@@ -10,7 +10,9 @@
 #include <string.h>
 #include <iostream>
 
+#ifndef GSEAL
 #define GSEAL(x) x
+#endif
 #include <gtk/gtk.h>
 
 /* -------- */

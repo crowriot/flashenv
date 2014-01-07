@@ -20,10 +20,6 @@ using namespace std;
 
 /* -------- */
 
-static NPPluginFuncs* S_PluginFuncs = NULL;
-
-/* -------- */
-
 #define NP_FALSE 0
 #define NP_TRUE 1
 
@@ -173,10 +169,10 @@ NPError NPN_SetValueProc(NPP instance, NPPVariable variable, void *value)
 
 	switch(variable) {
 		case NPPVpluginWindowBool:
-			printf( "NPPVpluginWindowBool - %p\n", value);
+            cout << "\tNPPVpluginWindowBool - value=" << value << endl;
 			break;
 		default:
-			printf( "SetValue %i\n", variable );
+            cout << "\tvariable=" << variable << " value=" << value << endl;
 			break;
 	}
 	return NPERR_NO_ERROR;
@@ -185,13 +181,16 @@ NPError NPN_SetValueProc(NPP instance, NPPVariable variable, void *value)
 NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, void* notifyData)
 {
     DEBUG_FUNCTION_NAME
-    cerr << "\turl=" << url << endl;
-    //cerr << "\ttarget=" << target << " l=" << (target ? strlen(target) : 0) << endl;
-    cerr << "\tnotifyData=" << notifyData << endl;
+    cout << "\turl=" << url << endl;
+  //cout << "\ttarget=" << target << " l=" << (target ? strlen(target) : 0) << endl;
+    cout << "\tnotifyData=" << notifyData << endl;
+
+    const NPPluginFuncs& plugin_funcs =
+                reinterpret_cast<FlashPlayer*>(instance->ndata)->GetPluginFuncs();
 
 	if (target && strlen(target)==6 && memcmp("_blank",target,6)==0)
 	{
-		S_PluginFuncs->urlnotify(instance,url,NPRES_DONE,notifyData);
+		plugin_funcs.urlnotify(instance,url,NPRES_DONE,notifyData);
 	}
 	else
 	if( memcmp(url,"javascript:",11) == 0 )
@@ -201,7 +200,7 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 		int success;
 		memset(&s,0,sizeof(NPStream));
 		s.url = strdup(url);
-		success = (S_PluginFuncs->newstream(instance,"text/html",&s,0,&stype) == NPERR_NO_ERROR);
+		success = (plugin_funcs.newstream(instance,MIMETYPE_HTML,&s,0,&stype) == NPERR_NO_ERROR);
 
 		if( success )
 		{
@@ -211,13 +210,14 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 			sprintf(buf,"%X__flashplugin_unique__",(int_val)instance);
 			size = (int)strlen(buf);
 			s.end = size;
-			while( pos < size ) {
-				int len = S_PluginFuncs->writeready(instance,&s);
+			while( pos < size )
+			{
+				int len = plugin_funcs.writeready(instance,&s);
 				if( len <= 0 )
 					break;
 				if( len > size - pos )
 					len = size - pos;
-				len = S_PluginFuncs->write(instance,&s,pos,len,buf+pos);
+				len = plugin_funcs.write(instance,&s,pos,len,buf+pos);
 				if( len <= 0 )
 					break;
 				pos += len;
@@ -225,8 +225,8 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 			success = (pos == size);
 		}
 
-		S_PluginFuncs->urlnotify(instance,url,success?NPRES_DONE:NPRES_NETWORK_ERR,notifyData);
-		S_PluginFuncs->destroystream(instance,&s,NPRES_DONE);
+		plugin_funcs.urlnotify(instance,url,success?NPRES_DONE:NPRES_NETWORK_ERR,notifyData);
+		plugin_funcs.destroystream(instance,&s,NPRES_DONE);
 		free((void*)s.url);
 	}
 	else
@@ -239,20 +239,18 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 		stream.notifyData = notifyData;
 		stream.url = strdup(url);
 
-        S_PluginFuncs->newstream(instance,MIMETYPE_SWF,&stream, 0, &stype);
+        plugin_funcs.newstream(instance,MIMETYPE_SWF,&stream, 0, &stype);
 
         cerr << "\tstype=" << stype << endl;
 
-        char filename[PATH_MAX*2] = {0};
+        string filename;
         bool unlink_filename = false;
 
         if (memcmp(url,"http://",7)==0|| memcmp(url,"ftp://",6)==0)
         {
-            tmpnam(filename);
-            int l = strlen(url);
-            char* call = new char[128+l];
-            sprintf(call,"wget -O %s %s",filename,url);
-            system(call);
+            filename.resize(L_tmpnam); tmpnam(const_cast<char*>(filename.c_str()));
+            string call = "wget -O " + filename + " " + url;
+            system(call.c_str());
             unlink_filename = true;
         }
         else
@@ -261,12 +259,12 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
                 url=url+18;
 
             FlashPlayer* player = reinterpret_cast<FlashPlayer*>(instance->ndata);
-            sprintf(filename,"%s%s",player->GetPath().c_str(),url);
+            filename = player->GetPath() + url;
         }
 
-        cerr << "Loading " << filename << endl;
+        cout << "\tLoading " << filename << endl;
 
-        FILE* f = fopen(filename,"rb");
+        FILE* f = fopen(filename.c_str(),"rb");
         if (f)
         {
             success = true;
@@ -282,9 +280,9 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
                 int offset = 0;
                 while (offset<len)
                 {
-                    int to_write = S_PluginFuncs->writeready(instance, &stream);
+                    int to_write = plugin_funcs.writeready(instance, &stream);
                     if (to_write>len) to_write = len;
-                    int written = S_PluginFuncs->write(instance,&stream, offset, to_write, buffer);
+                    int written = plugin_funcs.write(instance,&stream, offset, to_write, buffer);
                     if (written<=0)
                         break;
                     offset += written;
@@ -292,26 +290,21 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
                 success = offset == len;
             }
             fclose(f);
-            if (unlink_filename)
-                unlink(filename);
+            if (unlink_filename) unlink(filename.c_str());
         }
 
-        cerr << "Loading " << filename << (success?" done." : " failed.") << endl;
+        cout << "\tLoading " << filename << (success?" done." : " failed.") << endl;
 
         // If the target is non-null, the browser calls NPP_URLNotify() after it has finished loading the URL.
         // If the target is null, the browser calls NPP_URLNotify() after closing the stream by calling NPN_DestroyStream().
         if (target==NULL)
         {
-            S_PluginFuncs->destroystream(instance, &stream, NPRES_DONE);
+            plugin_funcs.destroystream(instance, &stream, NPRES_DONE);
         }
 
+        plugin_funcs.urlnotify(instance, url, success?NPRES_DONE:NPRES_NETWORK_ERR, notifyData);
 
-        S_PluginFuncs->urlnotify(instance, url, success?NPRES_DONE:NPRES_NETWORK_ERR, notifyData);
-
-        if (target!=NULL)
-        {
-            free((char*)stream.url);
-        }
+        free((char*)stream.url);
 	}
 
     return NPERR_NO_ERROR;
@@ -732,7 +725,7 @@ void NPN_SetCurrentAsyncSurface(NPP instance, NPAsyncSurface *surface, NPRect *c
 /* -------- */
 
 
-void InitializeNPN(NPNetscapeFuncs* funcs, NPPluginFuncs* plugin_funcs)
+void InitializeNPN(NPNetscapeFuncs* funcs)
 {
     memset(funcs,0,sizeof(NPNetscapeFuncs));
     funcs->size = sizeof(NPNetscapeFuncs);
@@ -796,6 +789,4 @@ void InitializeNPN(NPNetscapeFuncs* funcs, NPPluginFuncs* plugin_funcs)
     funcs->initasyncsurface = NPN_InitAsyncSurface;
     funcs->finalizeasyncsurface = NPN_FinalizeAsyncSurface;
     funcs->setcurrentasyncsurface = NPN_SetCurrentAsyncSurface;
-
-    S_PluginFuncs = plugin_funcs;
 }

@@ -43,6 +43,9 @@ public:
     /// returns the directory of the file
     std::string GetPath() const;
 
+    /// returns the plugin function pointer table
+    const NPPluginFuncs& GetPluginFuncs() const;
+
     /// run.
     void Run();
 

@@ -51,7 +51,7 @@ FlashPlayer::FlashPlayer( FlashWindow& flash_window )
 
     flash_window.SetPlayer(this);
 
-    InitializeNPN(&NPNetscapeFuncs_,&NPPluginFuncs_);
+    InitializeNPN(&NPNetscapeFuncs_);
 }
 
 
@@ -217,6 +217,11 @@ std::string FlashPlayer::GetFile() const
 std::string FlashPlayer::GetPath() const
 {
     return m_Path;
+}
+
+const NPPluginFuncs& FlashPlayer::GetPluginFuncs() const
+{
+    return NPPluginFuncs_;
 }
 
 void FlashPlayer::Run()

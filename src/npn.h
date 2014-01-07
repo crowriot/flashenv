@@ -10,8 +10,7 @@
 
 
 /// initializes the function pointers of the given NPNetscapeFuncs
-/// instance and sets the global plugin function struct
-void InitializeNPN( NPNetscapeFuncs* functions, NPPluginFuncs* plugin_functions );
+void InitializeNPN( NPNetscapeFuncs* functions );
 
 
 

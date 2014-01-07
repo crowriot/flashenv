@@ -3,6 +3,7 @@
 // --------------------------------------------------------------------
 
 #include "keymap.h"
+#include "defines.h"
 #include <iostream>
 #include <gdk/gdkkeys.h>
 #include <X11/keysym.h>
@@ -41,7 +42,7 @@ bool IsPandoraKey(guint keyval)
 
 bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk, KeyMapX11* key_map_x11)
 {
-    cout << __FUNCTION__ << endl;
+    DEBUG_FUNCTION_NAME
 
     const char* section = strrchr(swffile,'/');
     if (!section)
@@ -125,14 +126,16 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
 
 void SetKeyMapX11(const KeyMapX11 keymap)
 {
-    RegisterKeyMappingFN reg = (RegisterKeyMappingFN)dlsym(dlopen("libpreflashenv",RTLD_LAZY),"RegisterKeyMapping");
+    RegisterKeyMappingFN reg =
+        (RegisterKeyMappingFN)dlsym(dlopen(LIBRARY_NAME,RTLD_LAZY),REGISTERKEYMAPPING_FUNCTION_NAME);
+
     if (reg)
     {
         (*reg)(keymap,C_KeyMapX11_Size);
     }
     else
     {
-        cerr << "! RegisterKeyMapping not found" << endl;
+        cerr << "! " REGISTERKEYMAPPING_FUNCTION_NAME " not found" << endl;
     }
 }
 

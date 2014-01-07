@@ -12,4 +12,7 @@
 /// "unknown" mimetype
 #define MIMETYPE_OCTET_STREAM "application/octet-stream"
 
+/// html mimetype
+#define MIMETYPE_HTML "text/html"
+
 #endif

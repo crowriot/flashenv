@@ -11,7 +11,10 @@
 #include <iostream>
 #include <stdlib.h>
 
+#ifndef GSEAL
 #define GSEAL(x) x
+#endif
+
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
@@ -30,7 +33,7 @@ static gboolean KeyHandler(GtkWidget *widget, GdkEventKey *event, gpointer user_
 {
 #ifdef DEBUG_KEY_HANDLERS
     DEBUG_FUNCTION_NAME
-    cerr << "\tkeyval=" << event->keyval << " modifier=" << event->state << " type=" << event->type << endl;
+    cout << "\tkeyval=" << event->keyval << " modifier=" << event->state << " type=" << event->type << endl;
 #endif
 
     return reinterpret_cast<FlashWindow*>(user_data)->OnKey(widget, event);
@@ -40,7 +43,7 @@ static gboolean KeySnooperHandler(GtkWidget* widget, GdkEventKey* event, gpointe
 {
 #ifdef DEBUG_KEY_HANDLERS
     DEBUG_FUNCTION_NAME
-    cerr << "\tkeyval=" << event->keyval << " modifier=" << event->state << " type=" << event->type << endl;
+    cout << "\tkeyval=" << event->keyval << " modifier=" << event->state << " type=" << event->type << endl;
 #endif
 
     return reinterpret_cast<FlashWindow*>(user_data)->OnKeySnooper(widget, event);

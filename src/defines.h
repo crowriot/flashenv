@@ -14,7 +14,7 @@
 
 #define USERAGENT "flashenv/1.0"
 
-#define DEBUG_FUNCTION_NAME cerr << __FUNCTION__ << endl;
+#define DEBUG_FUNCTION_NAME cout << __FUNCTION__ << endl;
 
 /* -------- */
 
