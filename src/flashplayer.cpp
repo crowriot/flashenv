@@ -134,7 +134,7 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashA
         "height",
         "scale",
         "menu",
-        "bgcolor",
+        //"bgcolor",
         "play",
         "loop",
     };
@@ -148,7 +148,7 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashA
         "100%",
         attrs.scale,
         attrs.menu,
-        "#000000",
+        //"#000000",
         "true",
         "true",
     };
