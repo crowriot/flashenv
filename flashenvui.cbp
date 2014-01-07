@@ -22,6 +22,7 @@
 				<Option compiler="pandora_compiler" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-DPANDORA" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -30,7 +31,15 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="`sdl-config --cflags`" />
 		</Compiler>
+		<Linker>
+			<Add option="`sdl-config --libs`" />
+			<Add library="SDL_ttf" />
+			<Add library="SDL_gfx" />
+			<Add library="SDL_image" />
+		</Linker>
+		<Unit filename="src/flashenvui.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

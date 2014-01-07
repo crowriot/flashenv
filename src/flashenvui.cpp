@@ -641,22 +641,30 @@ int main ( int argc, char** argv )
                 switch(event.key.keysym.sym)
                 {
                 default: break;
-                case SDLK_ESCAPE: done = true; break;
+                case 'q':
+                    if (event.key.keysym.mod & (KMOD_LCTRL|KMOD_RCTRL))
+                        done = true;
+                    break;
+                case SDLK_ESCAPE:
+                    done = true;
+                    break;
                 case SDLK_UP:
-                    -- current_file;
-                    if (current_file<0) current_file = file_list.size()-1;
+                    if (event.key.keysym.mod & (KMOD_RSHIFT|KMOD_LSHIFT))
+                        current_file -= FILEWIDGETCOUNT/2;
+                    else
+                        current_file --;
+                    if (current_file<0)
+                        current_file = file_list.size()-1;
                     update_widgets = true;
                 break;
                 case SDLK_DOWN:
-                    ++ current_file %= file_list.size();
+                    if (event.key.keysym.mod & (KMOD_RSHIFT|KMOD_LSHIFT))
+                        current_file += FILEWIDGETCOUNT/2;
+                    else
+                        current_file ++;
+                    current_file %= file_list.size();
                     update_widgets = true;
                 break;
-#ifdef PANDORA
-                case SDLK_HOME:
-                case SDLK_END:
-                case SDLK_PAGEUP:
-                case SDLK_PAGEDOWN:
-#endif
                 case SDLK_LEFT:
                     if (file_history.size() && history_pos-1>=0)
                     {
@@ -677,6 +685,12 @@ int main ( int argc, char** argv )
                         update_widgets = true;
                     }
                     break;
+#ifdef PANDORA
+                case SDLK_HOME:
+                case SDLK_END:
+                case SDLK_PAGEUP:
+                case SDLK_PAGEDOWN:
+#endif
                 case SDLK_RETURN:
                     {
                         if (current_file<file_list.size())
