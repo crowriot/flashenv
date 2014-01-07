@@ -260,10 +260,12 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
             string filename = player->GetPath() + url;
             cout << "\tLoading " << filename << endl;
             f = fopen(filename.c_str(),"rb");
-
-            fseek(f, 0L, SEEK_END);
-            stream.end = ftell(f);
-            fseek(f, 0L, SEEK_SET);
+            if (f)
+            {
+                fseek(f, 0L, SEEK_END);
+                stream.end = ftell(f);
+                fseek(f, 0L, SEEK_SET);
+            }
         }
 
         if (f)
