@@ -6,7 +6,7 @@
 #include "flashwindow.h"
 #include "flashplayer.h"
 #include "defines.h"
-#include "npapi/npapi.h"
+#include "../third_party/npapi/npfunctions.h"
 #include <string.h>
 #include <iostream>
 #include <stdlib.h>

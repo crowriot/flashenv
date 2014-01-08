@@ -35,10 +35,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/keyboardhook.c">
-			<Option compilerVar="CPP" />
+		<Unit filename="src/preload/keyboardhook.c">
+			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/keyboardhook.h" />
+		<Unit filename="src/preload/keyboardhook.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

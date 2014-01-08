@@ -13,7 +13,7 @@
 #include <dlfcn.h>
 
 extern "C" {
-#include "iniparser-3.0/src/iniparser.h"
+#include "../third_party/iniparser-3.0/src/iniparser.h"
 }
 
 using namespace std;

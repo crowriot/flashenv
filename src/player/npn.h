@@ -6,8 +6,7 @@
 #define NPN_H
 
 
-#include "npapi/npfunctions.h"
-
+#include "../third_party/npapi/npfunctions.h"
 
 /// initializes the function pointers of the given NPNetscapeFuncs
 void InitializeNPN( NPNetscapeFuncs* functions );

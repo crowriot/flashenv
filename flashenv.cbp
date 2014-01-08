@@ -45,33 +45,31 @@
 			<Add library="dl" />
 			<Add library="gtk-x11-2.0" />
 		</Linker>
-		<Unit filename="CHANGELOG" />
-		<Unit filename="flashenv.pxml" />
-		<Unit filename="keymap.default" />
-		<Unit filename="src/flashattributes.cpp" />
-		<Unit filename="src/flashattributes.h" />
-		<Unit filename="src/flashplayer.cpp" />
-		<Unit filename="src/flashplayer.h" />
-		<Unit filename="src/flashwindow.cpp" />
-		<Unit filename="src/flashwindow.h" />
-		<Unit filename="src/iniparser-3.0/src/dictionary.c">
+		<Unit filename="src/player/defines.h" />
+		<Unit filename="src/player/flashattributes.cpp" />
+		<Unit filename="src/player/flashattributes.h" />
+		<Unit filename="src/player/flashplayer.cpp" />
+		<Unit filename="src/player/flashplayer.h" />
+		<Unit filename="src/player/flashwindow.cpp" />
+		<Unit filename="src/player/flashwindow.h" />
+		<Unit filename="src/player/keymap.cpp" />
+		<Unit filename="src/player/keymap.h" />
+		<Unit filename="src/player/main.cpp" />
+		<Unit filename="src/player/mimetypes.h" />
+		<Unit filename="src/player/npn.cpp" />
+		<Unit filename="src/player/npn.h" />
+		<Unit filename="src/third_party/iniparser-3.0/src/dictionary.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/iniparser-3.0/src/dictionary.h" />
-		<Unit filename="src/iniparser-3.0/src/iniparser.c">
+		<Unit filename="src/third_party/iniparser-3.0/src/dictionary.h" />
+		<Unit filename="src/third_party/iniparser-3.0/src/iniparser.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/iniparser-3.0/src/iniparser.h" />
-		<Unit filename="src/keymap.cpp" />
-		<Unit filename="src/keymap.h" />
-		<Unit filename="src/main.cpp" />
-		<Unit filename="src/mimetypes.h" />
-		<Unit filename="src/npapi/npapi.h" />
-		<Unit filename="src/npapi/npfunctions.h" />
-		<Unit filename="src/npapi/npruntime.h" />
-		<Unit filename="src/npapi/nptypes.h" />
-		<Unit filename="src/npn.cpp" />
-		<Unit filename="src/npn.h" />
+		<Unit filename="src/third_party/iniparser-3.0/src/iniparser.h" />
+		<Unit filename="src/third_party/npapi/npapi.h" />
+		<Unit filename="src/third_party/npapi/npfunctions.h" />
+		<Unit filename="src/third_party/npapi/npruntime.h" />
+		<Unit filename="src/third_party/npapi/nptypes.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -2,12 +2,12 @@
 // crow_riot, 2014
 // --------------------------------------------------------------------
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <dlfcn.h>
 #include <string.h>
 #include "keyboardhook.h"
 
-using namespace std;
 
 // key map from flashenv
 static KeyMapX11 S_KeyMap;
@@ -27,15 +27,17 @@ int XQueryKeymap( Display* display, char keys_return[KEYMAP_SIZE] )
   // printf("XQueryKeymap called\n");
 
     int rval = x11_XQueryKeymap(display, keys_return);
+    int from;
 
-    for (int from=0; from<KEYMAPX11_SOURCE_SIZE; ++from)
+    for (from=0; from<KEYMAPX11_SOURCE_SIZE; ++from)
     {
         int from_idx = from/8;
         int from_bit = from&7;
 
         if (keys_return[from_idx] & (1<<from_bit))
         {
-            for (int ito=0; ito<KEYMAPX11_TARGET_SIZE; ++ito)
+            int ito;
+            for (ito=0; ito<KEYMAPX11_TARGET_SIZE; ++ito)
             {
                 KeyCode to = S_KeyMap[from][ito];
                 if (!to)
@@ -58,12 +60,12 @@ int XQueryKeymap( Display* display, char keys_return[KEYMAP_SIZE] )
     return rval;
 }
 
-extern "C" void RegisterKeyMapping(const KeyMapX11 key_map, int size)
+
+void RegisterKeyMapping(const KeyMapX11 key_map, int size)
 {
     if (size==C_KeyMapX11_Size)
         memcpy(S_KeyMap, key_map, C_KeyMapX11_Size);
     else
         fprintf(stderr,"RegisterKeyMapping failed: sizes are not the same.\n");
 }
-
 

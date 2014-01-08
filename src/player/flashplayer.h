@@ -7,7 +7,7 @@
 #define FLASHPLAYER_H
 
 #include <string>
-#include "npapi/npfunctions.h"
+#include "../third_party/npapi/npfunctions.h"
 
 
 class FlashWindow;

@@ -10,7 +10,7 @@
 #include <vector>
 #include <gdk/gdktypes.h>
 #include <gdk/gdkkeysyms.h>
-#include "keyboardhook.h"
+#include "../preload/keyboardhook.h"
 
 
 #define KEY_NAME_SEPARATOR " "
