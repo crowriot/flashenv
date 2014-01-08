@@ -69,5 +69,26 @@ private:
 };
 
 
+/// widget where text can be set
+class TextWidget : public Widget
+{
+public:
+    void SetText(const std::string& text)
+    {
+        m_Text = text;
+    }
+
+    std::string GetText() const
+    {
+        return m_Text;
+    }
+
+private:
+    std::string m_Text;
+};
+
+
+typedef std::vector<Widget*> WidgetList;
+
 
 #endif

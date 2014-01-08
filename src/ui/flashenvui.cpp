@@ -21,119 +21,13 @@
 #include "defines.h"
 #include "widget.h"
 #include "filelist.h"
+#include "filebrowser.h"
 #include "config.h"
 
 using namespace std;
 
 
-/** widget **/
-
-
-class FileWidget : public Widget
-{
-public:
-    /// set the file info for this widget
-    void SetFileStat(const FileStat& file_info)
-    {
-        m_FileStat = file_info;
-    }
-    /// returns the FileStat
-    const FileStat& GetFileStat() const
-    {
-        return m_FileStat;
-    }
-
-    virtual string GetText() const
-    {
-        return m_FileStat.GetText();
-    }
-
-private:
-    FileStat m_FileStat;
-};
-
-class TextWidget : public Widget
-{
-public:
-    void SetText(const string& text)
-    {
-        m_Text = text;
-    }
-    string GetText() const
-    {
-        return m_Text;
-    }
-
-private:
-    string m_Text;
-};
-
-/** widgets */
-
-void FreeWidgets( vector<Widget*>& widget )
-{
-    for (int i=0,n=widget.size(); i<n; i++ ) {
-        if (widget[i]) delete widget[i];
-    }
-    widget.clear();
-}
-
-void InitWidgets( vector<Widget*>* widget_list, TTF_Font* font )
-{
-    SDL_Rect rect = {LEFTOFFSET,TOPOFFSET,WIDGETWIDTH,WIDGETHEIGHT};
-
-    for (int i=0; i<FILEWIDGETCOUNT; ++i)
-    {
-        Widget* widget = new FileWidget();
-
-        widget->SetRect(rect);
-        widget->SetFont(font);
-
-        widget_list->push_back(widget);
-
-        rect.y += WIDGETHEIGHT;
-    }
-}
-
-void UpdateWidgets(const vector<Widget*>& widgets, const vector<FileStat>& file_info, int current_file)
-{
-    const int nfiles = file_info.size();
-    const int nwidgets = widgets.size();
-    const int half = nwidgets/2 ;
-
-    int file = current_file - half ;
-
-    if (file<0) file = 0;
-    if (file+nwidgets>=nfiles) file = nfiles - nwidgets;
-    if (file<0) file = 0;
-
-    int iwidget = 0;
-
-    while (iwidget<nwidgets)
-    {
-        if ( file < nfiles )
-        {
-            static_cast<FileWidget*>(widgets[iwidget])->SetFileStat(file_info[file]);
-        }
-        else
-        {
-            static_cast<FileWidget*>(widgets[iwidget])->SetFileStat(EmptyFileStat);
-        }
-
-        widgets[iwidget]->SetSelected(current_file==file);
-
-        ++ file;
-        ++ iwidget;
-    }
-}
-
-void DrawWidgets(SDL_Surface *target, const vector<Widget*>& widgets)
-{
-    for (int i=0,n=widgets.size(); i<n; i++ )
-    {
-        widgets[i]->BlitTo(target);
-    }
-}
+/** widgets **/
 
 Widget* PickWidget(int mx, int my, const vector<Widget*>& widgets )
 {
@@ -195,12 +89,9 @@ int main ( int argc, char** argv )
     SDL_Surface* logo = IMG_Load(LOGOIMAGE);
     SDL_Rect logorect = {screen->w-logo->w-LOGOBORDER,screen->h-logo->h-LOGOBORDER,logo->w,logo->h};
 
-// current directory
-    SDL_Rect cd_rect = {LEFTOFFSETDIR,TOPOFFSETDIR,WIDGETWIDTH,WIDGETHEIGHT};
-    TextWidget current_dir_widget;
-    current_dir_widget.SetRect(cd_rect);
 
-    vector<Widget*> widget_list; InitWidgets(&widget_list, fontbig);
+// the browser
+    FileBrowser browser(fontbig);
 
 // start file
 #ifdef PANDORA
@@ -213,21 +104,16 @@ int main ( int argc, char** argv )
     FileStat config_file;
     bool config_file_loaded = LoadConfig(&config_file);
 
-// setup initial file list
-    int current_file = 0;
-    vector<FileStat> file_list;
-    if (config_file_loaded && ListDir(config_file,&file_list)!=0)
-        current_file = Find(config_file,file_list,0);
-    else
-        ListDir(start_file,&file_list);
+// initial file listing
+// either form the config or fallback to a 'should work' directory
+    if (!config_file_loaded || !browser.SetStartFile(config_file))
+        browser.SetStartFile(start_file);
 
-    std::vector<FileStat> file_history; file_history.push_back(file_list[current_file]);
+    std::vector<FileStat> file_history; //file_history.push_back(file_list[current_file]);
     int history_pos = 0;
 
 //main loop
     FileStat runswf;
-    bool update_widgets = true;
-
 
     bool done = false;
     while (!done && !runswf.IsFlashFile())
@@ -236,24 +122,7 @@ int main ( int argc, char** argv )
 
         SDL_BlitSurface(logo,0,screen,&logorect);
 
-        if (update_widgets)
-        {
-            UpdateWidgets(widget_list,file_list,current_file);
-
-            if (current_file<file_list.size())
-            {
-                const FileStat& fi = file_list[current_file];
-                current_dir_widget.SetText(fi.GetDir());
-            }
-            else
-            {
-                current_dir_widget.SetText("");
-            }
-        }
-
-        DrawWidgets(screen, widget_list);
-
-        current_dir_widget.BlitTo(screen);
+        browser.BlitTo(screen);
 
         SDL_Flip(screen);
 
@@ -279,41 +148,16 @@ int main ( int argc, char** argv )
                     done = true;
                     break;
                 case SDLK_UP:
-                    if (event.key.keysym.mod & (KMOD_RSHIFT|KMOD_LSHIFT))
-                        current_file -= FILEWIDGETCOUNT/2;
-                    else
-                        current_file --;
-                    if (current_file<0)
-                        current_file = file_list.size()-1;
-                    update_widgets = true;
+                    browser.Prev();
                 break;
                 case SDLK_DOWN:
-                    if (event.key.keysym.mod & (KMOD_RSHIFT|KMOD_LSHIFT))
-                        current_file += FILEWIDGETCOUNT/2;
-                    else
-                        current_file ++;
-                    current_file %= file_list.size();
-                    update_widgets = true;
+                    browser.Next();
                 break;
                 case SDLK_LEFT:
-                    if (file_history.size() && history_pos-1>=0)
-                    {
-                        history_pos --;
-                        file_list.clear();
-                        ListDir(file_history[history_pos],&file_list);
-                        current_file = 0;
-                        update_widgets = true;
-                    }
+                    browser.PrevHistory();
                     break;
                 case SDLK_RIGHT:
-                    if (file_history.size() && history_pos+1<file_history.size())
-                    {
-                        history_pos ++;
-                        file_list.clear();
-                        ListDir(file_history[history_pos],&file_list);
-                        current_file = 0;
-                        update_widgets = true;
-                    }
+                    browser.NextHistory();
                     break;
 #ifdef PANDORA
                 case SDLK_HOME:
@@ -323,27 +167,15 @@ int main ( int argc, char** argv )
 #endif
                 case SDLK_RETURN:
                     {
-                        if (current_file<file_list.size())
+                        const FileStat& current_file = browser.GetCurrentFile();
+                        if (current_file.IsDir())
                         {
-                            FileStat fi = file_list[current_file];
-                            if (fi.IsDir())
-                            {
-                                if (history_pos+1<file_history.size())
-                                    file_history.erase(file_history.begin()+history_pos+1,file_history.end());
-
-                                history_pos = file_history.size();
-                                file_history.push_back(fi);
-
-                                file_list.clear();
-                                ListDir(fi,&file_list);
-                                current_file = 0;
-                                update_widgets = true;
-                            }
-                            else
-                            if (fi.IsFlashFile())
-                            {
-                                runswf = fi;
-                            }
+                            browser.Enter();
+                        }
+                        else
+                        if (current_file.IsFlashFile())
+                        {
+                            runswf = current_file;
                         }
                     }
                 break;
@@ -359,8 +191,6 @@ int main ( int argc, char** argv )
     SDL_FreeSurface(background);
     SDL_FreeSurface(icon);
     SDL_FreeSurface(logo);
-
-    FreeWidgets(widget_list);
 
     TTF_CloseFont(fontbig);
 

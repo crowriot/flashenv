@@ -39,7 +39,13 @@
 			<Add library="SDL_gfx" />
 			<Add library="SDL_image" />
 		</Linker>
+		<Unit filename="src/ui/config.cpp" />
+		<Unit filename="src/ui/config.h" />
 		<Unit filename="src/ui/defines.h" />
+		<Unit filename="src/ui/filebrowser.cpp" />
+		<Unit filename="src/ui/filebrowser.h" />
+		<Unit filename="src/ui/filelist.cpp" />
+		<Unit filename="src/ui/filelist.h" />
 		<Unit filename="src/ui/flashenvui.cpp" />
 		<Unit filename="src/ui/widget.cpp" />
 		<Unit filename="src/ui/widget.h" />
