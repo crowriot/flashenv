@@ -137,6 +137,12 @@ int main ( int argc, char** argv )
                 break;
 
             case SDL_KEYDOWN:
+                if ((event.key.keysym.mod & (KMOD_CTRL|KMOD_ALT|KMOD_SHIFT))==0
+                    && event.key.keysym.sym>=SDLK_SPACE
+                    && event.key.keysym.sym<=SDLK_z)
+                {
+                    browser.Search(char(event.key.keysym.sym&0xFF));
+                }
                 switch(event.key.keysym.sym)
                 {
                 default: break;

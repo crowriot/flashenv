@@ -11,6 +11,7 @@
 FileBrowser::FileBrowser( TTF_Font* font )
     : m_CurrentFile(-1)
     , m_HistoryIndex(-1)
+    , m_Search(0)
 {
 
     SDL_Rect rect = {LEFTOFFSET,TOPOFFSET,WIDGETWIDTH,WIDGETHEIGHT};
@@ -119,6 +120,33 @@ void FileBrowser::Enter()
 
         UpdateFileList(GetCurrentFile());
     }
+}
+
+void FileBrowser::Search(char chr)
+{
+    int search_start[] = {
+        m_CurrentFile,
+        -1
+    };
+
+    for (int start=0; start<2;++start)
+    {
+        for (int i=search_start[start]+1, n=m_FileList.size(); i<n; ++i)
+        {
+            const FileStat& file = m_FileList[i];
+            char file_chr = file.GetName().size() ? file.GetName()[0] : 0;
+
+            if (tolower(file_chr)==tolower(chr))
+            {
+                m_Search = chr;
+                m_CurrentFile = i;
+                UpdateWidgets();
+                return;
+            }
+        }
+    }
+
+    m_Search = 0;
 }
 
 void FileBrowser::NextHistory()

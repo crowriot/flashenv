@@ -69,6 +69,8 @@ public:
     void Prev();
     /// enter if it's a directory
     void Enter();
+    /// search
+    void Search(char chr);
 
     /// next in directory history
     void NextHistory();
@@ -96,6 +98,7 @@ private:
     FileList m_History;
     FileWidgetList m_FileWidgets;
     TextWidget m_DirWidget;
+    char m_Search;
 };
 
 
