@@ -6,6 +6,9 @@
 #define FLASHATTRIBUTES_H
 
 
+#include <string>
+
+
 /// Flash plugin attributes
 /// http://helpx.adobe.com/flash/kb/flash-object-embed-tag-attributes.html
 class FlashAttributes
@@ -36,11 +39,30 @@ public:
     FlashAttributes(int argc, char* argv[]);
 
 public:
-    const char* menu;
-    const char* quality;
-    const char* scale;
+    /// "menu" attribute
+    std::string menu;
+    /// "quality" attribute
+    std::string quality;
+    /// "scale" attribute
+    std::string scale;
+
+    /* pandora attributes */
+
+    /// src width of the flash window
+    int window_src_width;
+    /// src height of the flash window
+    int window_src_height;
+
+    /// target width of the flash window
+    int window_trg_width;
+    /// target height of the flash window
+    int window_trg_height;
 };
 
+
+/// load attributes from given ini file and the given swffile
+/// returns true if the attributes were initialized
+bool LoadAttributes( const char* inifile, const char* swffile, FlashAttributes* attributes );
 
 
 #endif

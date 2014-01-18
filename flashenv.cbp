@@ -13,6 +13,7 @@
 				<Option compiler="pandora_compiler" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-D_DEBUG" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -45,6 +46,7 @@
 			<Add library="dl" />
 			<Add library="gtk-x11-2.0" />
 		</Linker>
+		<Unit filename="gameconfig.default" />
 		<Unit filename="src/player/defines.h" />
 		<Unit filename="src/player/flashattributes.cpp" />
 		<Unit filename="src/player/flashattributes.h" />

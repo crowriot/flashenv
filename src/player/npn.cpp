@@ -10,6 +10,7 @@
 #include "npn.h"
 #include "mimetypes.h"
 #include "flashplayer.h"
+#include "flashwindow.h"
 #include "defines.h"
 #include <iostream>
 #include <stdlib.h>
@@ -127,6 +128,7 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
 {
     DEBUG_FUNCTION_NAME
 
+    FlashPlayer* player = reinterpret_cast<FlashPlayer*>(instance->ndata);
 
     switch (variable)
     {
@@ -140,7 +142,7 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
 		break;
 	case NPNVnetscapeWindow:
         cout << "\tNPNVnetscapeWindow" << endl;
-		*((int*)ret_value)= NP_FALSE;
+        *((unsigned long*)ret_value)= player->GetWindow().GetMainWindowXID();
 		break;
     case NPNVWindowNPObject:
         cout << "\tNPNVWindowNPObject" << endl;
@@ -149,12 +151,16 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
         break;
     case NPNVjavascriptEnabledBool:
         cout << "\tNPNVjavascriptEnabledBool" << endl;
-		*((int*)ret_value)= NP_FALSE;
+		*((int*)ret_value)= NP_TRUE;
 		break;
     case NPNVPluginElementNPObject:
-        cout << "\tNPNVjavascriptEnabledBool" << endl;
-		*((int*)ret_value)= NP_FALSE;
+        cout << "\tNPNVPluginElementNPObject" << endl;
+		*((int*)ret_value)= 0;
 		break;
+    case NPNVisOfflineBool:
+        cout << "\tNPNVisOfflineBool" << endl;
+        *((int*)ret_value)=NP_FALSE;
+        break;
 	default:
         cout << "\tvariable=" << variable << endl;
 		*((int*)ret_value)=NP_FALSE;
@@ -241,7 +247,7 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 
         plugin_funcs.newstream(instance,MIMETYPE_SWF,&stream, 0, &stype);
 
-        cerr << "\tstype=" << stype << endl;
+        cout << "\tstype=" << stype << endl;
 
         FILE* f = 0;
 
@@ -513,7 +519,7 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
 	}
 
 	if( matchNPId(npid,"_DoFSCommand") && argCount == 2 && args[0].type == NPVariantType_String && args[1].type == NPVariantType_String ) {
-		printf("[D] FSCOMMAND\n");
+		printf("[D] FSCOMMAND %s %s\n", args[0].value.stringValue.UTF8Characters, args[1].value.stringValue.UTF8Characters);
 		return 1;
 	}
 
@@ -567,6 +573,7 @@ bool NPN_GetPropertyProc(NPP npp, NPObject *npobj, NPIdentifier npid, NPVariant 
 {
     DEBUG_FUNCTION_NAME
 
+	cout << "\t" << getNPId(npid) << endl;
 
 	if (npobj == &__window) {
 		if( matchNPId(npid,"location") ) {

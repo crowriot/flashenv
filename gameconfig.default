@@ -1,0 +1,134 @@
+; PER GAME CONFIGURATION FOR FLASHENV
+;
+; Keymappings, flash attributes and framebuffer mode can be configured on a per game basis. See
+; the detailed descriptions below.
+;
+;
+; -------
+; GENERAL
+; -------
+
+; The ini section name must be the name (case sensitive!) of the .swf file you want to
+; configure.
+;
+;
+; ----------
+; KEYMAPPING
+; ----------
+;
+; Only Pandora special keys can be mapped to gdk/X11 keys
+;
+; The pandora key names are:
+;
+;   DPAD_Left
+;   DPAD_Right
+;   DPAD_Up
+;   DPAD_Down
+;   DPAD_A
+;   DPAD_B
+;   DPAD_X
+;   DPAD_Y
+;   Start
+;   Select
+;   Trigger_Left
+;   Trigger_Right
+;
+; gdk key names can be found here: https://git.gnome.org/browse/gtk+/tree/gdk/keynames.txt
+; but usually it's just the ascii value for the key you want to mapped (a, b, c, ...)
+; use 'space' without quites to map the space key
+;
+;
+; ----------
+; ATTRIBUTES
+; ----------
+;
+; Flash attributes that are usually set via <param name="name" value="value"> inside the
+; html page can be configured, too. But they are at reasonable default value anyway, so
+; can be left out.
+;
+; Supported flash attributes are:
+;   param: menu
+;   possible values: True, False
+;   default: True
+;
+;   param: scale
+;   possible values: showall, noborder, exactfit, noscale
+;   default: showall
+;
+;   param: quality
+;   possible values: low, autolow, autohigh, medium, high, best
+;   default: autolow
+;
+; For detailed descriptions of their meanings, please refer to
+; http://helpx.adobe.com/flash/kb/flash-object-embed-tag-attributes.html
+;
+; ----------------
+; FRAMEBUFFER MODE
+; ----------------
+;
+; As default the flash window width and height are set to pandora screen resolution.
+; This works fine as long the flash game supports that resolution or can scale
+; its game contents to the specified window dimension. Most of the games are relying on
+; exact window resolutions though, which leads either to too small rendering or too big
+; for the pandora screen. With the pandoras hardware scaler this can be circumvented.
+; Thats where the window and framebuffer settings are useful:
+;
+;
+; WindowWidth
+;   width of flash window in pixels
+;   defaults to 800
+;
+; WindowHeight
+;   height of the flash window in pixels
+;   defaults to 480
+;
+; FramebufferWidth
+;   width of the framebuffer in pixels
+;   defaults to 0 (special meaning!)
+;
+; FramebufferHeight
+;   height of the framebuffer in pixels
+;   defaults to 0 (special meaning!)
+;
+;
+; Framebuffer mode is only enabled, if WindowWidth or WindowHeight do not
+; match FramebufferWidth or FramebufferHeight.
+;
+; By setting FramebufferWidth and FramebufferHeight to 0 and changing WindowWidth or WindowHeight to
+; other values than their defaults will automatically calculate the appropritate framebuffer dimensions,
+; so that the aspect ratio of the flash window is kept in tact but the game renders fullscreen.
+; This is default behaviour and should be used. Just change WindowWidth and WindowHeight and you're good!
+;
+; If you want fullscreen without keeping the aspect ratio in tact, set FramebufferWidth to 800
+; and FramebufferHeight to 480
+;
+; What's this all good for? Well for slow games, you can specify lower WindowWidth/WindowHeight values
+; to reduce drawing area for flash and let the hardware scaler automatically upscale to the screen.
+; Or if your game relies on a resolution bigger than your pandora screen, the hardware scaler automatically
+; scales down to the screen.
+;
+;
+; --------
+; EXAMPLES
+; --------
+;
+; Don't forget to remove the ; at the start of the line if you copy/paste/modify!
+;
+; [Canabalt.swf]
+;   DPAD_B = c
+;   DPAD_X = space
+;   WindowWidth = 976
+;   WindowHeight = 336
+;
+;
+; You can also assign multiple target keys to one source key, just separate them with a space:
+;
+; [abobo.swf]
+;   DPAD_X = a
+;   DPAD_B = s
+;   DPAD_A = a s
+;
+;
+
+
+

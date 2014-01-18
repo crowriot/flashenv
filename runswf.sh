@@ -3,8 +3,8 @@
 export LD_PRELOAD=`pwd`/libpreflashenv.so
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`/libs/
 
-# copy keymap.default to keymap.ini
-cp --no-clobber keymap.default keymap.ini
+# copy gameconfig.default to gameconfig.ini
+cp --no-clobber gameconfig.default gameconfig.ini
 
 ./flashenv "$1"
 

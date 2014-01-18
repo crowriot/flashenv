@@ -34,11 +34,22 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags cairo`" />
+			<Add option="`pkg-config --cflags glib-2.0 gobject-2.0`" />
+			<Add option="`pkg-config --cflags gtk+-2.0`" />
+			<Add option="-D_DEBUG" />
 		</Compiler>
-		<Unit filename="src/preload/keyboardhook.c">
+		<Linker>
+			<Add library="dl" />
+		</Linker>
+		<Unit filename="src/preload/drawhook.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/preload/keyboardhook.h" />
+		<Unit filename="src/preload/drawhook.h" />
+		<Unit filename="src/preload/inputhook.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/preload/inputhook.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -127,7 +127,7 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
 void SetKeyMapX11(const KeyMapX11 keymap)
 {
     RegisterKeyMappingFN reg =
-        (RegisterKeyMappingFN)dlsym(dlopen(LIBRARY_NAME,RTLD_LAZY),REGISTERKEYMAPPING_FUNCTION_NAME);
+        (RegisterKeyMappingFN)dlsym(dlopen(INPUTHOOK_LIBRARY_NAME,RTLD_LAZY),REGISTERKEYMAPPING_FUNCTION_NAME);
 
     if (reg)
     {

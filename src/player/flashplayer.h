@@ -19,9 +19,14 @@ class FlashPlayer
 {
 public:
     /// constructor
-    FlashPlayer( FlashWindow& flash_window );
+    FlashPlayer(FlashWindow&, FlashAttributes& attrs);
     /// destructor
     ~FlashPlayer();
+
+    /// returns the flash players window
+    inline const FlashWindow& GetWindow() const { return m_Window; }
+    /// returns the flash player attributes
+    inline const FlashAttributes& GetAttributes() const { return m_Attributes; }
 
     /// loads the flash player library and initializes required
     /// functions.
@@ -32,10 +37,9 @@ public:
     bool InitPlugin();
 
     /// loads the given |file| and initializes the plugin window
-    /// to width and height as window resolution
     /// set stretch_contents set the scale mode to "exactFit" (may lead to distortion)
     /// otherwise it's set to "showAll" (keeps aspect)
-    bool LoadFile( const char* file, int window_width, int window_height, const FlashAttributes& attr );
+    bool LoadFile( const char* file );
 
     /// returns the file the plugin was initialized with
     std::string GetFile() const;
@@ -60,6 +64,8 @@ protected:
 
 private:
     FlashWindow& m_Window;
+    FlashAttributes& m_Attributes;
+
     std::string m_File;
     std::string m_Path;
 

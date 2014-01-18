@@ -39,8 +39,9 @@ string ExtractFilepath( const string& path )
 
 /* -------- */
 
-FlashPlayer::FlashPlayer( FlashWindow& flash_window )
+FlashPlayer::FlashPlayer( FlashWindow& flash_window, FlashAttributes& flash_attributes )
     : m_Window(flash_window)
+    , m_Attributes(flash_attributes)
     , m_FlashPlayerLib(0)
 {
     memset(&NPPluginFuncs_,0,sizeof(NPPluginFuncs));
@@ -117,7 +118,7 @@ bool FlashPlayer::InitPlugin()
 
 
 
-bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashAttributes& attrs)
+bool FlashPlayer::LoadFile(const char* file)
 {
     DEBUG_FUNCTION_NAME
 
@@ -141,13 +142,13 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashA
     const char *xargm[] = {
         "true",
         "always",
-        attrs.quality,
+        m_Attributes.quality.c_str(),
         "direct",
         "true",
         "100%",
         "100%",
-        attrs.scale,
-        attrs.menu,
+        m_Attributes.scale.c_str(),
+        m_Attributes.menu.c_str(),
         //"#000000",
         "true",
         "true",
@@ -175,8 +176,8 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashA
     err = (*NPPluginFuncs_.getvalue)(&NPP_,NPPVpluginScriptableNPObject,&object);
     CHECK_ERROR_RETURN("NP_GetValue NPPVpluginScriptableNPObject")
 
-    m_Window.InitializeNPWindow(width,height);
-    //m_Window.Show();
+    m_Window.SetDimensions(m_Attributes.window_src_width, m_Attributes.window_src_height, m_Attributes.window_trg_width, m_Attributes.window_trg_height);
+    m_Window.InitializeNPWindow();
 
     err = (*NPPluginFuncs_.setwindow)(&NPP_,m_Window.GetNPWindow());
     CHECK_ERROR_RETURN("NP_SetWindow");
@@ -189,7 +190,7 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashA
 
 	err = NPPluginFuncs_.newstream(&NPP_,MIMETYPE_SWF,&stream,seekable,&stream_type);
 	CHECK_ERROR_RETURN("NP_NewStream");
-
+#if 1
 	FILE *pp;
 	char buffer[8192];
 	pp = fopen(file,"rb");
@@ -200,7 +201,7 @@ bool FlashPlayer::LoadFile(const char* file, int width, int height, const FlashA
 		NPPluginFuncs_.write(&NPP_, &stream, 0, len, buffer);
 	}
 	fclose(pp);
-
+#endif
     err = (*NPPluginFuncs_.destroystream)(&NPP_,&stream,NPRES_DONE);
 	CHECK_ERROR_RETURN("NPN_DestroyStream");
 

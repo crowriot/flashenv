@@ -26,7 +26,6 @@ int main( int argc, char* argv[] )
     gtk_init(&argc,&argv);
 
     FlashWindow flash_window;
-    FlashPlayer flash_player(flash_window);
 
     if (argc<2)
     {
@@ -34,32 +33,40 @@ int main( int argc, char* argv[] )
         return 0;
     }
 
+    const char* swffile = argv[argc-1];
 
+
+/// load keymappings
     KeyMapGdk keymapgdk;
     KeyMapX11 keymapx11; memset(keymapx11,0,C_KeyMapX11_Size);
-    if(LoadKeyMap("./keymap.ini",argv[argc-1],&keymapgdk,&keymapx11))
+    if (LoadKeyMap(GAMECONFIG_INI_FILE,swffile,&keymapgdk,&keymapx11))
     {
         flash_window.SetKeyMap(keymapgdk);
         SetKeyMapX11(keymapx11);
     }
 
-    FlashAttributes attrs(argc-1,argv);
+/// load attributes
+    FlashAttributes flash_attributes;
+    LoadAttributes(GAMECONFIG_INI_FILE,swffile,&flash_attributes);
 
 
-// load flash plugin
+/// initialize player
+    FlashPlayer flash_player(flash_window, flash_attributes);
+
+/// load flash plugin
     if (!flash_player.LoadLibrary())
     {
         return 1;
     }
 
-// do basic plugin initialization
+/// do basic plugin initialization
     if (!flash_player.InitPlugin())
     {
         return 1;
     }
 
-// load the wanted file
-    if (!flash_player.LoadFile(argv[argc-1],SCREENWIDTH,SCREENHEIGHT,attrs))
+/// load the wanted file
+    if (!flash_player.LoadFile(swffile))
     {
         return 1;
     }
