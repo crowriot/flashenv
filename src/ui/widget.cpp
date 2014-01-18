@@ -69,9 +69,23 @@ void Widget::UpdateSurfaces()
     }
 }
 
+int Widget::GetTextWidth() const
+{
+    return m_TextSurface->w;
+}
+
+int Widget::GetTextHeight() const
+{
+    return m_TextSurface->h;
+}
+
 void Widget::SetRect( const SDL_Rect& rect )
 {
     m_TextRect = rect;
+}
+SDL_Rect Widget::GetRect() const
+{
+    return m_TextRect;
 }
 
 void Widget::BlitTo(SDL_Surface* target)

@@ -17,7 +17,11 @@
 
 #define DEBUG_FUNCTION_NAME cout << __FUNCTION__ << endl;
 
+#define KEYMAP_INI_FILE "keymap.ini"
+
 #define GAMECONFIG_INI_FILE "gameconfig.ini"
+
+#define CROSSDOMAIN_XML "crossdomain.xml"
 
 /* -------- */
 

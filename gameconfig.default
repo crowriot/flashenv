@@ -37,6 +37,7 @@
 ; but usually it's just the ascii value for the key you want to mapped (a, b, c, ...)
 ; use 'space' without quites to map the space key
 ;
+; You can also assign multiple target keys to one source key, just separate them with a space
 ;
 ; ----------
 ; ATTRIBUTES
@@ -119,9 +120,6 @@
 ;   DPAD_X = space
 ;   WindowWidth = 976
 ;   WindowHeight = 336
-;
-;
-; You can also assign multiple target keys to one source key, just separate them with a space:
 ;
 ; [abobo.swf]
 ;   DPAD_X = a

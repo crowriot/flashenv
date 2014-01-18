@@ -45,10 +45,17 @@ public:
     /// updates the text surfaces using the given font.
     void UpdateSurfaces();
 
+    /// returns the width of the normal text surface
+    int GetTextWidth() const;
+    /// returns the height of the normal text surface
+    int GetTextHeight() const;
+
     /** drawing **/
 
     /// rectangle of the text to be drawn
     void SetRect( const SDL_Rect& rect );
+    /// returns the current drawing rectangle
+    SDL_Rect GetRect() const;
 
     /// blit text to target
     void BlitTo(SDL_Surface* target);

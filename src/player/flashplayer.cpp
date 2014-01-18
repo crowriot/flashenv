@@ -138,6 +138,7 @@ bool FlashPlayer::LoadFile(const char* file)
         //"bgcolor",
         "play",
         "loop",
+        "allowFullScreenInteractive",
     };
     const char *xargm[] = {
         "true",
@@ -152,6 +153,7 @@ bool FlashPlayer::LoadFile(const char* file)
         //"#000000",
         "true",
         "true",
+        "true",
     };
 	const int xargc = sizeof(xargv)/sizeof(*xargv);
 
@@ -163,7 +165,7 @@ bool FlashPlayer::LoadFile(const char* file)
     NPSavedData* data = new NPSavedData;
     memset(data,0,sizeof(NPSavedData));
 
-    NPError err = (*NPPluginFuncs_.newp)(MIMETYPE_SWF,
+    NPError err = (*NPPluginFuncs_.newp)(MIMETYPE_OCTET_STREAM,
                                          &NPP_,
                                          NP_EMBED,
                                          xargc,
@@ -182,30 +184,52 @@ bool FlashPlayer::LoadFile(const char* file)
     err = (*NPPluginFuncs_.setwindow)(&NPP_,m_Window.GetNPWindow());
     CHECK_ERROR_RETURN("NP_SetWindow");
 
+
+	FILE* pp = fopen(file,"rb");
+    if (!pp)
+    {
+        cerr << "File '" << file << "' not found." << endl;
+        return false;
+    }
+
     const NPBool seekable = 0;
     uint16_t stream_type = NP_NORMAL;
     NPStream stream;
     memset(&stream,0,sizeof(stream));
     stream.url = strdup(file);
 
+    fseek(pp, 0L, SEEK_END);
+    stream.end = ftell(pp);
+    fseek(pp, 0L, SEEK_SET);
+
+
 	err = NPPluginFuncs_.newstream(&NPP_,MIMETYPE_SWF,&stream,seekable,&stream_type);
 	CHECK_ERROR_RETURN("NP_NewStream");
-#if 1
-	FILE *pp;
-	char buffer[8192];
-	pp = fopen(file,"rb");
-	int len;
-	while((len=fread(buffer, 1, sizeof(buffer), pp)) != 0)
-	{
-		NPPluginFuncs_.writeready(&NPP_, &stream);
-		NPPluginFuncs_.write(&NPP_, &stream, 0, len, buffer);
-	}
-	fclose(pp);
-#endif
-    err = (*NPPluginFuncs_.destroystream)(&NPP_,&stream,NPRES_DONE);
+
+    bool success = true;
+	int len=0;
+    char buffer[8192];
+    while((len=fread(buffer, 1, sizeof(buffer), pp)) != 0 && success)
+    {
+        // cout << "\tlen=" << len << endl;
+        int offset = 0;
+        while (offset<len)
+        {
+            int to_write = NPPluginFuncs_.writeready(&NPP_, &stream);
+            // cout << "\twrite_ready=" << to_write << endl;
+            if (to_write>len) to_write = len;
+            int written = NPPluginFuncs_.write(&NPP_,&stream, offset, to_write, buffer);
+            // cout << "\twritten=" << written << endl;
+            if (written<=0)
+                break;
+            offset += written;
+        }
+        success = offset == len;
+    }
+    fclose(pp);
+
+    err = (*NPPluginFuncs_.destroystream)(&NPP_,&stream,success ? NPRES_DONE : NPRES_NETWORK_ERR);
 	CHECK_ERROR_RETURN("NPN_DestroyStream");
-
-
 
     return true;
 }

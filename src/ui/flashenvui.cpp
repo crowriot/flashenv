@@ -89,6 +89,15 @@ int main ( int argc, char** argv )
     SDL_Surface* logo = IMG_Load(LOGOIMAGE);
     SDL_Rect logorect = {screen->w-logo->w-LOGOBORDER,screen->h-logo->h-LOGOBORDER,logo->w,logo->h};
 
+// compo desc
+    TextWidget compo_txt;
+    compo_txt.SetFont(fontbig);
+    compo_txt.SetText("Pandora Alive and Kicking Coding Competition 2014");
+    compo_txt.UpdateSurfaces();
+    SDL_Rect r = compo_txt.GetRect();
+    r.x = screen->w - compo_txt.GetTextWidth() - SLOGANOFFSETX;
+    r.y = SLOGANOFFSETY;
+    compo_txt.SetRect(r);
 
 // the browser
     FileBrowser browser(fontbig);
@@ -122,7 +131,10 @@ int main ( int argc, char** argv )
 
         SDL_BlitSurface(logo,0,screen,&logorect);
 
+        compo_txt.BlitTo(screen);
+
         browser.BlitTo(screen);
+
 
         SDL_Flip(screen);
 

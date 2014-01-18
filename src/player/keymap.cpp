@@ -65,7 +65,7 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
     int nkeys = sizeof(keynames)/sizeof(*keynames);
 
     Display* display = XOpenDisplay(0);
-
+    bool any_key_mapped = false;
 
     char tmp[256];
     for (int k=0; k<nkeys; ++k)
@@ -85,6 +85,8 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
             {
                 if ((keyval=gdk_keyval_from_name(keyname))!=GDK_VoidSymbol)
                 {
+                    any_key_mapped = true;
+
                     cout << "\tGDK mapped " << keynames[k] << " to " << keyname << " (" << keyval << ")" << endl;
 
                     (*key_map_gdk)[gdkkeyvalues[k]].push_back(keyval);
@@ -93,6 +95,8 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
                 KeyCode kc_to = XKeysymToKeycode(display,XStringToKeysym(keyname));
                 if (kc_to!=0)
                 {
+                    any_key_mapped = true;
+
                     int kc_from  = rawkeyvalues[k];
 
                     cout << "\tX11 mapped " << keynames[k] << "/" << (int)kc_from << " to " << (int)kc_to << endl;
@@ -121,7 +125,7 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
 
     XCloseDisplay(display);
 
-    return true;
+    return any_key_mapped;
 }
 
 void SetKeyMapX11(const KeyMapX11 keymap)

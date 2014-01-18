@@ -48,14 +48,14 @@ public:
 
     /* pandora attributes */
 
-    /// src width of the flash window
+    /// width of flash window, source width of framebuffer
     int window_src_width;
-    /// src height of the flash window
+    /// height of flash window, source height of framebuffer
     int window_src_height;
 
-    /// target width of the flash window
+    /// framebuffer target width
     int window_trg_width;
-    /// target height of the flash window
+    /// framebuffer target height
     int window_trg_height;
 };
 

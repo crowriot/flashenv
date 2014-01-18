@@ -47,6 +47,7 @@
 			<Add library="gtk-x11-2.0" />
 		</Linker>
 		<Unit filename="gameconfig.default" />
+		<Unit filename="runswf.sh" />
 		<Unit filename="src/player/defines.h" />
 		<Unit filename="src/player/flashattributes.cpp" />
 		<Unit filename="src/player/flashattributes.h" />

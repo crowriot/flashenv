@@ -39,6 +39,14 @@ int main( int argc, char* argv[] )
 /// load keymappings
     KeyMapGdk keymapgdk;
     KeyMapX11 keymapx11; memset(keymapx11,0,C_KeyMapX11_Size);
+
+/// from previous version: keymap.ini (backwards compatibility)
+    if (LoadKeyMap(KEYMAP_INI_FILE,swffile,&keymapgdk,&keymapx11))
+    {
+        flash_window.SetKeyMap(keymapgdk);
+        SetKeyMapX11(keymapx11);
+    }
+/// new
     if (LoadKeyMap(GAMECONFIG_INI_FILE,swffile,&keymapgdk,&keymapx11))
     {
         flash_window.SetKeyMap(keymapgdk);

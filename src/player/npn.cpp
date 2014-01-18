@@ -151,7 +151,7 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
         break;
     case NPNVjavascriptEnabledBool:
         cout << "\tNPNVjavascriptEnabledBool" << endl;
-		*((int*)ret_value)= NP_TRUE;
+		*((int*)ret_value)= NP_FALSE;
 		break;
     case NPNVPluginElementNPObject:
         cout << "\tNPNVPluginElementNPObject" << endl;
@@ -251,10 +251,16 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
 
         FILE* f = 0;
 
+        if (strstr(url,CROSSDOMAIN_XML)!=0)
+        {
+            cout << "\tOpening local '" << CROSSDOMAIN_XML << "'" << endl;
+            f = fopen(CROSSDOMAIN_XML,"rb");
+        }
+        else
         if (memcmp(url,"http://",7)==0|| memcmp(url,"ftp://",6)==0)
         {
-            string call = "curl " + string(url);
-            cout << "\tLoading " << url << endl;
+            string call = "curl -s '" + string(url) + "'";
+            cout << "\tLoading " << url << endl << flush;
             f = popen(call.c_str(),"r");
         }
         else
