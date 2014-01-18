@@ -46,6 +46,8 @@
 			<Add library="dl" />
 			<Add library="gtk-x11-2.0" />
 		</Linker>
+		<Unit filename="crossdomain.xml" />
+		<Unit filename="flashenv.pxml" />
 		<Unit filename="gameconfig.default" />
 		<Unit filename="runswf.sh" />
 		<Unit filename="src/player/defines.h" />

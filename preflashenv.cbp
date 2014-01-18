@@ -15,6 +15,7 @@
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-D_DEBUG" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -37,7 +38,6 @@
 			<Add option="`pkg-config --cflags cairo`" />
 			<Add option="`pkg-config --cflags glib-2.0 gobject-2.0`" />
 			<Add option="`pkg-config --cflags gtk+-2.0`" />
-			<Add option="-D_DEBUG" />
 		</Compiler>
 		<Linker>
 			<Add library="dl" />
