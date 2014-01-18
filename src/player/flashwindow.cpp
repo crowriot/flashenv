@@ -72,6 +72,9 @@ static void EventHandler(GdkEvent* event, gpointer data)
     gtk_main_do_event(event);
 }
 
+
+EnableFramebufferDrawFN G_enable_framebuffer_draw = 0;
+
 FlashWindow::FlashWindow()
     : m_MainWindow(0)
     , m_NPWindow(0)
@@ -213,6 +216,8 @@ void FlashWindow::Step()
 void FlashWindow::RunLoop()
 {
     gtk_main();
+
+    RestoreFramebuffer();
 }
 
 unsigned long FlashWindow::GetMainWindowXID() const
@@ -377,7 +382,7 @@ void FlashWindow::OnEvent(_GdkEvent* event)
 
 void FlashWindow::SetupFramebuffer()
 {
-    EnableFramebufferDrawFN enable_framebuffer_draw =
+    G_enable_framebuffer_draw =
             (EnableFramebufferDrawFN)(dlsym(dlopen(DRAWHOOK_LIBRARY_NAME,RTLD_LAZY),ENABLEFRAMEBUFFERDRAW_FUNCTION_NAME));
 
     SetPointerChangeFN set_pointer_change =
@@ -385,21 +390,7 @@ void FlashWindow::SetupFramebuffer()
 
 	if (m_SrcWidth!=m_TrgWidth || m_SrcHeight!=m_TrgHeight)
     {
-        if (enable_framebuffer_draw) (*enable_framebuffer_draw)(1);
-
-#if 0
-        int fb1 = open("/dev/fb1",O_RDWR);
-        if (fb1>=0)
-        {
-            int fb1_mem_size = SCREENWIDTH*SCREENHEIGHT*SCREENBITS/8;
-            void* fb1_mem = mmap(0, fb1_mem_size, PROT_READ|PROT_WRITE, MAP_SHARED,fb1, 0);
-            if (fb1_mem!=MAP_FAILED)
-            {
-                memset(fb1_mem,0,fb1_mem_size);
-                munmap(fb1_mem,fb1_mem_size);
-            }
-        }
-#endif
+        if (G_enable_framebuffer_draw) (*G_enable_framebuffer_draw)(1);
 
         //# ofbset -fb /dev/fb1 -pos 0 0 -size 800 480 -mem 192000 -en 1
         //# fbset -fb /dev/fb1 -g 400 240 400 240 16
@@ -429,6 +420,16 @@ void FlashWindow::SetupFramebuffer()
     }
     else
     {
-        if (enable_framebuffer_draw) (*enable_framebuffer_draw)(0);
+        if (G_enable_framebuffer_draw) (*G_enable_framebuffer_draw)(0);
+    }
+}
+
+void FlashWindow::RestoreFramebuffer()
+{
+    if (m_SrcWidth!=m_TrgWidth || m_SrcHeight!=m_TrgHeight)
+    {
+        if (G_enable_framebuffer_draw) (*G_enable_framebuffer_draw)(0);
+
+        system("ofbset -fb /dev/fb1 -pos 0 0 -size 0 0 -mem 0 -en 0");
     }
 }

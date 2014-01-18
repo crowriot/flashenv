@@ -74,6 +74,7 @@ public:
 
 protected:
     void SetupFramebuffer();
+    void RestoreFramebuffer();
 
 
 private:

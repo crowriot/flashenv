@@ -36,12 +36,19 @@ static int fb_draw_enabled = 0;
 static int fb_curr = 0;
 /// frame buffer pointer
 static void* fb_mem[FB_PAGES] = {0};
+static int fb_mem_size = 0;
 
 
 /// function for external frame buffer enabling
 void EnableFramebufferDraw(int enable)
 {
     fb_draw_enabled = enable;
+
+    if (fb_draw_enabled==0 && fb_mem[0]!=0)
+    {
+        munmap( fb_mem[0], fb_mem_size );
+        memset(fb_mem,0,sizeof(fb_mem));
+    }
 }
 
 /// hooked gdk_image_new
@@ -85,6 +92,8 @@ GdkImage* gdk_image_new(GdkImageType type, GdkVisual *visual, gint width, gint h
 
                 printf("hooked gdk_image_new: drawing to framebuffer: %p\n",fb_mem[0]);
             }
+
+            close(fb);
         }
     }
     else

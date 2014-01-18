@@ -104,28 +104,24 @@ int XQueryPointer(Display *display,
         *root_x_return += S_PointerChange.off_x;
         *root_x_return *= S_PointerChange.mul_x;
         *root_x_return /= S_PointerChange.div_x;
-     //   *root_x_return >>= 1;
     }
     if (root_y_return)
     {
         *root_y_return += S_PointerChange.off_y;
         *root_y_return *= S_PointerChange.mul_y;
         *root_y_return /= S_PointerChange.div_y;
-     //   *root_y_return >>= 1;
     }
     if (win_x_return)
     {
         *win_x_return += S_PointerChange.off_x;
         *win_x_return *= S_PointerChange.mul_x;
         *win_x_return /= S_PointerChange.div_x;
-     //   *win_x_return >>= 1;
     }
     if (win_y_return)
     {
         *win_y_return += S_PointerChange.off_y;
         *win_y_return *= S_PointerChange.mul_y;
         *win_y_return /= S_PointerChange.div_y;
-     //   *win_y_return >>= 1;
     }
 
 #ifdef _DEBUG

@@ -265,6 +265,7 @@ void FlashPlayer::Shutdown()
     NPSavedData* saved = new NPSavedData;
     NPPluginFuncs_.destroy(&NPP_,&saved);
     NP_Shutdown();
+
     delete saved;
 }
 

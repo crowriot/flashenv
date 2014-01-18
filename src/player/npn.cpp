@@ -462,18 +462,25 @@ NPObject* NPN_RetainObjectProc(NPObject *obj)
 void NPN_ReleaseObjectProc(NPObject *obj)
 {
     DEBUG_FUNCTION_NAME
+
 	if( obj == NULL )
 		return;
 	obj->referenceCount--;
 	if( obj->referenceCount != 0 )
 		return;
-	if( obj->_class->deallocate ) {
-		obj->_class->deallocate(obj);
-		return;
-	}
-	if( obj->_class->invalidate )
-		obj->_class->invalidate(obj);
-	free(obj);
+    if (obj->_class)
+    {
+        if( obj->_class->invalidate )
+            obj->_class->invalidate(obj);
+
+        if( obj->_class->deallocate ) {
+            obj->_class->deallocate(obj);
+        } else {
+            free(obj);
+        }
+    } else {
+        free(obj);
+    }
 }
 bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant *args, uint32_t argCount, NPVariant *result)
 {
