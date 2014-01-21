@@ -81,7 +81,7 @@ enum RawPandoraKeys
 typedef std::map<guint, std::vector<SimpleKey> > KeyMapGdk;
 
 /// returns true if the keyval is a pandora key
-extern bool IsPandoraKey( guint keyval );
+bool IsPandoraKey( guint keyval );
 
 /// load keymaps from given ini file and the given swffile
 bool LoadKeyMap( const char* inifile, const char* swffile, KeyMapGdk* key_map, KeyMapX11* key_map_x11 );

@@ -135,19 +135,19 @@ bool FlashWindow::InitializeNPWindow()
 
     gdk_event_handler_set(EventHandler,this,NULL);
 
-	gtk_key_snooper_install(KeySnooperHandler, this);
+    gtk_key_snooper_install(KeySnooperHandler, this);
 
     gtk_widget_set_usize(m_MainWindow,SCREENWIDTH,SCREENHEIGHT);
 
-	gtk_widget_realize(m_MainWindow);
+    gtk_widget_realize(m_MainWindow);
 
     gtk_window_fullscreen((GtkWindow*)m_MainWindow);
 
-	m_BlackGC = m_MainWindow->style->black_gc;
+    m_BlackGC = m_MainWindow->style->black_gc;
 
-	m_Socket = gtk_socket_new();
+    m_Socket = gtk_socket_new();
 
-	gtk_widget_set_usize(m_Socket, m_SrcWidth, m_SrcHeight);
+    gtk_widget_set_usize(m_Socket, m_SrcWidth, m_SrcHeight);
 
     // m_ScrollWindow = gtk_scrolled_window_new (NULL, NULL);
     // gtk_container_add (GTK_CONTAINER(m_MainWindow), m_ScrollWindow);
@@ -156,45 +156,45 @@ bool FlashWindow::InitializeNPWindow()
 
     gtk_container_add(GTK_CONTAINER(m_MainWindow),m_Socket);
 
-	gtk_widget_realize(m_Socket);
+    gtk_widget_realize(m_Socket);
 
     g_signal_connect(G_OBJECT(m_MainWindow), "key-press-event", G_CALLBACK(KeyHandler), this);
-	g_signal_connect(G_OBJECT(m_MainWindow), "key-release-event", G_CALLBACK(KeyHandler), this);
-	g_signal_connect(G_OBJECT(m_MainWindow), "destroy", G_CALLBACK(DestroyHandler), NULL);
+    g_signal_connect(G_OBJECT(m_MainWindow), "key-release-event", G_CALLBACK(KeyHandler), this);
+    g_signal_connect(G_OBJECT(m_MainWindow), "destroy", G_CALLBACK(DestroyHandler), NULL);
 
-	g_signal_connect(m_Socket, "destroy", G_CALLBACK(gtk_widget_destroyed), &m_Socket);
+    g_signal_connect(m_Socket, "destroy", G_CALLBACK(gtk_widget_destroyed), &m_Socket);
 
-	GdkNativeWindow ww = gtk_socket_get_id(GTK_SOCKET(m_Socket));
-	GdkWindow *w = gdk_window_lookup(ww);
+    GdkNativeWindow ww = gtk_socket_get_id(GTK_SOCKET(m_Socket));
+    GdkWindow *w = gdk_window_lookup(ww);
 
-	m_NPWindow = new NPWindow;
-	memset(m_NPWindow,0,sizeof(NPWindow));
+    m_NPWindow = new NPWindow;
+    memset(m_NPWindow,0,sizeof(NPWindow));
 
     m_NPWindow->window = (void*)(unsigned long)ww;
     m_NPWindow->x = 0;
     m_NPWindow->y = 0;
     m_NPWindow->width = m_SrcWidth;
-	m_NPWindow->height = m_SrcHeight;
+    m_NPWindow->height = m_SrcHeight;
 
-	NPSetWindowCallbackStruct* ws_info = new NPSetWindowCallbackStruct;
-	ws_info->type = NP_SETWINDOW;
-	ws_info->display = GDK_WINDOW_XDISPLAY(w);
-	ws_info->colormap = GDK_COLORMAP_XCOLORMAP(gdk_drawable_get_colormap(w));
+    NPSetWindowCallbackStruct* ws_info = new NPSetWindowCallbackStruct;
+    ws_info->type = NP_SETWINDOW;
+    ws_info->display = GDK_WINDOW_XDISPLAY(w);
+    ws_info->colormap = GDK_COLORMAP_XCOLORMAP(gdk_drawable_get_colormap(w));
 
-	GdkVisual* gdkVisual = gdk_drawable_get_visual(w);
+    GdkVisual* gdkVisual = gdk_drawable_get_visual(w);
     ws_info->visual = GDK_VISUAL_XVISUAL(gdkVisual);
-	ws_info->depth = gdkVisual->bits_per_rgb;
+    ws_info->depth = gdkVisual->bits_per_rgb;
 
-	m_NPWindow->ws_info = ws_info;
-	m_NPWindow->type = NPWindowTypeWindow;
+    m_NPWindow->ws_info = ws_info;
+    m_NPWindow->type = NPWindowTypeWindow;
 
-	GdkColor black = {0,0,0,0};
-	for (int state=0; state<=GTK_STATE_INSENSITIVE; ++state)
-	{
+    GdkColor black = {0,0,0,0};
+    for (int state=0; state<=GTK_STATE_INSENSITIVE; ++state)
+    {
         gtk_widget_modify_bg(m_MainWindow, (GtkStateType)state, &black);
         gtk_widget_modify_bg(m_Socket, (GtkStateType)state, &black);
-	}
-	gtk_widget_set_visible(m_Socket,false);
+    }
+    gtk_widget_set_visible(m_Socket,false);
 
     SetupFramebuffer();
 
@@ -204,7 +204,6 @@ bool FlashWindow::InitializeNPWindow()
 
 void FlashWindow::Show()
 {
-
     gtk_widget_show_all(m_MainWindow);
 }
 
@@ -388,7 +387,7 @@ void FlashWindow::SetupFramebuffer()
     SetPointerChangeFN set_pointer_change =
         (SetPointerChangeFN)(dlsym(dlopen(INPUTHOOK_LIBRARY_NAME,RTLD_LAZY),SETPOINTERCHANGE_FUNCTION_NAME));
 
-	if (m_SrcWidth!=m_TrgWidth || m_SrcHeight!=m_TrgHeight)
+    if (m_SrcWidth!=m_TrgWidth || m_SrcHeight!=m_TrgHeight)
     {
         if (G_enable_framebuffer_draw) (*G_enable_framebuffer_draw)(1);
 

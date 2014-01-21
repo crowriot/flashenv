@@ -155,12 +155,12 @@ bool FlashPlayer::LoadFile(const char* file)
         "true",
         "true",
     };
-	const int xargc = sizeof(xargv)/sizeof(*xargv);
+    const int xargc = sizeof(xargv)/sizeof(*xargv);
 
-	for (int arg=0; arg<xargc; ++arg)
-	{
-	    cout << "\t" << xargv[arg] << "=" << xargm[arg] << endl;
-	}
+    for (int arg=0; arg<xargc; ++arg)
+    {
+        cout << "\t" << xargv[arg] << "=" << xargm[arg] << endl;
+    }
 
     NPSavedData* data = new NPSavedData;
     memset(data,0,sizeof(NPSavedData));
@@ -185,7 +185,7 @@ bool FlashPlayer::LoadFile(const char* file)
     CHECK_ERROR_RETURN("NP_SetWindow");
 
 
-	FILE* pp = fopen(file,"rb");
+    FILE* pp = fopen(file,"rb");
     if (!pp)
     {
         cerr << "File '" << file << "' not found." << endl;
@@ -203,11 +203,11 @@ bool FlashPlayer::LoadFile(const char* file)
     fseek(pp, 0L, SEEK_SET);
 
 
-	err = NPPluginFuncs_.newstream(&NPP_,MIMETYPE_SWF,&stream,seekable,&stream_type);
-	CHECK_ERROR_RETURN("NP_NewStream");
+    err = NPPluginFuncs_.newstream(&NPP_,MIMETYPE_SWF,&stream,seekable,&stream_type);
+    CHECK_ERROR_RETURN("NP_NewStream");
 
     bool success = true;
-	int len=0;
+    int len=0;
     char buffer[8192];
     while((len=fread(buffer, 1, sizeof(buffer), pp)) != 0 && success)
     {
@@ -229,7 +229,7 @@ bool FlashPlayer::LoadFile(const char* file)
     fclose(pp);
 
     err = (*NPPluginFuncs_.destroystream)(&NPP_,&stream,success ? NPRES_DONE : NPRES_NETWORK_ERR);
-	CHECK_ERROR_RETURN("NPN_DestroyStream");
+    CHECK_ERROR_RETURN("NPN_DestroyStream");
 
     return true;
 }
