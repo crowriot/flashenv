@@ -8,7 +8,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/flashenvui" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option object_output="obj/flashenvui/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -17,7 +17,7 @@
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/flashenvui" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option object_output="obj/flashenvui/Release/" />
 				<Option type="1" />
 				<Option compiler="pandora_compiler" />
 				<Compiler>
@@ -39,6 +39,14 @@
 			<Add library="SDL_gfx" />
 			<Add library="SDL_image" />
 		</Linker>
+		<Unit filename="src/third_party/iniparser-3.0/src/dictionary.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/third_party/iniparser-3.0/src/dictionary.h" />
+		<Unit filename="src/third_party/iniparser-3.0/src/iniparser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/third_party/iniparser-3.0/src/iniparser.h" />
 		<Unit filename="src/ui/config.cpp" />
 		<Unit filename="src/ui/config.h" />
 		<Unit filename="src/ui/defines.h" />
@@ -47,6 +55,8 @@
 		<Unit filename="src/ui/filelist.cpp" />
 		<Unit filename="src/ui/filelist.h" />
 		<Unit filename="src/ui/flashenvui.cpp" />
+		<Unit filename="src/ui/gameconfig.cpp" />
+		<Unit filename="src/ui/gameconfig.h" />
 		<Unit filename="src/ui/widget.cpp" />
 		<Unit filename="src/ui/widget.h" />
 		<Extensions>

@@ -80,15 +80,15 @@ private:
 class TextWidget : public Widget
 {
 public:
-    void SetText(const std::string& text)
-    {
-        m_Text = text;
-    }
+    /// default constructor
+    TextWidget();
+    /// initializes the drawn text with |text|
+    TextWidget(const char* text);
 
-    std::string GetText() const
-    {
-        return m_Text;
-    }
+    /// set text to |text|
+    void SetText(const std::string& text);
+    /// override. returns the defined text.
+    std::string GetText() const;
 
 private:
     std::string m_Text;

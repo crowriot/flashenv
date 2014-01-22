@@ -23,6 +23,7 @@
 #include "filelist.h"
 #include "filebrowser.h"
 #include "config.h"
+#include "gameconfig.h"
 
 using namespace std;
 
@@ -102,6 +103,10 @@ int main ( int argc, char** argv )
 // the browser
     FileBrowser browser(fontbig);
 
+// config widget
+    GameConfigWindow game_config(fontbig);
+    game_config.LoadINI();
+
 // start file
 #ifdef PANDORA
     FileStat start_file("/media/","");
@@ -118,11 +123,9 @@ int main ( int argc, char** argv )
     if (!config_file_loaded || !browser.SetStartFile(config_file))
         browser.SetStartFile(start_file);
 
-    std::vector<FileStat> file_history; //file_history.push_back(file_list[current_file]);
-    int history_pos = 0;
-
 //main loop
     FileStat runswf;
+
 
     bool done = false;
     while (!done && !runswf.IsFlashFile())
@@ -135,6 +138,7 @@ int main ( int argc, char** argv )
 
         browser.BlitTo(screen);
 
+        game_config.BlitTo(screen);
 
         SDL_Flip(screen);
 
@@ -142,6 +146,7 @@ int main ( int argc, char** argv )
         SDL_Event event;
         if (SDL_WaitEvent(&event))
         {
+
             switch (event.type)
             {
             case SDL_QUIT:
@@ -149,54 +154,35 @@ int main ( int argc, char** argv )
                 break;
 
             case SDL_KEYDOWN:
-                if ((event.key.keysym.mod & (KMOD_CTRL|KMOD_ALT|KMOD_SHIFT))==0
-                    && event.key.keysym.sym>=SDLK_SPACE
-                    && event.key.keysym.sym<=SDLK_z)
+                if (game_config.IsShown())
                 {
-                    browser.Search(char(event.key.keysym.sym&0xFF));
+                    game_config.OnKeyDown(event);
+                    break;
                 }
-                switch(event.key.keysym.sym)
+                if (browser.OnKeyDown(event))
                 {
-                default: break;
-                case 'q':
-                    if (event.key.keysym.mod & (KMOD_LCTRL|KMOD_RCTRL))
-                        done = true;
+                    break;
+                }
+                switch (event.key.keysym.sym)
+                {
+                case SDLK_PANDORA_Y:
+                    if (browser.GetCurrentFile().IsFlashFile())
+                    {
+                        game_config.ConfigFile(browser.GetCurrentFile());
+                        game_config.Show();
+                    }
+                    break;
+                case SDLK_RETURN:
+                    if (browser.GetCurrentFile().IsFlashFile())
+                    {
+                        runswf = browser.GetCurrentFile();
+                    }
                     break;
                 case SDLK_ESCAPE:
                     done = true;
                     break;
-                case SDLK_UP:
-                    browser.Prev();
-                break;
-                case SDLK_DOWN:
-                    browser.Next();
-                break;
-                case SDLK_LEFT:
-                    browser.PrevHistory();
+                default:
                     break;
-                case SDLK_RIGHT:
-                    browser.NextHistory();
-                    break;
-#ifdef PANDORA
-                case SDLK_HOME:
-                case SDLK_END:
-                case SDLK_PAGEUP:
-                case SDLK_PAGEDOWN:
-#endif
-                case SDLK_RETURN:
-                    {
-                        const FileStat& current_file = browser.GetCurrentFile();
-                        if (current_file.IsDir())
-                        {
-                            browser.Enter();
-                        }
-                        else
-                        if (current_file.IsFlashFile())
-                        {
-                            runswf = current_file;
-                        }
-                    }
-                break;
                 }
                 break;
 

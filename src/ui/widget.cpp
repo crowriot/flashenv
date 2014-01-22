@@ -109,4 +109,28 @@ void Widget::FreeSurfaces()
     if (m_TextSelectedSurface) SDL_FreeSurface(m_TextSelectedSurface);
 }
 
+// --
+
+
+TextWidget::TextWidget()
+{
+
+}
+
+TextWidget::TextWidget(const char* text)
+    : m_Text(text)
+{
+
+}
+
+void TextWidget::SetText(const std::string& text)
+{
+    m_Text = text;
+}
+
+std::string TextWidget::GetText() const
+{
+    return m_Text;
+}
+
 

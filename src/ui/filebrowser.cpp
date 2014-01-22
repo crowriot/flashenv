@@ -178,6 +178,53 @@ void FileBrowser::BlitTo(SDL_Surface* screen)
     m_DirWidget.BlitTo(screen);
 }
 
+
+bool FileBrowser::OnKeyDown(const SDL_Event& event)
+{
+    if ((event.key.keysym.mod & (KMOD_CTRL|KMOD_ALT|KMOD_SHIFT))==0
+        && event.key.keysym.sym>=SDLK_SPACE
+        && event.key.keysym.sym<=SDLK_z)
+    {
+        Search(char(event.key.keysym.sym&0xFF));
+        return true;
+    }
+    switch(event.key.keysym.sym)
+    {
+    case SDLK_UP:
+        Prev();
+        return true;
+    case SDLK_DOWN:
+        Next();
+        return true;
+    case SDLK_LEFT:
+        PrevHistory();
+        return true;
+    case SDLK_RIGHT:
+        NextHistory();
+        return true;
+
+#ifdef PANDORA
+    case SDLK_HOME:
+    case SDLK_END:
+    case SDLK_PAGEUP:
+    case SDLK_PAGEDOWN:
+#endif
+
+    case SDLK_RETURN:
+        {
+            const FileStat& current_file = GetCurrentFile();
+            if (current_file.IsDir())
+            {
+                Enter();
+                return true;
+            }
+        }
+        break;
+    }
+    return false;
+}
+
+
 void FileBrowser::UpdateWidgets()
 {
     const int nfiles = m_FileList.size();
@@ -218,4 +265,3 @@ void FileBrowser::UpdateWidgets()
         m_DirWidget.SetText("");
     }
 }
-

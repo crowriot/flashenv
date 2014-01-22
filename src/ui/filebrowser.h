@@ -77,10 +77,13 @@ public:
     /// prev in directory history
     void PrevHistory();
 
-    /** drawing **/
+    /** sdl related **/
 
     /// draw widgets to the screen
     void BlitTo(SDL_Surface* screen);
+
+    /// handle key event.
+    bool OnKeyDown(const SDL_Event& key_event);
 
 
 protected:

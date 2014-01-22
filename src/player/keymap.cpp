@@ -18,6 +18,66 @@ extern "C" {
 
 using namespace std;
 
+const int C_PandoraKeys_GdkValues[PandoraKeyCount] = {
+    GdkPnd_DPAD_Left,
+    GdkPnd_DPAD_Right,
+    GdkPnd_DPAD_Up,
+    GdkPnd_DPAD_Down,
+    GdkPnd_DPAD_A,
+    GdkPnd_DPAD_B,
+    GdkPnd_DPAD_X,
+    GdkPnd_DPAD_Y,
+    GdkPnd_Start,
+    GdkPnd_Select,
+    GdkPnd_Trigger_Left,
+    GdkPnd_Trigger_Right
+};
+
+const int C_PandoraKeys_RawValues[PandoraKeyCount] = {
+    RawPnd_DPAD_Left,
+    RawPnd_DPAD_Right,
+    RawPnd_DPAD_Up,
+    RawPnd_DPAD_Down,
+    RawPnd_DPAD_A,
+    RawPnd_DPAD_B,
+    RawPnd_DPAD_X,
+    RawPnd_DPAD_Y,
+    RawPnd_Start,
+    RawPnd_Select,
+    RawPnd_Trigger_Left,
+    RawPnd_Trigger_Right
+};
+
+const char* C_PandoraKeys_IniNames[PandoraKeyCount] = {
+    "DPAD_Left",
+    "DPAD_Right",
+    "DPAD_Up",
+    "DPAD_Down",
+    "DPAD_A",
+    "DPAD_B",
+    "DPAD_X",
+    "DPAD_Y",
+    "Start",
+    "Select",
+    "Trigger_Left",
+    "Trigger_Right"
+};
+
+
+const char* C_PandoraKeys_DisplayNames[PandoraKeyCount] = {
+    "DPAD Left",
+    "DPAD Right",
+    "DPAD Up",
+    "DPAD Down",
+    "DPAD A",
+    "DPAD B",
+    "DPAD X",
+    "DPAD Y",
+    "Start",
+    "Select",
+    "Trigger Left",
+    "Trigger Right"
+};
 
 bool IsPandoraKey(guint keyval)
 {
@@ -59,10 +119,10 @@ bool LoadKeyMap(const char* inifile, const char* swffile, KeyMapGdk* key_map_gdk
         return false;
     }
 
-    int gdkkeyvalues[] = {GdkPnd_DPAD_Left,GdkPnd_DPAD_Right,GdkPnd_DPAD_Up,GdkPnd_DPAD_Down,GdkPnd_DPAD_A,GdkPnd_DPAD_B,GdkPnd_DPAD_X,GdkPnd_DPAD_Y,GdkPnd_Start,GdkPnd_Select,GdkPnd_Trigger_Left,GdkPnd_Trigger_Right};
-    int rawkeyvalues[] = {KeyCodePnd_DPAD_Left,KeyCodePnd_DPAD_Right,KeyCodePnd_DPAD_Up,KeyCodePnd_DPAD_Down,KeyCodePnd_DPAD_A,KeyCodePnd_DPAD_B,KeyCodePnd_DPAD_X,KeyCodePnd_DPAD_Y,KeyCodePnd_Start,KeyCodePnd_Select,KeyCodePnd_Trigger_Left,KeyCodePnd_Trigger_Right};
-    const char* keynames[] = {"DPAD_Left","DPAD_Right","DPAD_Up","DPAD_Down","DPAD_A","DPAD_B","DPAD_X","DPAD_Y","Start","Select","Trigger_Left","Trigger_Right"};
-    int nkeys = sizeof(keynames)/sizeof(*keynames);
+    const int* gdkkeyvalues = C_PandoraKeys_GdkValues;
+    const int* rawkeyvalues = C_PandoraKeys_RawValues;
+    const char** keynames = C_PandoraKeys_IniNames;
+    int nkeys = PandoraKeyCount;
 
     Display* display = XOpenDisplay(0);
     bool any_key_mapped = false;

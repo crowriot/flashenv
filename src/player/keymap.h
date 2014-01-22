@@ -37,8 +37,10 @@ public:
     GdkModifierType modifier;
 };
 
+/* -------- */
+
 /// gdk key value enumeration
-enum GdkPandoraKeys
+enum PandoraKeysGdk
 {
     GdkPnd_DPAD_Left = GDK_Left,
     GdkPnd_DPAD_Right = GDK_Right,
@@ -57,25 +59,41 @@ enum GdkPandoraKeys
     GdkPnd_Trigger_Right = GDK_Control_R
 };
 
+/* -------- */
+
 /// raw keycode enumeration
-enum RawPandoraKeys
+enum PandoraKeysRaw
 {
-    KeyCodePnd_DPAD_Left = 113,
-    KeyCodePnd_DPAD_Right = 114,
-    KeyCodePnd_DPAD_Up = 111,
-    KeyCodePnd_DPAD_Down = 116,
+    RawPnd_DPAD_Left = 113,
+    RawPnd_DPAD_Right = 114,
+    RawPnd_DPAD_Up = 111,
+    RawPnd_DPAD_Down = 116,
 
-    KeyCodePnd_DPAD_A = 110,
-    KeyCodePnd_DPAD_B = 115,
-    KeyCodePnd_DPAD_X = 117,
-    KeyCodePnd_DPAD_Y = 112,
+    RawPnd_DPAD_A = 110,
+    RawPnd_DPAD_B = 115,
+    RawPnd_DPAD_X = 117,
+    RawPnd_DPAD_Y = 112,
 
-    KeyCodePnd_Start = 64,
-    KeyCodePnd_Select = 37,
+    RawPnd_Start = 64,
+    RawPnd_Select = 37,
 
-    KeyCodePnd_Trigger_Left = 62,
-    KeyCodePnd_Trigger_Right = 105,
+    RawPnd_Trigger_Left = 62,
+    RawPnd_Trigger_Right = 105,
 };
+
+
+enum
+{
+    PandoraKeyCount = 12
+};
+
+extern const int   C_PandoraKeys_RawValues[PandoraKeyCount];
+extern const char* C_PandoraKeys_IniNames[PandoraKeyCount];
+extern const char* C_PandoraKeys_DisplayNames[PandoraKeyCount];
+extern const int C_PandoraKeys_GdkValues[PandoraKeyCount];
+
+/* -------- */
+
 
 /// map from keyval to gdk key
 typedef std::map<guint, std::vector<SimpleKey> > KeyMapGdk;

@@ -1,61 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release" />
-	<File name="crossdomain.xml" open="0" top="0" tabpos="0">
-		<Cursor position="103" topLine="0" />
-	</File>
-	<File name="flashenv.pxml" open="0" top="0" tabpos="0">
-		<Cursor position="253" topLine="0" />
-	</File>
-	<File name="gameconfig.default" open="0" top="0" tabpos="0">
-		<Cursor position="921" topLine="8" />
-	</File>
-	<File name="runswf.sh" open="0" top="0" tabpos="0">
-		<Cursor position="260" topLine="0" />
-	</File>
+	<ActiveTarget name="Debug" />
 	<File name="src/player/defines.h" open="0" top="0" tabpos="0">
-		<Cursor position="516" topLine="0" />
+		<Cursor position="163" topLine="0" />
 	</File>
-	<File name="src/player/flashattributes.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2161" topLine="51" />
+	<File name="src/player/flashwindow.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="281" topLine="0" />
 	</File>
-	<File name="src/player/flashattributes.h" open="0" top="0" tabpos="6">
-		<Cursor position="1459" topLine="20" />
+	<File name="src/player/keymap.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="402" topLine="0" />
 	</File>
-	<File name="src/player/flashplayer.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="6265" topLine="242" />
+	<File name="src/player/keymap.h" open="0" top="0" tabpos="0">
+		<Cursor position="308" topLine="0" />
 	</File>
-	<File name="src/player/flashplayer.h" open="0" top="0" tabpos="8">
-		<Cursor position="1696" topLine="28" />
-	</File>
-	<File name="src/player/flashwindow.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="9667" topLine="345" />
-	</File>
-	<File name="src/player/flashwindow.h" open="1" top="0" tabpos="9">
-		<Cursor position="1502" topLine="49" />
-	</File>
-	<File name="src/player/keymap.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="4236" topLine="106" />
-	</File>
-	<File name="src/player/keymap.h" open="0" top="0" tabpos="7">
-		<Cursor position="1803" topLine="55" />
-	</File>
-	<File name="src/player/main.cpp" open="1" top="1" tabpos="8">
-		<Cursor position="1719" topLine="45" />
-	</File>
-	<File name="src/player/npn.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="13238" topLine="451" />
-	</File>
-	<File name="src/third_party/iniparser-3.0/src/dictionary.h" open="0" top="0" tabpos="0">
-		<Cursor position="1855" topLine="30" />
-	</File>
-	<File name="src/third_party/iniparser-3.0/src/iniparser.h" open="0" top="0" tabpos="0">
-		<Cursor position="4127" topLine="114" />
-	</File>
-	<File name="src/third_party/npapi/npapi.h" open="0" top="0" tabpos="0">
-		<Cursor position="22108" topLine="777" />
-	</File>
-	<File name="src/third_party/npapi/npruntime.h" open="0" top="0" tabpos="0">
-		<Cursor position="13084" topLine="280" />
+	<File name="src/player/npn.h" open="0" top="0" tabpos="0">
+		<Cursor position="368" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
