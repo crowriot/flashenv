@@ -7,9 +7,12 @@
 #include "defines.h"
 #include "../player/defines.h"
 #include <SDL/SDL_gfxPrimitives.h>
+#include <iostream>
 
-
-EditWidget* CreateKeyEdit() { return new KeyMappingEditWidget; }
+EditWidget* CreateKeyEdit()
+{
+    return new KeyMappingEditWidget;
+}
 
 EditWidget* CreateWinWidthEdit()
 {
@@ -20,7 +23,6 @@ EditWidget* CreateWinHeightEdit()
 {
     return new RangeEditWidget(0,SCREENHEIGHT,SCREENHEIGHT);
 }
-
 
 EditWidget* CreateFbWidthEdit()
 {
@@ -120,6 +122,18 @@ static bool IsCancelKey(const SDL_Event& event)
     return event.key.keysym.sym==SDLK_ESCAPE;
 }
 
+/* -------- */
+
+void EditWidget::Load( dictionary* dict, char* inikey )
+{
+
+}
+
+void EditWidget::Save( dictionary* dict, char* inikey )
+{
+
+}
+
 bool EditWidget::OnKeyDown(const SDL_Event& event)
 {
     if (GetSelected()==false)
@@ -150,6 +164,39 @@ KeyMappingEditWidget::KeyMappingEditWidget()
 {
 
 }
+
+void KeyMappingEditWidget::Load(dictionary* dict, char* key)
+{
+    m_Keys.clear();
+
+    char* value = iniparser_getstring(dict, key, "");
+    if (value && value[0])
+    {
+        char* mapping = strtok(value, " ");
+        if (!mapping)
+            mapping = value;
+
+        do
+        {
+            m_Keys.push_back(std::string(mapping,strlen(mapping)));
+        }
+        while(mapping=strtok(NULL," "));
+    }
+}
+
+void KeyMappingEditWidget::Save( dictionary* dict, char* inikey )
+{
+    if (m_Keys.size())
+    {
+        std::string val = GetText();
+        iniparser_set(dict, const_cast<char*>(inikey), const_cast<char*>(val.c_str()));
+    }
+    else
+    {
+        iniparser_unset(dict, const_cast<char*>(inikey));
+    }
+}
+
 
 std::string KeyMappingEditWidget::GetText() const
 {
@@ -208,6 +255,11 @@ RangeEditWidget::RangeEditWidget( int min, int max, int def )
     , m_Current(def)
     , m_Reset(def)
     , m_TextInput(false)
+{
+
+}
+
+void RangeEditWidget::Load(dictionary* dict, const char* key)
 {
 
 }
@@ -304,6 +356,11 @@ void SetEditWidget::AddValue(const char* value, bool is_default)
     }
 }
 
+void SetEditWidget::Load(dictionary* dict, const char* key)
+{
+
+}
+
 std::string SetEditWidget::GetText() const
 {
     return m_Set[m_CurrentValue];
@@ -360,9 +417,8 @@ GameConfigWidget::~GameConfigWidget()
 
 void GameConfigWidget::Init(TTF_Font* font, int x, int y, const GameConfigValue& value)
 {
-    m_Value = value;
     m_LabelWidget.SetFont(font);
-    m_LabelWidget.SetText(m_Value.display_name);
+    m_LabelWidget.SetText(value.display_name);
 
     SDL_Rect lrect = {x, y,CONFIGWIDTH/2,WIDGETHEIGHT};
     m_LabelWidget.SetRect(lrect);
@@ -401,6 +457,7 @@ GameConfigWindow::GameConfigWindow( TTF_Font* font )
     : m_Font(font)
     , m_Visible(false)
     , m_CurrentConfig(0)
+    , m_Dict(0)
 {
     m_DrawRect.x = (SCREENWIDTH-CONFIGWIDTH)/2;
     m_DrawRect.y = CONFIGOFFSETY;
@@ -419,17 +476,24 @@ GameConfigWindow::GameConfigWindow( TTF_Font* font )
 
 GameConfigWindow::~GameConfigWindow()
 {
+    if (m_Dict) iniparser_freedict(m_Dict);
 }
 
 
 void GameConfigWindow::LoadINI()
 {
-
+    m_Dict = iniparser_load(GAMECONFIG_INI_FILE);
+    if (m_Dict==0) m_Dict = dictionary_new(1);
 }
 
 void GameConfigWindow::SaveINI()
 {
-
+    if (m_Dict)
+    {
+        FILE* f = fopen(GAMECONFIG_INI_FILE,"w");
+        iniparser_dump_ini(m_Dict,f);
+        fclose(f);
+    }
 }
 
 void GameConfigWindow::ConfigFile(const FileStat& file)
@@ -443,14 +507,36 @@ void GameConfigWindow::ConfigFile(const FileStat& file)
 
 void GameConfigWindow::Show()
 {
+    bool is_visible = m_Visible;
     m_Visible = true;
     m_CurrentConfig = 0;
     UpdateCurrentConfig(0);
+
+    if (is_visible!=m_Visible)
+    {
+        for (size_t i=0; i<m_ConfigWidgets.size();++i)
+        {
+            const GameConfigValue& cfg_value = C_GameConfigs[i];
+            char tmp[1024]; sprintf(tmp,"%s:%s",m_Swf.GetName().c_str(), cfg_value.ini_name);
+            m_ConfigWidgets[i].GetEdit()->Load(m_Dict,tmp);
+        }
+    }
 }
 
 void GameConfigWindow::Hide()
 {
     m_Visible = false;
+
+    if (!m_Dict) m_Dict = dictionary_new(0);
+
+    iniparser_set(m_Dict,const_cast<char*>(m_Swf.GetName().c_str()),NULL);
+
+    for (size_t i=0; i<m_ConfigWidgets.size();++i)
+    {
+        const GameConfigValue& cfg_value = C_GameConfigs[i];
+        char tmp[1024]; sprintf(tmp,"%s:%s",m_Swf.GetName().c_str(), cfg_value.ini_name);
+        m_ConfigWidgets[i].GetEdit()->Save(m_Dict,tmp);
+    }
 }
 
 bool GameConfigWindow::IsShown() const
@@ -469,8 +555,8 @@ bool GameConfigWindow::OnKeyDown(const SDL_Event& event)
     else
     if (event.key.keysym.sym==SDLK_ESCAPE)
     {
-        SaveINI();
         Hide();
+        SaveINI();
         return true;
     }
     else

@@ -2,8 +2,8 @@
 // crow_riot, 2014
 // --------------------------------------------------------------------
 
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef UI_DEFINES_H
+#define UI_DEFINES_H
 
 
 #define SCREENWIDTH       800

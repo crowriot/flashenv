@@ -2,11 +2,11 @@
 // crow_riot, 2014
 // --------------------------------------------------------------------
 
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef PLAYER_DEFINES_H
+#define PLAYER_DEFINES_H
 
+/* -------- */
 
-#define PANDORA
 #define SCREENWIDTH  800
 #define SCREENHEIGHT 480
 #define SCREENBITS   16

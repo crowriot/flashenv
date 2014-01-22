@@ -18,6 +18,10 @@ extern "C" {
 class EditWidget : public Widget
 {
 public:
+    /// load value from ini dictionary
+    virtual void Load( dictionary* dict, char* inikey );
+    /// save value to ini dictionary
+    virtual void Save( dictionary* dict, char* inikey );
     /// key handling
     virtual bool OnKeyDown(const SDL_Event& key_event);
 };
@@ -29,6 +33,8 @@ public:
     KeyMappingEditWidget();
 
     /** overrides */
+    virtual void Load( dictionary* dict, char* key );
+    virtual void Save( dictionary* dict, char* key );
     virtual bool OnKeyDown(const SDL_Event& key_event);
     virtual std::string GetText() const;
 
@@ -44,6 +50,7 @@ public:
     RangeEditWidget( int min, int max, int def );
 
     /** overrides */
+    virtual void Load( dictionary* dict, const char* key );
     virtual std::string GetText() const;
     virtual bool OnKeyDown(const SDL_Event& key_event);
 
@@ -68,6 +75,7 @@ public:
 
 
     /** overrides */
+    virtual void Load( dictionary* dict, const char* inikey );
     virtual std::string GetText() const;
     virtual bool OnKeyDown(const SDL_Event& key_event);
 
@@ -97,13 +105,13 @@ public:
     ~GameConfigWidget();
 
     void Init(TTF_Font* font, int x, int y, const GameConfigValue& value);
+    EditWidget* GetEdit() { return m_EditWidget; }
     void SetSelected(bool);
     bool GetSelected() const;
     bool OnKeyDown(const SDL_Event& keyevent);
     void BlitTo(SDL_Surface* screen);
 
 private:
-    GameConfigValue m_Value;
     TextWidget m_LabelWidget;
     EditWidget* m_EditWidget;
     bool m_Active;
@@ -150,7 +158,7 @@ private:
     TTF_Font* m_Font;
     bool m_Visible;
     FileStat m_Swf;
-    dictionary* m_GameConfigDictionary;
+    dictionary* m_Dict;
     SDL_Rect m_DrawRect;
     std::vector<GameConfigWidget> m_ConfigWidgets;
     int m_CurrentConfig;
