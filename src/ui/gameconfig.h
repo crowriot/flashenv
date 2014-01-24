@@ -40,6 +40,7 @@ public:
 
 private:
     std::vector<std::string> m_Keys;
+    std::vector<std::string> m_Reset;
 };
 
 
@@ -50,15 +51,17 @@ public:
     RangeEditWidget( int min, int max, int def );
 
     /** overrides */
-    virtual void Load( dictionary* dict, const char* key );
+    virtual void Load( dictionary* dict, char* key );
+    virtual void Save( dictionary* dict, char* key );
     virtual std::string GetText() const;
     virtual bool OnKeyDown(const SDL_Event& key_event);
 
 private:
     int m_Min;
     int m_Max;
-    int m_Reset;
+    int m_Default;
     int m_Current;
+    int m_Reset;
     std::string m_InputText;
     bool m_TextInput;
 };
@@ -75,7 +78,8 @@ public:
 
 
     /** overrides */
-    virtual void Load( dictionary* dict, const char* inikey );
+    virtual void Load( dictionary* dict, char* key );
+    virtual void Save( dictionary* dict, char* key );
     virtual std::string GetText() const;
     virtual bool OnKeyDown(const SDL_Event& key_event);
 
@@ -108,6 +112,7 @@ public:
     EditWidget* GetEdit() { return m_EditWidget; }
     void SetSelected(bool);
     bool GetSelected() const;
+    bool IsEditing() const;
     bool OnKeyDown(const SDL_Event& keyevent);
     void BlitTo(SDL_Surface* screen);
 

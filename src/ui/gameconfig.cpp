@@ -8,6 +8,7 @@
 #include "../player/defines.h"
 #include <SDL/SDL_gfxPrimitives.h>
 #include <iostream>
+#include <algorithm>
 
 EditWidget* CreateKeyEdit()
 {
@@ -108,6 +109,16 @@ void AddClamp(T& val, T add, B min, B max)
     if (val>max) { val=max; }
 }
 
+
+template <class T, class B>
+void AddWrap(T& val, T add, B size)
+{
+    val += add;
+    if (val<0) val = size -1;
+    else val %= size;
+}
+
+
 static bool IsAcceptKey(const SDL_Event& event)
 {
     return event.key.keysym.sym==SDLK_RETURN
@@ -182,6 +193,8 @@ void KeyMappingEditWidget::Load(dictionary* dict, char* key)
         }
         while(mapping=strtok(NULL," "));
     }
+
+    m_Reset = m_Keys;
 }
 
 void KeyMappingEditWidget::Save( dictionary* dict, char* inikey )
@@ -225,12 +238,13 @@ bool KeyMappingEditWidget::OnKeyDown(const SDL_Event& event)
         if (IsAcceptKey(event))
         {
             SetSelected(false);
+            m_Reset = m_Keys;
         }
         else
         if (IsCancelKey(event))
         {
             SetSelected(false);
-            m_Keys.clear();
+            m_Keys = m_Reset;
         }
         else
         if (event.key.keysym.sym<=127)
@@ -253,15 +267,31 @@ RangeEditWidget::RangeEditWidget( int min, int max, int def )
     : m_Min(min)
     , m_Max(max)
     , m_Current(def)
+    , m_Default(def)
     , m_Reset(def)
     , m_TextInput(false)
 {
 
 }
 
-void RangeEditWidget::Load(dictionary* dict, const char* key)
+void RangeEditWidget::Load(dictionary* dict, char* key)
 {
+    int value = iniparser_getint(dict,key,m_Default);
+    AddClamp(value,0,m_Min,m_Max);
+    m_Reset = value;
+}
 
+void RangeEditWidget::Save(dictionary* dict, char* key)
+{
+    if (m_Current!=m_Default)
+    {
+        char tmp[256]; sprintf(tmp,"%d",m_Current);
+        iniparser_set(dict, key, tmp);
+    }
+    else
+    {
+        iniparser_unset(dict,key);
+    }
 }
 
 std::string RangeEditWidget::GetText() const
@@ -300,12 +330,6 @@ bool RangeEditWidget::OnKeyDown(const SDL_Event& event)
             m_InputText += (char)event.key.keysym.sym;
         }
         else
-        if (!m_TextInput && event.key.keysym.sym==SDLK_BACKSPACE)
-        {
-            m_InputText = GetText();
-            m_TextInput = true;
-        }
-        else
         if (m_TextInput)
         {
             if (event.key.keysym.sym==SDLK_BACKSPACE)
@@ -318,6 +342,7 @@ bool RangeEditWidget::OnKeyDown(const SDL_Event& event)
             {
                 m_Current = atoi(m_InputText.c_str());
                 AddClamp(m_Current,0,m_Min,m_Max);
+                m_Reset = m_Current;
                 m_InputText.clear();
                 m_TextInput = false;
             }
@@ -328,6 +353,23 @@ bool RangeEditWidget::OnKeyDown(const SDL_Event& event)
                 m_InputText.clear();
                 return true;
             }
+        }
+        else
+        if (event.key.keysym.sym==SDLK_BACKSPACE)
+        {
+            m_InputText = GetText();
+            m_TextInput = true;
+            return true;
+        }
+        else
+        if (IsCancelKey(event))
+        {
+            m_Current = m_Reset;
+        }
+        else
+        if (IsAcceptKey(event))
+        {
+            m_Reset = m_Current;
         }
     }
 
@@ -356,9 +398,30 @@ void SetEditWidget::AddValue(const char* value, bool is_default)
     }
 }
 
-void SetEditWidget::Load(dictionary* dict, const char* key)
+void SetEditWidget::Load( dictionary* dict, char* key )
 {
+    m_CurrentValue = m_DefaultValue;
+    m_ResetValue = m_DefaultValue;
 
+    std::string defvalue = m_Set[m_DefaultValue];
+    char* value = iniparser_getstring(dict,key,const_cast<char*>(defvalue.c_str()));
+    if (value && value[0])
+    {
+        std::vector<std::string>::iterator it = std::find(m_Set.begin(),m_Set.end(), std::string(value));
+        if (it!=m_Set.end())
+        {
+            m_CurrentValue = it - m_Set.begin();
+            m_ResetValue = m_CurrentValue;
+        }
+    }
+}
+void SetEditWidget::Save( dictionary* dict, char* key )
+{
+    std::string value = m_Set[m_CurrentValue];
+    if (m_CurrentValue!=m_DefaultValue)
+        iniparser_set(dict,key,const_cast<char*>(value.c_str()));
+    else
+        iniparser_unset(dict,key);
 }
 
 std::string SetEditWidget::GetText() const
@@ -372,12 +435,12 @@ bool SetEditWidget::OnKeyDown(const SDL_Event& event)
     {
         if (event.key.keysym.sym==SDLK_DOWN)
         {
-            ++ m_CurrentValue;
+            AddWrap(m_CurrentValue,-1,m_Set.size());
         }
         else
         if (event.key.keysym.sym==SDLK_UP)
         {
-            -- m_CurrentValue;
+            AddWrap(m_CurrentValue,+1,m_Set.size());
         }
         else
         if (IsCancelKey(event))
@@ -389,13 +452,12 @@ bool SetEditWidget::OnKeyDown(const SDL_Event& event)
         if (IsAcceptKey(event))
         {
             SetSelected(false);
+            m_ResetValue = m_CurrentValue;
         }
         else
         {
             return EditWidget::OnKeyDown(event);
         }
-        if (m_CurrentValue<0) m_CurrentValue = m_Set.size()-1;
-        if (m_CurrentValue>=m_Set.size()) m_CurrentValue = 0;
 
         return true;
     }
@@ -435,9 +497,15 @@ void GameConfigWidget::SetSelected(bool sel)
 {
     m_LabelWidget.SetSelected(sel);
 }
+
 bool GameConfigWidget::GetSelected() const
 {
     return m_LabelWidget.GetSelected();
+}
+
+bool GameConfigWidget::IsEditing() const
+{
+    return m_EditWidget->GetSelected();
 }
 
 bool GameConfigWidget::OnKeyDown(const SDL_Event& key_event)
@@ -527,9 +595,13 @@ void GameConfigWindow::Hide()
 {
     m_Visible = false;
 
+    if (!m_Swf.IsFlashFile())
+        return;
+
     if (!m_Dict) m_Dict = dictionary_new(0);
 
-    iniparser_set(m_Dict,const_cast<char*>(m_Swf.GetName().c_str()),NULL);
+    std::string section = m_Swf.GetName();
+    iniparser_set(m_Dict,const_cast<char*>(section.c_str()),NULL);
 
     for (size_t i=0; i<m_ConfigWidgets.size();++i)
     {
@@ -548,7 +620,8 @@ bool GameConfigWindow::IsShown() const
 
 bool GameConfigWindow::OnKeyDown(const SDL_Event& event)
 {
-    if (GetCurrentConfig().OnKeyDown(event))
+    bool eaten = GetCurrentConfig().OnKeyDown(event);
+    if (eaten)
     {
         return true;
     }
