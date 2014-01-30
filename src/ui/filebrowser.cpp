@@ -220,6 +220,8 @@ bool FileBrowser::OnKeyDown(const SDL_Event& event)
             }
         }
         break;
+    default:
+        return false;
     }
     return false;
 }

@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <X11/extensions/Xfixes.h>
 #include "drawhook.h"
 
 /// gdk_image_new hooking
@@ -36,7 +37,21 @@ static int fb_draw_enabled = 0;
 static int fb_curr = 0;
 /// frame buffer pointer
 static void* fb_mem[FB_PAGES] = {0};
+/// full memory size of framebuffer
 static int fb_mem_size = 0;
+/// width of framebuffer in pixels
+static int fb_width = 0;
+/// height of framebuffer in pixels
+static int fb_height = 0;
+
+
+/// cursor image drawing
+typedef XFixesCursorImage* (*XFIXESGETCURSORIMAGEFN)(Display* display);
+/// current cursor image
+static XFIXESGETCURSORIMAGEFN XFixesGetCursorImageProc = 0;
+/// default display
+Display* x11_display = 0;
+
 
 
 /// function for external frame buffer enabling
@@ -48,6 +63,62 @@ void EnableFramebufferDraw(int enable)
     {
         munmap( fb_mem[0], fb_mem_size );
         memset(fb_mem,0,sizeof(fb_mem));
+    }
+    else
+    if (fb_draw_enabled)
+    {
+        XFixesGetCursorImageProc = (XFIXESGETCURSORIMAGEFN)dlsym(RTLD_NEXT,"XFixesGetCursorImage");
+        x11_display = XOpenDisplay(0);
+        printf("hooked XFixesGetCursorImageProc: %p\n", XFixesGetCursorImageProc);
+    }
+}
+
+#define R32(argb) ((argb&0x00FF0000)>>16)
+#define G32(argb) ((argb&0x0000FF00)>>8)
+#define B32(argb) ((argb&0x000000FF))
+
+#define R16(argb) ((R32(argb) >> (3)) << 11)
+#define B16(argb) ((G32(argb) >> (2)) << 5)
+#define G16(argb) ((B32(argb) >> (3)) )
+
+static void draw_cursor( unsigned short* data )
+{
+    if (!XFixesGetCursorImageProc)
+        return;
+
+    XFixesCursorImage* img = (*XFixesGetCursorImageProc)(x11_display);
+    if (!img)
+        return;
+
+    int screen = DefaultScreen(x11_display);
+    Window window = RootWindow(x11_display,screen);
+    Window root_window, child_window;
+    int root_x, root_y, child_x, child_y;
+    unsigned int mask;
+
+    XQueryPointer(x11_display,window,&root_window,&child_window, &root_x, &root_y, &child_x, &child_y, &mask);
+
+    int y,x;
+    for (y=0; y<img->height; ++y)
+    {
+        int ty = root_y + y;
+
+        if (ty<0 || ty>=fb_height)
+            continue;
+
+        for (x=0; x<img->width; ++x)
+        {
+            int tx = root_x + x;
+
+            if(tx>=0 && tx<fb_width)
+            {
+                unsigned long src_pixel = img->pixels[y*img->width+x];
+                unsigned short src_pixel_16 = R16(src_pixel)|G16(src_pixel)|B16(src_pixel);
+
+                if (src_pixel)
+                    data[(root_y+y)*fb_width+x+root_x] = src_pixel_16;
+            }
+        }
     }
 }
 
@@ -71,6 +142,8 @@ GdkImage* gdk_image_new(GdkImageType type, GdkVisual *visual, gint width, gint h
         {
             int page_mem_size = width*height*2;
             int mem_size = page_mem_size*FB_PAGES;
+            fb_width = width;
+            fb_height = height;
 
             fb_mem[0] = mmap(0, mem_size, PROT_READ|PROT_WRITE, MAP_SHARED, fb, 0);
             if (fb_mem[0]==MAP_FAILED)
@@ -126,12 +199,14 @@ void gdk_draw_image(GdkDrawable *drawable, GdkGC *gc, GdkImage *image, gint xsrc
         (*draw_image_orig)(drawable, gc, image, xsrc, ysrc, xdest, ydest, width, height);
     }
     else
-    if ( FB_PAGES>1 )
     {
+        //draw_cursor((unsigned short*)image->mem);
+
+#if FB_PAGES>0
         fb_curr ++;
         fb_curr %= FB_PAGES;
-
         image->mem = fb_mem[fb_curr];
+#endif
     }
 }
 

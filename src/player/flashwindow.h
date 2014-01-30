@@ -73,14 +73,20 @@ public:
 
 
 protected:
+    /// setup framebuffer rendering
     void SetupFramebuffer();
+    /// restore framebuffer to default settings
     void RestoreFramebuffer();
-
+    /// center mouse cursor
+    void CenterMouseCursor();
+    /// send left click
+    void SimulateLeftClick(int x, int y);
 
 private:
     int m_SrcWidth, m_SrcHeight;
     int m_TrgWidth, m_TrgHeight;
     int m_OffsetX, m_OffsetY;
+    bool m_FramebufferEnabled;
     _GtkWidget* m_MainWindow;
     _GtkWidget* m_ScrollWindow;
     _NPWindow* m_NPWindow;
@@ -91,6 +97,7 @@ private:
     _GdkGC* m_BlackGC;
     KeyMapGdk m_KeyMap;
     FlashPlayer* m_Player;
+    bool m_LeftClickOnExpose;
 };
 
 

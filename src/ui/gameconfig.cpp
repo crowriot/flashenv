@@ -17,12 +17,12 @@ EditWidget* CreateKeyEdit()
 
 EditWidget* CreateWinWidthEdit()
 {
-    return new RangeEditWidget(0,SCREENWIDTH,SCREENWIDTH);
+    return new RangeEditWidget(0,SCREENWIDTH*2,SCREENWIDTH);
 }
 
 EditWidget* CreateWinHeightEdit()
 {
-    return new RangeEditWidget(0,SCREENHEIGHT,SCREENHEIGHT);
+    return new RangeEditWidget(0,SCREENHEIGHT*2,SCREENHEIGHT);
 }
 
 EditWidget* CreateFbWidthEdit()
@@ -109,6 +109,19 @@ void AddClamp(T& val, T add, B min, B max)
     if (val>max) { val=max; }
 }
 
+template <class T, class B>
+void AddWrap(T& val, T add, B min, B max)
+{
+    T range = T(max - min) + 1;
+
+    val += add;
+    val = ((val-min) % range);
+
+    if (val<0)
+        val = max + val;
+    else
+        val = min + val;
+}
 
 template <class T, class B>
 void AddWrap(T& val, T add, B size)
@@ -124,13 +137,15 @@ static bool IsAcceptKey(const SDL_Event& event)
     return event.key.keysym.sym==SDLK_RETURN
          || event.key.keysym.sym==SDLK_PANDORA_A
          || event.key.keysym.sym==SDLK_PANDORA_B
-         || event.key.keysym.sym==SDLK_PANDORA_X
-         || event.key.keysym.sym==SDLK_PANDORA_Y;
+         || event.key.keysym.sym==SDLK_PANDORA_X;
 }
 
 static bool IsCancelKey(const SDL_Event& event)
 {
-    return event.key.keysym.sym==SDLK_ESCAPE;
+    return event.key.keysym.sym==SDLK_ESCAPE
+         || (event.key.keysym.sym==SDLK_q && (event.key.keysym.mod&KMOD_CTRL)!=0)
+         || event.key.keysym.sym==SDLK_PANDORA_Y
+        ;
 }
 
 /* -------- */
@@ -278,7 +293,8 @@ void RangeEditWidget::Load(dictionary* dict, char* key)
 {
     int value = iniparser_getint(dict,key,m_Default);
     AddClamp(value,0,m_Min,m_Max);
-    m_Reset = value;
+    m_Current = value;
+    m_Reset = m_Current;
 }
 
 void RangeEditWidget::Save(dictionary* dict, char* key)
@@ -309,18 +325,18 @@ bool RangeEditWidget::OnKeyDown(const SDL_Event& event)
     if (GetSelected())
     {
         int scale = 10;
-        if (event.key.keysym.mod & KMOD_SHIFT) scale = 1;
-        if (event.key.keysym.mod & KMOD_CTRL) scale = 100;
+        if (event.key.keysym.mod & KMOD_SHIFT) scale = 100;
+        if (event.key.keysym.mod & KMOD_CTRL) scale = 1;
 
         if (event.key.keysym.sym==SDLK_DOWN)
         {
-            AddClamp(m_Current,-1*scale,m_Min,m_Max);
+            AddWrap(m_Current,-1*scale,m_Min,m_Max);
             return true;
         }
         else
         if (event.key.keysym.sym==SDLK_UP)
         {
-            AddClamp(m_Current,+1*scale,m_Min,m_Max);
+            AddWrap(m_Current,+1*scale,m_Min,m_Max);
             return true;
         }
         else
@@ -568,6 +584,7 @@ void GameConfigWindow::ConfigFile(const FileStat& file)
 {
     if (file.IsFlashFile())
     {
+        std::cout << "ConfigFile: " << file.GetPath() << std::endl;
         m_Swf = file;
         Show();
     }
@@ -585,7 +602,10 @@ void GameConfigWindow::Show()
         for (size_t i=0; i<m_ConfigWidgets.size();++i)
         {
             const GameConfigValue& cfg_value = C_GameConfigs[i];
-            char tmp[1024]; sprintf(tmp,"%s:%s",m_Swf.GetName().c_str(), cfg_value.ini_name);
+
+            char tmp[1024];
+            sprintf(tmp,"%s:%s",m_Swf.GetName().c_str(), cfg_value.ini_name);
+            std::cout << "Loading " << tmp << std::endl;
             m_ConfigWidgets[i].GetEdit()->Load(m_Dict,tmp);
         }
     }
@@ -626,7 +646,7 @@ bool GameConfigWindow::OnKeyDown(const SDL_Event& event)
         return true;
     }
     else
-    if (event.key.keysym.sym==SDLK_ESCAPE)
+    if (IsCancelKey(event))
     {
         Hide();
         SaveINI();

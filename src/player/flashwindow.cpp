@@ -89,6 +89,7 @@ FlashWindow::FlashWindow()
     , m_OffsetX(0)
     , m_OffsetY(0)
     , m_BlackGC(0)
+    , m_LeftClickOnExpose(true)
 {
 
 }
@@ -194,7 +195,6 @@ bool FlashWindow::InitializeNPWindow()
         gtk_widget_modify_bg(m_MainWindow, (GtkStateType)state, &black);
         gtk_widget_modify_bg(m_Socket, (GtkStateType)state, &black);
     }
-    gtk_widget_set_visible(m_Socket,false);
 
     SetupFramebuffer();
 
@@ -369,6 +369,12 @@ void FlashWindow::OnEvent(_GdkEvent* event)
     else
     if (event->type==GDK_EXPOSE)
     {
+        if (m_LeftClickOnExpose)
+        {
+            SimulateLeftClick(0,0);
+            m_LeftClickOnExpose=false;
+        }
+
         gdk_draw_rectangle(event->expose.window,
                            m_BlackGC,
                            true,
@@ -431,4 +437,42 @@ void FlashWindow::RestoreFramebuffer()
 
         system("ofbset -fb /dev/fb1 -pos 0 0 -size 0 0 -mem 0 -en 0");
     }
+}
+
+
+void FlashWindow::CenterMouseCursor()
+{
+    Display* display = GDK_WINDOW_XDISPLAY(m_MainWindow->window);
+    Window xwindow = GDK_WINDOW_XWINDOW(m_MainWindow->window);
+    XWarpPointer(display,None,xwindow,0,0,0,0,SCREENWIDTH/2,SCREENHEIGHT/2);
+}
+
+void FlashWindow::SimulateLeftClick(int x, int y)
+{
+    Display* display = GDK_WINDOW_XDISPLAY(m_MainWindow->window);
+    Window xwindow = GDK_WINDOW_XWINDOW(m_MainWindow->window);
+    XEvent event;
+    memset(&event,0,sizeof(XEvent));
+
+    event.type = ButtonPress;
+    event.xbutton.window = xwindow;
+    event.xbutton.same_screen = true;
+    event.xbutton.button = 1;
+    event.xbutton.root = RootWindow(display,DefaultScreen(display));
+    event.xbutton.x_root = x;
+    event.xbutton.y_root = y;
+    event.xbutton.x = x;
+    event.xbutton.y = y;
+
+    XSendEvent(display, xwindow, True, ButtonPressMask, &event);
+
+    XFlush(display);
+
+    usleep(100);
+
+    event.type = ButtonRelease;
+
+    XSendEvent(display, xwindow, True, ButtonReleaseMask, &event);
+
+    XFlush(display);
 }

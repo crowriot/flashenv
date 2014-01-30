@@ -76,8 +76,13 @@ static PointerChange S_PointerChange = {0,1,1, 0,1,1};
 void SetPointerChange(PointerChange change)
 {
     S_PointerChange = change;
+
+    printf("hooked SetPointerChange: %d %d %d, %d %d %d\n",
+            S_PointerChange.off_x, S_PointerChange.div_x, S_PointerChange.mul_x,
+            S_PointerChange.off_y, S_PointerChange.div_y, S_PointerChange.mul_y);
 }
 
+/// XQueryPointer function pointer declaration
 typedef int (*XQUERYPOINTERFN)(
       Display *display,
       Window w, Window *root_return, Window *child_return,
@@ -101,27 +106,27 @@ int XQueryPointer(Display *display,
 
     if (root_x_return)
     {
-        *root_x_return += S_PointerChange.off_x;
+        *root_x_return -= S_PointerChange.off_x;
         *root_x_return *= S_PointerChange.mul_x;
         *root_x_return /= S_PointerChange.div_x;
     }
     if (root_y_return)
     {
-        *root_y_return += S_PointerChange.off_y;
+        *root_y_return -= S_PointerChange.off_y;
         *root_y_return *= S_PointerChange.mul_y;
         *root_y_return /= S_PointerChange.div_y;
     }
     if (win_x_return)
     {
-        *win_x_return += S_PointerChange.off_x;
+        *win_x_return -= S_PointerChange.off_x;
         *win_x_return *= S_PointerChange.mul_x;
         *win_x_return /= S_PointerChange.div_x;
     }
     if (win_y_return)
     {
-        *win_y_return += S_PointerChange.off_y;
+        *win_y_return -= S_PointerChange.off_y;
         *win_y_return *= S_PointerChange.mul_y;
-        *win_y_return /= S_PointerChange.div_y;
+        *win_y_return /= S_PointerChange.div_y;;
     }
 
 #ifdef _DEBUG

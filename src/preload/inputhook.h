@@ -23,12 +23,10 @@
 typedef KeyCode KeyMapX11[KEYMAPX11_SOURCE_SIZE][KEYMAPX11_TARGET_SIZE];
 
 /// size of keymap table
-const int C_KeyMapX11_Size = sizeof(KeyCode) * KEYMAPX11_SOURCE_SIZE * KEYMAPX11_TARGET_SIZE;
+static const int C_KeyMapX11_Size = sizeof(KeyCode) * KEYMAPX11_SOURCE_SIZE * KEYMAPX11_TARGET_SIZE;
 
 /// function prototype for keymap registering
 typedef void (*RegisterKeyMappingFN)( const KeyMapX11 keymap, int size );
-
-
 
 /// PointerChange structure
 /// XQueryPointer values get modified by this.
@@ -49,6 +47,8 @@ typedef struct _PointerChange PointerChange;
 
 /// funtion prototype for pointer change
 typedef void (*SetPointerChangeFN)(PointerChange change);
+
+
 
 #endif
 

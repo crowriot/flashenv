@@ -172,10 +172,19 @@ int main ( int argc, char** argv )
                         game_config.Show();
                     }
                     break;
+                case SDLK_PANDORA_B:
+                case SDLK_PANDORA_A:
+                case SDLK_PANDORA_X:
                 case SDLK_RETURN:
                     if (browser.GetCurrentFile().IsFlashFile())
                     {
                         runswf = browser.GetCurrentFile();
+                    }
+                    break;
+                case SDLK_q:
+                    if (event.key.keysym.mod&KMOD_CTRL)
+                    {
+                        done = true;
                     }
                     break;
                 case SDLK_ESCAPE:
@@ -201,6 +210,9 @@ int main ( int argc, char** argv )
     SDL_Quit();
     TTF_Quit();
 
+#ifdef PANDORA
+    system("sync");
+#endif
 
     if (runswf.IsFlashFile())
     {

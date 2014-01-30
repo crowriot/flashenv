@@ -74,10 +74,12 @@ bool LoadAttributes(const char* inifile, const char* swffile, FlashAttributes* a
 
 
     char tmp[256];
-    GET_INT_VALUE(window_src_width , "WindowWidth");
-    GET_INT_VALUE(window_src_height, "WindowHeight");
     GET_INT_VALUE(window_src_width , "width");
     GET_INT_VALUE(window_src_height, "height");
+
+    GET_INT_VALUE(window_src_width , "WindowWidth");
+    GET_INT_VALUE(window_src_height, "WindowHeight");
+
     GET_INT_VALUE(window_trg_width , "FramebufferWidth");
     GET_INT_VALUE(window_trg_height, "FramebufferHeight");
 
