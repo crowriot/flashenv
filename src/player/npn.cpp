@@ -25,8 +25,8 @@ using namespace std;
 #define NP_FALSE 0
 #define NP_TRUE 1
 
-#define NO_IDENTIFIER		((NPIdentifier)0)
-#define	SPECIAL_IDENTIFIER  0x0FEEBBCC
+#define NO_IDENTIFIER       ((NPIdentifier)0)
+#define SPECIAL_IDENTIFIER  0x0FEEBBCC
 #define SPECIAL_METHOD_NAME "swhxCall"
 
 #define FLASH_REQUEST   "__flash__request"
@@ -43,45 +43,45 @@ static char **np_ids = NULL;
 static int_val np_id_count = 0;
 
 static NPIdentifier resolveNPId( const char *id ) {
-	int_val i;
-	for(i=0;i<np_id_count;i++)
-		if( strcmp(np_ids[i],id) == 0 )
-			return (NPIdentifier)(i+1);
-	if( strcmp(id,SPECIAL_METHOD_NAME) == 0 )
-		return (NPIdentifier)SPECIAL_IDENTIFIER;
-	return NO_IDENTIFIER;
+    int_val i;
+    for(i=0;i<np_id_count;i++)
+        if( strcmp(np_ids[i],id) == 0 )
+            return (NPIdentifier)(i+1);
+    if( strcmp(id,SPECIAL_METHOD_NAME) == 0 )
+        return (NPIdentifier)SPECIAL_IDENTIFIER;
+    return NO_IDENTIFIER;
 }
 
 static NPIdentifier addNPId( const char *id ) {
-	NPIdentifier newid = resolveNPId(id);
-	if( newid == NO_IDENTIFIER ) {
-		np_id_count++;
-		printf("New npid added: %i == %s\n",np_id_count, id);
-		np_ids = (char**)realloc(np_ids,np_id_count*sizeof(char*));
-		np_ids[np_id_count-1] = strdup(id);
-		return (NPIdentifier)np_id_count;
-	}
-	return newid;
+    NPIdentifier newid = resolveNPId(id);
+    if( newid == NO_IDENTIFIER ) {
+        np_id_count++;
+        printf("New npid added: %i == %s\n",np_id_count, id);
+        np_ids = (char**)realloc(np_ids,np_id_count*sizeof(char*));
+        np_ids[np_id_count-1] = strdup(id);
+        return (NPIdentifier)np_id_count;
+    }
+    return newid;
 }
 
 static const char *getNPId( NPIdentifier id ) {
-	int_val index = ((int_val)id)-1;
-	if( index >= 0 && index < np_id_count )
-		return np_ids[index];
-	if( id == (NPIdentifier)SPECIAL_IDENTIFIER )
-		return SPECIAL_METHOD_NAME;
-	return NULL;
+    int_val index = ((int_val)id)-1;
+    if( index >= 0 && index < np_id_count )
+        return np_ids[index];
+    if( id == (NPIdentifier)SPECIAL_IDENTIFIER )
+        return SPECIAL_METHOD_NAME;
+    return NULL;
 }
 
 static int matchNPId(NPIdentifier id, const char *str) {
-	const char *strid = getNPId(id);
-	return ( strid != NULL && strcmp(strid,str) == 0 );
+    const char *strid = getNPId(id);
+    return ( strid != NULL && strcmp(strid,str) == 0 );
 }
 
 void freeNPIds() {
-	while( np_id_count )
-		free(np_ids[--np_id_count]);
-	free(np_ids);
+    while( np_id_count )
+        free(np_ids[--np_id_count]);
+    free(np_ids);
 }
 
 /* window class */
@@ -98,18 +98,18 @@ static NPObject *NPN_CreateObjectProc( NPP npp, NPClass *aClass );
 static NPObject *NPN_RetainObjectProc( NPObject *npobj );
 
 static NPClass __gen_class =
-	{ NP_CLASS_STRUCT_VERSION
-	, (NPAllocateFunctionPtr) malloc
-	, (NPDeallocateFunctionPtr) free
-	, 0
-	, (NPHasMethodFunctionPtr) NPN_HasMethodProc
-	, (NPInvokeFunctionPtr) NPN_InvokeProc
-	, (NPInvokeDefaultFunctionPtr)NPN_InvokeDefaultProc
-	, (NPHasPropertyFunctionPtr) NPN_HasPropertyProc
-	, (NPGetPropertyFunctionPtr) NPN_GetPropertyProc
-	, (NPSetPropertyFunctionPtr) NPN_SetPropertyProc
-	, (NPRemovePropertyFunctionPtr) NPN_RemovePropertyProc
-	};
+    { NP_CLASS_STRUCT_VERSION
+    , (NPAllocateFunctionPtr) malloc
+    , (NPDeallocateFunctionPtr) free
+    , 0
+    , (NPHasMethodFunctionPtr) NPN_HasMethodProc
+    , (NPInvokeFunctionPtr) NPN_InvokeProc
+    , (NPInvokeDefaultFunctionPtr)NPN_InvokeDefaultProc
+    , (NPHasPropertyFunctionPtr) NPN_HasPropertyProc
+    , (NPGetPropertyFunctionPtr) NPN_GetPropertyProc
+    , (NPSetPropertyFunctionPtr) NPN_SetPropertyProc
+    , (NPRemovePropertyFunctionPtr) NPN_RemovePropertyProc
+    };
 static NPObject __window = { &__gen_class, 1 };
 static NPObject __location = { &__gen_class, 1};
 static NPObject __top = { &__gen_class, 1 };
@@ -117,11 +117,11 @@ static NPObject __top_location = { &__gen_class, 1 };
 static NPObject __plugin_element = { &__gen_class, 1 };
 
 static void traceObjectOnCall(const char *f, NPObject *o){
-	if (o == &__top) printf("DOM object 'top': %s\n",f);
-	else if (o == &__window) printf("DOM object 'window': %s\n",f);
-	else if (o == &__location) printf("DOM object 'location': %s\n",f);
-	else if (o == &__top_location) printf("DOM object 'top.location': %s\n",f);
-	else if (o == &__plugin_element) printf("DOM object 'plugin element': %s\n",f);
+    if (o == &__top) printf("DOM object 'top': %s\n",f);
+    else if (o == &__window) printf("DOM object 'window': %s\n",f);
+    else if (o == &__location) printf("DOM object 'location': %s\n",f);
+    else if (o == &__top_location) printf("DOM object 'top.location': %s\n",f);
+    else if (o == &__plugin_element) printf("DOM object 'plugin element': %s\n",f);
 }
 
 
@@ -133,18 +133,18 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
 
     switch (variable)
     {
-	case NPNVSupportsXEmbedBool:
+    case NPNVSupportsXEmbedBool:
         cout << "\tNPNVSupportsXEmbedBool" << endl;
-		*((int*)ret_value)= NP_TRUE;
-		break;
-	case NPNVToolkit:
+        *((int*)ret_value)= NP_TRUE;
+        break;
+    case NPNVToolkit:
         cout << "\tNPNVToolkit" << endl;
-		*((int*)ret_value)= NPNVGtk2;
-		break;
-	case NPNVnetscapeWindow:
+        *((int*)ret_value)= NPNVGtk2;
+        break;
+    case NPNVnetscapeWindow:
         cout << "\tNPNVnetscapeWindow" << endl;
         *((unsigned long*)ret_value)= player->GetWindow().GetMainWindowXID();
-		break;
+        break;
     case NPNVWindowNPObject:
         cout << "\tNPNVWindowNPObject" << endl;
         *(NPObject**)ret_value = &__window;
@@ -152,21 +152,21 @@ NPError NPN_GetValueProc(NPP instance, NPNVariable variable, void *ret_value)
         break;
     case NPNVjavascriptEnabledBool:
         cout << "\tNPNVjavascriptEnabledBool" << endl;
-		*((int*)ret_value)= NP_FALSE;
-		break;
+        *((int*)ret_value)= NP_FALSE;
+        break;
     case NPNVPluginElementNPObject:
         cout << "\tNPNVPluginElementNPObject" << endl;
-		*((int*)ret_value)= 0;
-		break;
+        *((int*)ret_value)= 0;
+        break;
     case NPNVisOfflineBool:
         cout << "\tNPNVisOfflineBool" << endl;
         *((int*)ret_value)=NP_FALSE;
         break;
-	default:
+    default:
         cout << "\tvariable=" << variable << endl;
-		*((int*)ret_value)=NP_FALSE;
-		break;
-	};
+        *((int*)ret_value)=NP_FALSE;
+        break;
+    };
     return NPERR_NO_ERROR;
 }
 NPError NPN_SetValueProc(NPP instance, NPPVariable variable, void *value)
@@ -174,15 +174,15 @@ NPError NPN_SetValueProc(NPP instance, NPPVariable variable, void *value)
     DEBUG_FUNCTION_NAME
 
 
-	switch(variable) {
-		case NPPVpluginWindowBool:
+    switch(variable) {
+        case NPPVpluginWindowBool:
             cout << "\tNPPVpluginWindowBool - value=" << value << endl;
-			break;
-		default:
+            break;
+        default:
             cout << "\tvariable=" << variable << " value=" << value << endl;
-			break;
-	}
-	return NPERR_NO_ERROR;
+            break;
+    }
+    return NPERR_NO_ERROR;
 }
 
 NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, void* notifyData)
@@ -195,56 +195,56 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
     const NPPluginFuncs& plugin_funcs =
                 reinterpret_cast<FlashPlayer*>(instance->ndata)->GetPluginFuncs();
 
-	if (target && strlen(target)==6 && memcmp("_blank",target,6)==0)
-	{
-		plugin_funcs.urlnotify(instance,url,NPRES_DONE,notifyData);
-	}
-	else
-	if( memcmp(url,"javascript:",11) == 0 )
-	{
-		NPStream s;
-		uint16_t stype;
-		int success;
-		memset(&s,0,sizeof(NPStream));
-		s.url = strdup(url);
-		success = (plugin_funcs.newstream(instance,MIMETYPE_HTML,&s,0,&stype) == NPERR_NO_ERROR);
+    if (target && strlen(target)==6 && memcmp("_blank",target,6)==0)
+    {
+        plugin_funcs.urlnotify(instance,url,NPRES_DONE,notifyData);
+    }
+    else
+    if( memcmp(url,"javascript:",11) == 0 )
+    {
+        NPStream s;
+        uint16_t stype;
+        int success;
+        memset(&s,0,sizeof(NPStream));
+        s.url = strdup(url);
+        success = (plugin_funcs.newstream(instance,MIMETYPE_HTML,&s,0,&stype) == NPERR_NO_ERROR);
 
-		if( success )
-		{
-			int pos = 0;
-			int size;
-			char buf[256];
-			sprintf(buf,"%X__flashplugin_unique__",(int_val)instance);
-			size = (int)strlen(buf);
-			s.end = size;
-			while( pos < size )
-			{
-				int len = plugin_funcs.writeready(instance,&s);
-				if( len <= 0 )
-					break;
-				if( len > size - pos )
-					len = size - pos;
-				len = plugin_funcs.write(instance,&s,pos,len,buf+pos);
-				if( len <= 0 )
-					break;
-				pos += len;
-			}
-			success = (pos == size);
-		}
+        if( success )
+        {
+            int pos = 0;
+            int size;
+            char buf[256];
+            sprintf(buf,"%X__flashplugin_unique__",(int_val)instance);
+            size = (int)strlen(buf);
+            s.end = size;
+            while( pos < size )
+            {
+                int len = plugin_funcs.writeready(instance,&s);
+                if( len <= 0 )
+                    break;
+                if( len > size - pos )
+                    len = size - pos;
+                len = plugin_funcs.write(instance,&s,pos,len,buf+pos);
+                if( len <= 0 )
+                    break;
+                pos += len;
+            }
+            success = (pos == size);
+        }
 
-		plugin_funcs.urlnotify(instance,url,success?NPRES_DONE:NPRES_NETWORK_ERR,notifyData);
-		plugin_funcs.destroystream(instance,&s,NPRES_DONE);
-		free((void*)s.url);
-	}
-	else
-	{
+        plugin_funcs.urlnotify(instance,url,success?NPRES_DONE:NPRES_NETWORK_ERR,notifyData);
+        plugin_funcs.destroystream(instance,&s,NPRES_DONE);
+        free((void*)s.url);
+    }
+    else
+    {
         bool success = false;
-		NPStream stream;
-		uint16_t stype = NP_NORMAL;
+        NPStream stream;
+        uint16_t stype = NP_NORMAL;
 
-		memset(&stream,0,sizeof(NPStream));
-		stream.notifyData = notifyData;
-		stream.url = strdup(url);
+        memset(&stream,0,sizeof(NPStream));
+        stream.notifyData = notifyData;
+        stream.url = strdup(url);
 
         plugin_funcs.newstream(instance,MIMETYPE_SWF,&stream, 0, &stype);
 
@@ -316,7 +316,7 @@ NPError NPN_GetURLNotifyProc(NPP instance, const char* url, const char* target, 
         plugin_funcs.urlnotify(instance, url, success?NPRES_DONE:NPRES_NETWORK_ERR, notifyData);
 
         free((char*)stream.url);
-	}
+    }
 
     return NPERR_NO_ERROR;
 }
@@ -432,7 +432,7 @@ NPUTF8* NPN_UTF8FromIdentifierProc(NPIdentifier identifier)
 {
     DEBUG_FUNCTION_NAME
     const char *result = getNPId(identifier);
-	return result ? strdup(result) : NULL;
+    return result ? strdup(result) : NULL;
 }
 int32_t NPN_IntFromIdentifierProc(NPIdentifier identifier)
 {
@@ -443,32 +443,32 @@ NPObject* NPN_CreateObjectProc(NPP npp, NPClass *aClass)
 {
     DEBUG_FUNCTION_NAME
 
-	NPObject *o;
-	if( aClass->allocate )
-		o = aClass->allocate(npp,aClass);
-	else
-		o = (NPObject*)malloc(sizeof(NPObject));
-	o->_class = aClass;
-	o->referenceCount = 1;
-	return o;
+    NPObject *o;
+    if( aClass->allocate )
+        o = aClass->allocate(npp,aClass);
+    else
+        o = (NPObject*)malloc(sizeof(NPObject));
+    o->_class = aClass;
+    o->referenceCount = 1;
+    return o;
 }
 NPObject* NPN_RetainObjectProc(NPObject *obj)
 {
     DEBUG_FUNCTION_NAME
-	if( obj == NULL )
-		return NULL;
-	obj->referenceCount++;
-	return obj;
+    if( obj == NULL )
+        return NULL;
+    obj->referenceCount++;
+    return obj;
 }
 void NPN_ReleaseObjectProc(NPObject *obj)
 {
     DEBUG_FUNCTION_NAME
 
-	if( obj == NULL )
-		return;
-	obj->referenceCount--;
-	if( obj->referenceCount != 0 )
-		return;
+    if( obj == NULL )
+        return;
+    obj->referenceCount--;
+    if( obj->referenceCount != 0 )
+        return;
     if (obj->_class)
     {
         if( obj->_class->invalidate )
@@ -489,7 +489,7 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
     cout << "\tnpid=" << getNPId(npid) << endl;
     cout << "\targc=" << argCount << endl;
 
-	traceObjectOnCall(__FUNCTION__,npobj);
+    traceObjectOnCall(__FUNCTION__,npobj);
 
     if (npobj == &__window)
     {
@@ -519,63 +519,63 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
             //SCRIPT_TRACE("Returned 'top.location' class");
             return 1;
         }
-	}
+    }
 
-	if( matchNPId(npid,FLASH_REQUEST) && argCount == 1 && args[0].type == NPVariantType_String ) {
-		return 1;
-	}
-	if( matchNPId(npid,FLASH_REQUEST) && argCount == 3 &&
-		args[0].type == NPVariantType_String &&
-		args[1].type == NPVariantType_String &&
-		args[2].type == NPVariantType_String
-	) {
-		return 1;
-	}
+    if( matchNPId(npid,FLASH_REQUEST) && argCount == 1 && args[0].type == NPVariantType_String ) {
+        return 1;
+    }
+    if( matchNPId(npid,FLASH_REQUEST) && argCount == 3 &&
+        args[0].type == NPVariantType_String &&
+        args[1].type == NPVariantType_String &&
+        args[2].type == NPVariantType_String
+    ) {
+        return 1;
+    }
 
-	if( matchNPId(npid,"_DoFSCommand") && argCount == 2 && args[0].type == NPVariantType_String && args[1].type == NPVariantType_String ) {
-		printf("[D] FSCOMMAND %s %s\n", args[0].value.stringValue.UTF8Characters, args[1].value.stringValue.UTF8Characters);
-		return 1;
-	}
+    if( matchNPId(npid,"_DoFSCommand") && argCount == 2 && args[0].type == NPVariantType_String && args[1].type == NPVariantType_String ) {
+        printf("[D] FSCOMMAND %s %s\n", args[0].value.stringValue.UTF8Characters, args[1].value.stringValue.UTF8Characters);
+        return 1;
+    }
 
-	if( npobj == &__top_location || npobj==&__location )
-	{
-		if( matchNPId(npid,"toString") )
-		{
+    if( npobj == &__top_location || npobj==&__location )
+    {
+        if( matchNPId(npid,"toString") )
+        {
             FlashPlayer* flash_player = reinterpret_cast<FlashPlayer*>(npp->ndata);
 
             std::string location = flash_player->GetAttributes().location;
             std::string file = flash_player->GetFile();
 
-			result->type = NPVariantType_String;
-			char path[PATH_MAX];
+            result->type = NPVariantType_String;
+            char path[PATH_MAX];
 
-			if (location.size())
+            if (location.size())
                 sprintf(path,"%s",location.c_str());
-			else
+            else
                 sprintf(path, "file://%s", file.c_str());
 
-			result->value.stringValue.UTF8Characters = strdup(path);
-			result->value.stringValue.UTF8Length = (int)strlen(result->value.stringValue.UTF8Characters);
-			printf("[D] Returned %s\n", result->value.stringValue.UTF8Characters);
-		}
+            result->value.stringValue.UTF8Characters = strdup(path);
+            result->value.stringValue.UTF8Length = (int)strlen(result->value.stringValue.UTF8Characters);
+            printf("[D] Returned %s\n", result->value.stringValue.UTF8Characters);
+        }
 
-		return 1;
-	}
-	//On OSX, Flash retreives locations by injected functions:
-	if( matchNPId(npid,"__flash_getWindowLocation") ) {
-		// return the location object:
-		result->type = NPVariantType_Object;
-		result->value.objectValue = &__location;
-		NPN_RetainObjectProc(&__location);
-		return 1;
-	}
-	if( matchNPId(npid,"__flash_getTopLocation") ) {
-		// return the top_location object:
-		result->type = NPVariantType_Object;
-		result->value.objectValue = &__top_location;
-		NPN_RetainObjectProc(&__top_location);
-		return 1;
-	}
+        return 1;
+    }
+    //On OSX, Flash retreives locations by injected functions:
+    if( matchNPId(npid,"__flash_getWindowLocation") ) {
+        // return the location object:
+        result->type = NPVariantType_Object;
+        result->value.objectValue = &__location;
+        NPN_RetainObjectProc(&__location);
+        return 1;
+    }
+    if( matchNPId(npid,"__flash_getTopLocation") ) {
+        // return the top_location object:
+        result->type = NPVariantType_Object;
+        result->value.objectValue = &__top_location;
+        NPN_RetainObjectProc(&__top_location);
+        return 1;
+    }
 
     return 0;
 }
@@ -593,30 +593,30 @@ bool NPN_GetPropertyProc(NPP npp, NPObject *npobj, NPIdentifier npid, NPVariant 
 {
     DEBUG_FUNCTION_NAME
 
-	cout << "\t" << getNPId(npid) << endl;
+    cout << "\t" << getNPId(npid) << endl;
 
-	if (npobj == &__window) {
-		if( matchNPId(npid,"location") ) {
-			result->type = NPVariantType_Object;
-			result->value.objectValue = &__location;
-			NPN_RetainObjectProc(&__location);
-			return 1;
-		}
-		if( matchNPId(npid,"top") ) {
-			result->type = NPVariantType_Object;
-			result->value.objectValue = &__top;
-			NPN_RetainObjectProc(&__top);
-			return 1;
-		}
-	} else if (npobj == &__top) {
-		if ( matchNPId(npid,"location") ) {
-			result->type = NPVariantType_Object;
-			result->value.objectValue = &__top_location;
-			NPN_RetainObjectProc(&__top_location);
-			return 1;
-		}
-	}
-	return 0;
+    if (npobj == &__window) {
+        if( matchNPId(npid,"location") ) {
+            result->type = NPVariantType_Object;
+            result->value.objectValue = &__location;
+            NPN_RetainObjectProc(&__location);
+            return 1;
+        }
+        if( matchNPId(npid,"top") ) {
+            result->type = NPVariantType_Object;
+            result->value.objectValue = &__top;
+            NPN_RetainObjectProc(&__top);
+            return 1;
+        }
+    } else if (npobj == &__top) {
+        if ( matchNPId(npid,"location") ) {
+            result->type = NPVariantType_Object;
+            result->value.objectValue = &__top_location;
+            NPN_RetainObjectProc(&__top_location);
+            return 1;
+        }
+    }
+    return 0;
 }
 bool NPN_SetPropertyProc(NPP npp, NPObject *obj, NPIdentifier propertyName, const NPVariant *value)
 {
@@ -642,21 +642,21 @@ void NPN_ReleaseVariantValueProc(NPVariant *variant)
 {
     DEBUG_FUNCTION_NAME
 
-	switch( variant->type ) {
-		case NPVariantType_Null:
-		case NPVariantType_Void:
-			break;
-		case NPVariantType_String:
-			free( (char*)variant->value.stringValue.UTF8Characters );
-			variant->type = NPVariantType_Void;
-			break;
-		case NPVariantType_Object:
-			NPN_ReleaseObjectProc(variant->value.objectValue);
-			variant->type = NPVariantType_Void;
-			break;
-		default:
-			break;
-	}
+    switch( variant->type ) {
+        case NPVariantType_Null:
+        case NPVariantType_Void:
+            break;
+        case NPVariantType_String:
+            free( (char*)variant->value.stringValue.UTF8Characters );
+            variant->type = NPVariantType_Void;
+            break;
+        case NPVariantType_Object:
+            NPN_ReleaseObjectProc(variant->value.objectValue);
+            variant->type = NPVariantType_Void;
+            break;
+        default:
+            break;
+    }
 }
 void NPN_SetExceptionProc(NPObject *obj, const NPUTF8 *message)
 {
