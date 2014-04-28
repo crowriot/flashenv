@@ -46,7 +46,7 @@ public:
     /// "scale" attribute
     std::string scale;
 
-    /* pandora attributes */
+    /** pandora attributes */
 
     /// width of flash window, source width of framebuffer
     int window_src_width;
@@ -57,6 +57,9 @@ public:
     int window_trg_width;
     /// framebuffer target height
     int window_trg_height;
+
+    /** fake location */
+    std::string location;
 };
 
 

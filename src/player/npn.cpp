@@ -11,6 +11,7 @@
 #include "mimetypes.h"
 #include "flashplayer.h"
 #include "flashwindow.h"
+#include "flashattributes.h"
 #include "defines.h"
 #include <iostream>
 #include <stdlib.h>
@@ -542,12 +543,18 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
 		{
             FlashPlayer* flash_player = reinterpret_cast<FlashPlayer*>(npp->ndata);
 
+            std::string location = flash_player->GetAttributes().location;
+            std::string file = flash_player->GetFile();
+
 			result->type = NPVariantType_String;
-			// "chrome://global/content/console.xul" is what Firefox returns for 'top.location.toString()';
-			//result->value.stringValue.UTF8Characters = strdup("chrome://global/content/console.xul");
-			char path[PATH_MAX]; sprintf(path, "file://%s", flash_player->GetFile().c_str());
+			char path[PATH_MAX];
+
+			if (location.size())
+                sprintf(path,"%s",location.c_str());
+			else
+                sprintf(path, "file://%s", file.c_str());
+
 			result->value.stringValue.UTF8Characters = strdup(path);
-			//result->value.stringValue.UTF8Characters = strdup("localhost");
 			result->value.stringValue.UTF8Length = (int)strlen(result->value.stringValue.UTF8Characters);
 			printf("[D] Returned %s\n", result->value.stringValue.UTF8Characters);
 		}

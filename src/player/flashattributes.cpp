@@ -87,6 +87,8 @@ bool LoadAttributes(const char* inifile, const char* swffile, FlashAttributes* a
     GET_STR_VALUE(quality, "quality");
     GET_STR_VALUE(scale,"scale");
 
+    GET_STR_VALUE(location, "location");
+
     iniparser_freedict(d);
     return true;
 }
