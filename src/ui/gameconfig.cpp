@@ -66,6 +66,11 @@ EditWidget* CreateQualityEdit()
     return set_widget;
 }
 
+EditWidget* CreateTextEdit()
+{
+    return new TextEditWidget();
+}
+
 
 static const GameConfigValue C_GameConfigs[] =
 {
@@ -93,7 +98,9 @@ static const GameConfigValue C_GameConfigs[] =
 
     { &CreateScaleEdit  , "scale"   , "Flash Scale Mode" },
     { &CreateBoolEdit   , "menu"    , "Flash Menu" },
-    { &CreateQualityEdit, "quality" , "Flash Quality", }
+    { &CreateQualityEdit, "quality" , "Flash Quality" },
+
+    { &CreateTextEdit   , "location", "Location" }
 };
 
 static const int C_GameConfigCount = sizeof(C_GameConfigs)/sizeof(*C_GameConfigs);
@@ -469,6 +476,82 @@ bool SetEditWidget::OnKeyDown(const SDL_Event& event)
         {
             SetSelected(false);
             m_ResetValue = m_CurrentValue;
+        }
+        else
+        {
+            return EditWidget::OnKeyDown(event);
+        }
+
+        return true;
+    }
+
+    return EditWidget::OnKeyDown(event);
+}
+
+
+/* -------- */
+
+TextEditWidget::TextEditWidget()
+{
+
+}
+
+void TextEditWidget::SetDefaultValue(const std::string& default_value)
+{
+    m_DefaultValue = default_value;
+}
+
+void TextEditWidget::Load( dictionary* dict, char* key )
+{
+    m_CurrentValue = m_DefaultValue;
+    m_ResetValue = m_DefaultValue;
+
+    std::string default_value = m_DefaultValue;
+    char* value = iniparser_getstring(dict,key,const_cast<char*>(default_value.c_str()));
+    if (value && value[0])
+    {
+        m_CurrentValue = value;
+        m_ResetValue = m_CurrentValue;
+    }
+}
+void TextEditWidget::Save( dictionary* dict, char* key )
+{
+    if (m_CurrentValue!=m_DefaultValue)
+        iniparser_set(dict,key,const_cast<char*>(m_CurrentValue.c_str()));
+    else
+        iniparser_unset(dict,key);
+}
+
+std::string TextEditWidget::GetText() const
+{
+    return m_CurrentValue;
+}
+
+bool TextEditWidget::OnKeyDown(const SDL_Event& event)
+{
+    if (GetSelected())
+    {
+        if (IsCancelKey(event))
+        {
+            m_CurrentValue = m_ResetValue;
+            SetSelected(false);
+        }
+        else
+        if (IsAcceptKey(event))
+        {
+            SetSelected(false);
+            m_ResetValue = m_CurrentValue;
+        }
+        else
+        if (event.key.keysym.sym==SDLK_BACKSPACE)
+        {
+            if (m_CurrentValue.size())
+                m_CurrentValue = m_CurrentValue.substr(0,m_CurrentValue.size()-1);
+        }
+        else
+        if (event.key.keysym.unicode!=0 && (event.key.keysym.unicode & 0xFF80)== 0)
+        {
+            m_CurrentValue += (char)event.key.keysym.unicode & 0x7F;
         }
         else
         {

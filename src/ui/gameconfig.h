@@ -91,6 +91,29 @@ private:
 };
 
 
+/// text edit widget: supports "arbitrary" text input
+class TextEditWidget : public EditWidget
+{
+public:
+    /// Constructor
+    TextEditWidget();
+
+    /// set the default value of the text widget.
+    void SetDefaultValue(const std::string& default_value);
+
+    /** overrides */
+    virtual void Load( dictionary* dict, char* key );
+    virtual void Save( dictionary* dict, char* key );
+    virtual std::string GetText() const;
+    virtual bool OnKeyDown(const SDL_Event& key_event);
+
+private:
+    std::string m_CurrentValue;
+    std::string m_DefaultValue;
+    std::string m_ResetValue;
+};
+
+
 /// game config entry class
 class GameConfigValue
 {
