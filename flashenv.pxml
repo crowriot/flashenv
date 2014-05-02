@@ -2,7 +2,7 @@
 <PXML xmlns="http://openpandora.org/namespaces/PXML">
   <application id="flashenv.crow_riot.app" appdata="flashenv">
     <exec command="flashenv.sh" x11="req"/>
-    <version major="1" minor="4" release="0" build="6"/>
+    <version major="1" minor="4" release="0" build="7"/>
     <author name="crow_riot, idaunis, hdonk" website="http://crow.riot.org/"/>
     <titles>
       <title lang="en_US">flashenv</title>
