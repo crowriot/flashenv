@@ -542,18 +542,11 @@ bool NPN_InvokeProc(NPP npp, NPObject* npobj, NPIdentifier npid, const NPVariant
         if( matchNPId(npid,"toString") )
         {
             FlashPlayer* flash_player = reinterpret_cast<FlashPlayer*>(npp->ndata);
-
-            std::string location = flash_player->GetAttributes().location;
-            std::string file = flash_player->GetFile();
+            std::string location = flash_player->GetLocation();
 
             result->type = NPVariantType_String;
             char path[PATH_MAX];
-
-            if (location.size())
-                sprintf(path,"%s",location.c_str());
-            else
-                sprintf(path, "file://%s", file.c_str());
-
+            strcpy(path,location.c_str());
             result->value.stringValue.UTF8Characters = strdup(path);
             result->value.stringValue.UTF8Length = (int)strlen(result->value.stringValue.UTF8Characters);
             printf("[D] Returned %s\n", result->value.stringValue.UTF8Characters);

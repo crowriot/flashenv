@@ -47,6 +47,13 @@ public:
     /// returns the directory of the file
     std::string GetPath() const;
 
+    /// returns the name of the file
+    std::string GetName() const;
+
+    /// returns the location of the flash file - either the file or the
+    /// spoofed location from attributes
+    std::string GetLocation() const;
+
     /// returns the plugin function pointer table
     const NPPluginFuncs& GetPluginFuncs() const;
 
@@ -68,6 +75,8 @@ private:
 
     std::string m_File;
     std::string m_Path;
+    std::string m_Name;
+    std::string m_Location;
 
     void* m_FlashPlayerLib;
     NP_InitializeFunc NP_Initialize;

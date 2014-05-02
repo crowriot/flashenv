@@ -37,6 +37,14 @@ string ExtractFilepath( const string& path )
     return path.substr( 0, p+1 );
 }
 
+string ExtractFilename( const string& path )
+{
+    size_t p = path.rfind( '/' );
+    if ( p==string::npos ) p = path.rfind('\\');
+    if ( p==string::npos ) return path;
+    return path.substr( p+1, path.size()-p-1 );
+}
+
 /* -------- */
 
 FlashPlayer::FlashPlayer( FlashWindow& flash_window, FlashAttributes& flash_attributes )
@@ -124,6 +132,19 @@ bool FlashPlayer::LoadFile(const char* file)
 
     m_File = file;
     m_Path = ExtractFilepath(m_File);
+    m_Name = ExtractFilename(m_File);
+
+    if (GetAttributes().location.size())
+    {
+        m_Location = GetAttributes().location;
+        if (m_Location[m_Location.size()-1]!='/')
+            m_Location += '/';
+        m_Location += m_Name;
+    }
+    else
+    {
+        m_Location = "file://"+m_File;
+    }
 
     const char *xargv[]= {
         "allowResize",
@@ -196,7 +217,10 @@ bool FlashPlayer::LoadFile(const char* file)
     uint16_t stream_type = NP_NORMAL;
     NPStream stream;
     memset(&stream,0,sizeof(stream));
-    stream.url = strdup(file);
+
+    char tmp[8192];
+    strcpy(tmp,m_Location.c_str());
+    stream.url = strdup(tmp);
 
     fseek(pp, 0L, SEEK_END);
     stream.end = ftell(pp);
@@ -242,6 +266,16 @@ std::string FlashPlayer::GetFile() const
 std::string FlashPlayer::GetPath() const
 {
     return m_Path;
+}
+
+std::string FlashPlayer::GetName() const
+{
+    return m_Name;
+}
+
+std::string FlashPlayer::GetLocation() const
+{
+    return m_Location;
 }
 
 const NPPluginFuncs& FlashPlayer::GetPluginFuncs() const
