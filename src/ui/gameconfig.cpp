@@ -139,9 +139,9 @@ void AddWrap(T& val, T add, B size)
 }
 
 
-static bool IsAcceptKey(const SDL_Event& event)
+static bool IsAcceptKey(const SDL_Event& event, const bool accept_return=true)
 {
-    return event.key.keysym.sym==SDLK_RETURN
+    return (accept_return && event.key.keysym.sym==SDLK_RETURN)
          || event.key.keysym.sym==SDLK_PANDORA_A
          || event.key.keysym.sym==SDLK_PANDORA_B
          || event.key.keysym.sym==SDLK_PANDORA_X;
@@ -153,6 +153,22 @@ static bool IsCancelKey(const SDL_Event& event)
          || (event.key.keysym.sym==SDLK_q && (event.key.keysym.mod&KMOD_CTRL)!=0)
          || event.key.keysym.sym==SDLK_PANDORA_Y
         ;
+}
+
+// http://sourcecodebrowser.com/gtkplus-p2.0-directfb/2.0.9.2/gdkkeynames-directfb_8c_source.html
+static const char* SDLK_To_GdkKeyName(int sdlk)
+{
+    switch(sdlk)
+    {
+    case SDLK_RETURN: return "Return";
+    case SDLK_LSHIFT: return "Shift_L";
+    case SDLK_RSHIFT: return "Shift_R";
+    case SDLK_LALT:   return "Alt_L";
+    case SDLK_RALT:   return "Alt_R";
+    case SDLK_LCTRL:  return "Control_L";
+    case SDLK_RCTRL:  return "Control_R";
+    }
+    return 0;
 }
 
 /* -------- */
@@ -257,7 +273,7 @@ bool KeyMappingEditWidget::OnKeyDown(const SDL_Event& event)
             if (m_Keys.size()) m_Keys.erase(m_Keys.begin()+m_Keys.size()-1);
         }
         else
-        if (IsAcceptKey(event))
+        if (IsAcceptKey(event, false))
         {
             SetSelected(false);
             m_Reset = m_Keys;
@@ -269,13 +285,20 @@ bool KeyMappingEditWidget::OnKeyDown(const SDL_Event& event)
             m_Keys = m_Reset;
         }
         else
-        if (event.key.keysym.sym<=127)
         {
-            const char* keyname = SDL_GetKeyName(event.key.keysym.sym);
-            if (keyname)
-                m_Keys.push_back(keyname);
+            const char* gdk_keyname = SDLK_To_GdkKeyName(event.key.keysym.sym);
+            if (gdk_keyname) //check gdk_keyname first to supersede sdl keyname for SDLK_RETURN
+            {
+                m_Keys.push_back(gdk_keyname);
+            }
+            else
+            if (event.key.keysym.sym<=127)
+            {
+                const char* keyname = SDL_GetKeyName(event.key.keysym.sym);
+                if (keyname)
+                    m_Keys.push_back(keyname);
+            }
         }
-
         return true;
     }
 
