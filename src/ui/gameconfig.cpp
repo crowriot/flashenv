@@ -524,7 +524,10 @@ void TextEditWidget::Save( dictionary* dict, char* key )
 
 std::string TextEditWidget::GetText() const
 {
-    return m_CurrentValue;
+    if (GetSelected())
+        return m_CurrentValue+"_";
+    else
+        return m_CurrentValue;
 }
 
 bool TextEditWidget::OnKeyDown(const SDL_Event& event)
